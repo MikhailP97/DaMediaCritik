@@ -1,8 +1,11 @@
 import React from 'react'
+import Categories from '../Components/Categories'
 
 function FilmsParCategorie() {
   return (
-    <div>FilmsParCategorie</div>
+    <div>
+      <Categories />
+    </div>
   )
 }
 
