@@ -7,6 +7,8 @@ import FilmsParCategorie from "../src/Views/FilmsParCategorie.js";
 import PageFilm from "../src/Views/PageFilm.js";
 import Profile from "../src/Views/Profile.js";
 
+
+
 import Footer from './Components/Footer.js'
 
 function App() {
