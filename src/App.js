@@ -9,8 +9,8 @@ import FilmsParCategorie from "../src/Views/FilmsParCategorie.js";
 import PageFilm from "../src/Views/PageFilm.js";
 import Profile from "../src/Views/Profile.js";
 
-import Tendances from './components/Tendances.js'
-import Footer from './components/Footer.js'
+import Tendances from './Components/Tendances.js'
+import Footer from './Components/Footer.js'
 
 function App() {
   return (
