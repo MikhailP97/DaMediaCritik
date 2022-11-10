@@ -4,7 +4,8 @@ import Tendances from '../Components/Tendances.js'
 function Home() {
   return (
     <div>Home
-    <Tendances/></div>
+      <Tendances/>
+    </div>
   )
 }
 
