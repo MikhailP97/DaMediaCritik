@@ -2,7 +2,9 @@ import React from 'react'
 
 function Connexion() {
   return (
-    <div>Connexion</div>
+    <div>
+    <p>CONTACT</p>
+    </div>
   )
 }
 
