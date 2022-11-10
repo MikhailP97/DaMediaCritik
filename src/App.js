@@ -9,6 +9,8 @@ import FilmsParCategorie from "../src/Views/FilmsParCategorie.js";
 import PageFilm from "../src/Views/PageFilm.js";
 import Profile from "../src/Views/Profile.js";
 
+import Tendances from './components/Tendances.js'
+import Footer from './components/Footer.js'
 
 function App() {
   return (
@@ -31,9 +33,11 @@ function App() {
                     <Route path="/inscription" element={<Inscription />} />
                 </Routes>
 
-                <div>Footer</div>
+      </BrowserRouter>
 
-        </BrowserRouter>
+      <Tendances/>
+
+      <Footer/>
     </div>
   );
 }
