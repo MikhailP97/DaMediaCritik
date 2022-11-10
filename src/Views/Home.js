@@ -1,9 +1,10 @@
 import React from 'react'
+import Tendances from '../Components/Tendances.js'
 
 function Home() {
   return (
-    <div>Home</div>
-
+    <div>Home
+    <Tendances/></div>
   )
 }
 
