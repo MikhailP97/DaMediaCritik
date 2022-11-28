@@ -3,9 +3,9 @@ import Tendances from '../Components/Tendances.js'
 
 function Home() {
   return (
-    <div>Home
+    <span>
       <Tendances/>
-    </div>
+    </span>
   )
 }
 
