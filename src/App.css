@@ -21,3 +21,7 @@
   height: 100px;
   background-color: #FFF5D0;
 }
+
+.card  {
+  display: inline;
+}

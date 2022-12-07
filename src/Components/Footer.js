@@ -4,7 +4,7 @@ import image from '../Images/Logo_footer.png';
 export default class Footer extends Component {
     render() {
       return(
-        <div class="App-footer"> 
+        <div className="App-footer"> 
           <div>  
             <table width="100%">
               <tbody>

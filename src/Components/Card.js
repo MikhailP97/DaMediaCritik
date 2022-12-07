@@ -1,23 +1,14 @@
 const Card = ({title, img}) => {
     
+    function sayHello() {
+        alert('Helloo!');
+    }
+
     return (
         <>
-            Titre:<h3>{title}</h3>
-            Image:<img src={img} alt={title}/>
-
-            <div className="card">CARD
-                <div className="card-header">CARD-HEADER
-                    Image:<img src={img} alt={title}/>
-                </div>
-                <div className="card-body">CARD-BODY
-                    Titre:<h3>{title}</h3>
-                </div>
+            <div className="card">
+                <img src={img} alt={title} onClick={sayHello}/> 
             </div>
-
-            {/* <ul id="ul"></ul>
-            
-            <div id="tendances"></div> */}
-
         </>
     )
 }
