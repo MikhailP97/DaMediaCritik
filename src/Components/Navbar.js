@@ -16,7 +16,7 @@ function NavBar() {
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
               <div
                 onClick={() => navigate("/")}
-                className="inline-flex items-center "
+                className="inline-flex items-center cursor-pointer"
               >
                 <span className="ml-2 text-xl font-bold tracking-wide text-amber-600">
                   DaMovieCritik
@@ -45,7 +45,7 @@ function NavBar() {
                   </svg>
                 </button>
                 {isMenuOpen && (
-                  <div className="absolute top-0 left-0 w-full">
+                  <div className="z-10 absolute top-0 left-0 w-full">
                     <div className="p-5 bg-stone-700 border rounded shadow-sm">
                       <div className="flex items-center justify-between mb-4">
                         <div>
@@ -67,17 +67,17 @@ function NavBar() {
                       <nav>
                         <ul className="space-y-4">
                           <li className="text-gray-100">
-                            <div
+                            <div className="cursor-pointer" 
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/");
                               }}
                             >
-                              Accueil
+                              Accueill
                             </div>
                           </li>
                           <li className="text-gray-100">
-                            <div
+                            <div className="cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/films");
@@ -87,17 +87,17 @@ function NavBar() {
                             </div>
                           </li>
                           <li className="text-gray-100">
-                            <div
+                            <div className="cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
-                                navigate("/films-par-categorie");
+                                navigate("/categories");
                               }}
                             >
                               Catégories
                             </div>
                           </li>
                           <li className="text-gray-100">
-                            <div
+                            <div className="cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/contact");
@@ -107,7 +107,7 @@ function NavBar() {
                             </div>
                           </li>
                           <li className="text-gray-100">
-                            <div
+                            <div className="cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/profile");
@@ -143,7 +143,7 @@ function NavBar() {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <pathl
+                  <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
@@ -157,21 +157,21 @@ function NavBar() {
           <div
             className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0  block`}
           >
-            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+            <ul className="items-center justify-center hidden space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">
-                <div onClick={() => navigate("/")}>Accueil</div>
+                <div className="cursor-pointer" onClick={() => navigate("/")}>Accueil</div>
               </li>
               <li className="transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">
-                <div onClick={() => navigate("/films")}>Films</div>
+                <div className="cursor-pointer" onClick={() => navigate("/films")}>Films</div>
               </li>
               <li className="transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">
-                <div onClick={() => navigate("/categories")}>Catégories</div>
+                <div className="cursor-pointer" onClick={() => navigate("/categories")}>Catégories</div>
               </li>
               <li className="transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">
-                <div onClick={() => navigate("/contact")}>Contact</div>
+                <div className="cursor-pointer" onClick={() => navigate("/contact")}>Contact</div>
               </li>
               <li>
-                <div onClick={() => navigate("/profile")}>
+                <div className="cursor-pointer" onClick={() => navigate("/profile")}>
                   <svg
                     className="h-6 w-6 text-gray-100 hover:fill-current hover:text-amber-600"
                     xmlns="http://www.w3.org/2000/svg"

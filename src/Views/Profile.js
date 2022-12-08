@@ -1,8 +1,9 @@
 import React from 'react'
+import ConnexionForm from '../Components/ConnexionForm'
 
 function Profile() {
   return (
-    <div>Profile</div>
+    <ConnexionForm />
   )
 }
 
