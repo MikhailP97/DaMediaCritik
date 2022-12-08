@@ -18,7 +18,7 @@ function NavBar() {
                 onClick={() => navigate("/")}
                 className="inline-flex items-center cursor-pointer"
               >
-                <span className="ml-2 text-xl font-bold tracking-wide text-amber-600">
+                <span className="ml-2 text-3xl font-bold tracking-wide text-amber-600">
                   DaMovieCritik
                 </span>
               </div>

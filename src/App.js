@@ -6,10 +6,13 @@ import Films from "../src/Views/Films.js";
 import FilmsParCategorie from "../src/Views/FilmsParCategorie.js";
 import PageFilm from "../src/Views/PageFilm.js";
 import Profile from "../src/Views/Profile.js";
-
+import Inscription from './Views/Inscription';
+import ForgottenPassword from './Views/ForgottenPassword';
 
 
 import Footer from './Components/Footer.js'
+
+
 
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
                     <Route path="/films" element={<Films />} />
                     <Route path="/categories" element={<FilmsParCategorie />} />
                     <Route path="/page-film" element={<PageFilm />} />
+                    <Route path="/inscription" element={<Inscription />} />
+                    <Route path="/forgotten-pass" element={<ForgottenPassword />} />
+                    
                 </Routes>
 
       </BrowserRouter>

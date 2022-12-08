@@ -7,7 +7,7 @@ function Categories() {
             <div className="container mx-auto px-5 py-10">
                 <div className="-m-4 flex flex-wrap">
                     <div className="w-full p-4 md:w-1/2 lg:w-1/4">
-                        <a className="relative block h-48 overflow-hidden rounded">
+                        <a className="relative block h-48 overflow-hidden rounded" >
                             <img alt="ecommerce" className="block h-full mx-auto object-cover object-center cursor-pointer" src="https://cdn.pixabay.com/photo/2017/08/27/23/59/marvel-2688068_960_720.jpg" />
                         </a>
                         <div className="mt-4">
@@ -17,7 +17,7 @@ function Categories() {
                         </div>
                     </div>
                     <div className="w-full p-4 md:w-1/2 lg:w-1/4">
-                        <a className="relative block h-48 overflow-hidden rounded">
+                        <a className="relative block h-48 overflow-hidden rounded" >
                             <img alt="ecommerce" className="block h-full mx-auto object-cover object-center cursor-pointer" src="https://cdn.pixabay.com/photo/2017/08/27/23/59/marvel-2688068_960_720.jpg" />
                         </a>
                         <div className="mt-4">
@@ -27,7 +27,7 @@ function Categories() {
                         </div>
                     </div>
                     <div className="w-full p-4 md:w-1/2 lg:w-1/4">
-                        <a className="relative block h-48 overflow-hidden rounded">
+                        <a className="relative block h-48 overflow-hidden rounded" >
                             <img alt="ecommerce" className="block h-full mx-auto object-cover object-center cursor-pointer" src="https://cdn.pixabay.com/photo/2017/08/27/23/59/marvel-2688068_960_720.jpg" />
                         </a>
                         <div className="mt-4">
@@ -37,7 +37,7 @@ function Categories() {
                         </div>
                     </div>
                     <div className="w-full p-4 md:w-1/2 lg:w-1/4">
-                        <a className="relative block h-48 overflow-hidden rounded">
+                        <a className="relative block h-48 overflow-hidden rounded" >
                             <img alt="ecommerce" className="block h-full mx-auto object-cover object-center cursor-pointer" src="https://cdn.pixabay.com/photo/2017/08/27/23/59/marvel-2688068_960_720.jpg" />
                         </a>
                         <div className="mt-4">
@@ -47,7 +47,7 @@ function Categories() {
                         </div>
                     </div>
                     <div className="w-full p-4 md:w-1/2 lg:w-1/4">
-                        <a className="relative block h-48 overflow-hidden rounded">
+                        <a className="relative block h-48 overflow-hidden rounded" >
                             <img alt="ecommerce" className="block h-full mx-auto object-cover object-center cursor-pointer" src="https://cdn.pixabay.com/photo/2017/08/27/23/59/marvel-2688068_960_720.jpg" />
                         </a>
                         <div className="mt-4">
@@ -57,7 +57,7 @@ function Categories() {
                         </div>
                     </div>
                     <div className="w-full p-4 md:w-1/2 lg:w-1/4">
-                        <a className="relative block h-48 overflow-hidden rounded">
+                        <a className="relative block h-48 overflow-hidden rounded" >
                             <img alt="ecommerce" className="block h-full mx-auto object-cover object-center cursor-pointer" src="https://cdn.pixabay.com/photo/2017/08/27/23/59/marvel-2688068_960_720.jpg" />
                         </a>
                         <div className="mt-4">
@@ -67,7 +67,7 @@ function Categories() {
                         </div>
                     </div>
                     <div className="w-full p-4 md:w-1/2 lg:w-1/4">
-                        <a className="relative block h-48 overflow-hidden rounded">
+                        <a className="relative block h-48 overflow-hidden rounded" >
                             <img alt="ecommerce" className="block h-full mx-auto object-cover object-center cursor-pointer" src="https://cdn.pixabay.com/photo/2017/08/27/23/59/marvel-2688068_960_720.jpg" />
                         </a>
                         <div className="mt-4">
@@ -77,7 +77,7 @@ function Categories() {
                         </div>
                     </div>
                     <div className="w-full p-4 md:w-1/2 lg:w-1/4">
-                        <a className="relative block h-48 overflow-hidden rounded">
+                        <a className="relative block h-48 overflow-hidden rounded" >
                             <img alt="ecommerce" className="block h-full mx-auto object-cover object-center cursor-pointer" src="https://cdn.pixabay.com/photo/2017/08/27/23/59/marvel-2688068_960_720.jpg" />
                         </a>
                         <div className="mt-4">
@@ -87,7 +87,7 @@ function Categories() {
                         </div>
                     </div>
                     <div className="w-full p-4 md:w-1/2 lg:w-1/4">
-                        <a className="relative block h-48 overflow-hidden rounded">
+                        <a className="relative block h-48 overflow-hidden rounded" >
                             <img alt="ecommerce" className="block h-full mx-auto object-cover object-center cursor-pointer" src="https://cdn.pixabay.com/photo/2017/08/27/23/59/marvel-2688068_960_720.jpg" />
                         </a>
                         <div className="mt-4">
