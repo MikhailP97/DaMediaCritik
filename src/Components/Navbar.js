@@ -73,7 +73,7 @@ function NavBar() {
                                 navigate("/");
                               }}
                             >
-                              Accueil
+                              Accueill
                             </div>
                           </li>
                           <li className="text-gray-100">
