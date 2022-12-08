@@ -16,20 +16,20 @@ function NavBar() {
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
               <div
                 onClick={() => navigate("/")}
-                class="inline-flex items-center "
+                className="inline-flex items-center "
               >
-                <span class="ml-2 text-xl font-bold tracking-wide text-amber-600">
+                <span className="ml-2 text-xl font-bold tracking-wide text-amber-600">
                   DaMovieCritik
                 </span>
               </div>
-              <div class="ml-auto md:hidden">
+              <div className="ml-auto md:hidden">
                 <button
                   aria-label="Open Menu"
                   title="Open Menu"
-                  class="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline"
+                  className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline"
                   onClick={() => setIsMenuOpen(true)}
                 >
-                  <svg class="w-5 text-gray-100" viewBox="0 0 24 24">
+                  <svg className="w-5 text-gray-100" viewBox="0 0 24 24">
                     <path
                       fill="currentColor"
                       d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
@@ -45,17 +45,17 @@ function NavBar() {
                   </svg>
                 </button>
                 {isMenuOpen && (
-                  <div class="absolute top-0 left-0 w-full">
-                    <div class="p-5 bg-stone-700 border rounded shadow-sm">
-                      <div class="flex items-center justify-between mb-4">
+                  <div className="absolute top-0 left-0 w-full">
+                    <div className="p-5 bg-stone-700 border rounded shadow-sm">
+                      <div className="flex items-center justify-between mb-4">
                         <div>
                           <button
                             aria-label="Close Menu"
                             title="Close Menu"
-                            class="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:shadow-outline"
+                            className="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:shadow-outline"
                             onClick={() => setIsMenuOpen(false)}
                           >
-                            <svg class="w-5 text-gray-100" viewBox="0 0 24 24">
+                            <svg className="w-5 text-gray-100" viewBox="0 0 24 24">
                               <path
                                 fill="currentColor"
                                 d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
@@ -65,7 +65,7 @@ function NavBar() {
                         </div>
                       </div>
                       <nav>
-                        <ul class="space-y-4">
+                        <ul className="space-y-4">
                           <li className="text-gray-100">
                             <div
                               onClick={() => {
@@ -127,26 +127,26 @@ function NavBar() {
 
           {/* Search Bar */}
 
-          <div class="max-w-md invisible lg:mx-20 lg:visible w-full">
-            <div class="border border-white relative flex items-center  max-h-10 h-8 rounded-full focus-within:shadow-lg bg-stone-700 overflow-hidden">
+          <div className="max-w-md invisible lg:mx-20 lg:visible w-full">
+            <div className="border border-white relative flex items-center  max-h-10 h-8 rounded-full focus-within:shadow-lg bg-stone-700 overflow-hidden">
               <input
-                class="peer h-full w-full outline-none text-sm text-c text-gray-100 bg-stone-700 pr-2 ml-2"
+                className="peer h-full w-full outline-none text-sm text-c text-gray-100 bg-stone-700 pr-2 ml-2"
                 type="text"
                 id="search"
                 placeholder="Recherche"
               />
-              <div class="grid place-items-center h-full w-12 bg-stone-700">
+              <div className="grid place-items-center h-full w-12 bg-stone-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6 text-gray-100"
+                  className="h-6 w-6 text-gray-100"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                  <pathl
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                   />
                 </svg>
@@ -173,7 +173,7 @@ function NavBar() {
               <li>
                 <div onClick={() => navigate("/profile")}>
                   <svg
-                    class="h-6 w-6 text-gray-100 hover:fill-current hover:text-amber-600"
+                    className="h-6 w-6 text-gray-100 hover:fill-current hover:text-amber-600"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -181,9 +181,9 @@ function NavBar() {
                     aria-hidden="true"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                     />
                   </svg>

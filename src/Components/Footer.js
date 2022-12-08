@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import image from '../Images/Logo_footer.png';
 
-export default class Footer extends Component {
-    render() {
-      return(
-        <div className="App-footer"> 
+  const Footer = () => {  
+    return(
+      <>
+       <div className="App-footer"> 
           <div>  
             <table width="100%">
               <tbody>
@@ -17,7 +17,8 @@ export default class Footer extends Component {
             </table>
               <span>© Copyright DaMovieFilm 2022</span>
           </div>
-        </div>        
-      )
-    }
+        </div>       
+      </>
+    )
   }
+  export default Footer;
