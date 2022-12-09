@@ -1,6 +1,6 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 body {
   background-color: #1c1917;
@@ -24,6 +24,19 @@ body {
   /*Set the fixed height of the footer here*/
   height: 100px;
   background-color: #FFF5D0;
+}
+
+#avatar {
+  width:250px;
+  height: 250px;
+    border-radius: 100%;
+    border: solid rgb(255, 168, 38) 2px;
+    }
+
+#favoris {
+  width:100px;
+  height: 150px;
+  border-radius: 5px;
 }
 
 .card  {

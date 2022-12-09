@@ -27,8 +27,7 @@ function Categories() {
         <section className="min-h-screen body-font text-gray-600 ">
             <div className="container mx-auto px-5 py-10">
                 <div className="-m-4 flex flex-wrap">
-
-                     
+                
                     {movies.map((data, index) => (
                         <div className="w-full p-4 md:w-1/2 lg:w-1/4" data={data} key={index}>
                             <div className="relative block h-48 overflow-hidden rounded" onClick={() => navigate(`/page-film/${data.id}`)}>
