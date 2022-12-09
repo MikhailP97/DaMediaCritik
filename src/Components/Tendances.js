@@ -28,6 +28,7 @@ const Tendances = () => {
           <div className="flex-grow border-t ml-20 border-amber-50"></div>
           <span className="flex-shrink my-10 mx-4 text-amber-50 text-2xl font-bold">Tendances</span>
           <div className="flex-grow border-t mr-20 border-amber-50"></div>
+          </div>
             <center>
           <div className="grid 2xl:grid-cols-8 xl:lg:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:lg:grid-cols-2 xm:lg_grid-cols-1 gap-10">
        
