@@ -10,6 +10,21 @@ const Inscription = () => {
         setPassVisibility(!passVisibility)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target; //tableau inputs
+        const pseudo = form[0].value;
+        const birthdate = form[1].value;
+        const email = form[2].value;
+        const password = form[3].value;
+        const user = {pseudo, birthdate, email, password};
+        console.log(user);
+    }
+
+
+
+ 
+
 
     console.log(passVisibility);
 
@@ -23,24 +38,31 @@ const Inscription = () => {
             </div>
 
 
-            <form className="bg-stone-800 shadow-md w-2/3 flex flex-col  mb-10 mx-auto rounded-xl ">
+            <form className="bg-stone-800 shadow-md w-2/3 flex flex-col  mb-10 mx-auto rounded-xl" onSubmit={handleSubmit}>
 
-                <div>
+                <div className="flex justify-center">
 
-                    <label htmlFor="email" className="block mt-10 mb-5 text-white text-lg opacity-98">Pseudonyme <span className="text-amber-300">*</span> </label>
-                    <input className="py-2 px-2 w-80 rounded-md bg-stone-100" type="email" placeholder='Votre pseudo...' />
+                    <label htmlFor="email" className=" mt-10 mb-5 text-white text-lg opacity-98">Pseudonyme <span className="text-amber-300">*</span> </label>
+                    </div >
+                    <div className="flex justify-center">
+                    <input className="py-2 px-2 w-80 rounded-md bg-stone-100" type="text" placeholder='Votre pseudo...' />                  
                 </div>
-                <div>
-                    <label htmlFor="date" className="block mt-10 mb-5 text-white text-lg opacity-98">Date de naissance <span className="text-amber-300">*??</span> </label>
+                <div className="flex justify-center">
+                    <label htmlFor="date" className=" mt-10 mb-5 text-white text-lg opacity-98">Date de naissance <span className="text-amber-300">*??</span> </label>
+                    </div>
+                    <div className="flex justify-center">
                     <input className="py-2 px-2 w-80 rounded-md bg-stone-100" type="text" placeholder='jj/mm/aaaa' />
                 </div>
-                <div>
-                    <label htmlFor="date" className="block mt-10 mb-5 text-white text-lg opacity-98">E-mail <span className="text-amber-300">*</span> </label>
-                    <input className="py-2 px-2 w-80 rounded-md bg-stone-100" type="text" placeholder='xyz@mail.com' />
+                <div className="flex justify-center">
+                    <label htmlFor="date" className=" mt-10 mb-5 text-white text-lg opacity-98">E-mail <span className="text-amber-300">*</span> </label>
+                    </div>
+                    <div className="flex justify-center">
+                    <input className="py-2 px-2 w-80 rounded-md bg-stone-100" type="email" placeholder='xyz@mail.com' />
                 </div>
 
-                <div>
-                    <label htmlFor="password" className="block mt-10 mb-5 text-white text-lg opacity-98">Mot de passe <span className="text-amber-300">*</span></label>
+                <div className="flex justify-center">
+                    <label htmlFor="password" className=" mt-10 mb-5 text-white text-lg opacity-98">Mot de passe <span className="text-amber-300">*</span></label>
+                    </div>
                     <div className="flex flex-row items-center justify-center">
                         <input className="py-2 px-2 w-80 ml-9  rounded-md bg-stone-100" type={passVisibility ? "text" : "password"} placeholder="Votre mot de passe..." />
                         {!passVisibility 
@@ -54,14 +76,14 @@ const Inscription = () => {
                         </svg>
                     }
                     </div>
-                </div>
-                <div>
+               
+                <div className="flex justify-center">
                     {/* En attendant le submit du formulaire */}
                     <button type="submit" className=" mb-20 shadow-md shadow-stone-300/50 bg-stone-900 py-1 px-5 mt-10 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">S'inscrire</button>
                 </div>
             </form>
 
-            <p onClick={() => navigate("/login")} className="cursor-pointer mb-10 text-amber-50 hover:underline text-sm" >Vous êtes déjà inscrit ?</p>
+            <p onClick={() => navigate("/login")} className="text-center cursor-pointer mb-10 text-amber-50 hover:underline text-sm" >Vous êtes déjà inscrit ?</p>
 
         </>
     )
