@@ -24,8 +24,9 @@ const Tendances = () => {
 
       return(
         <>
-          <div align='left' style={{margin:+20}}><h1 className="text-4xl text-white py-0 font-bold">Tendances</h1></div>
-          <div className="grid grid-cols-6 gap-10">
+          <div style={{margin:+20}}><h1 className="text-align-left text-4xl text-white py-0 font-bold">Tendances</h1></div>
+          <center>
+          <div className="grid 2xl:grid-cols-8 xl:lg:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:lg:grid-cols-2 xm:lg_grid-cols-1 gap-10">
           {
               movies?.length && movies.map(mv => <Card key={mv.id} 
                                                        img={server+mv.poster_path} 
@@ -38,7 +39,7 @@ const Tendances = () => {
                                                   </Card> )     
           }   
           </div>
-
+          </center>
           <br/>
           <br/>
         </>

@@ -8,7 +8,7 @@ function Categories() {
 
     const server = "https://image.tmdb.org/t/p/w300_and_h450_bestv2/";
     const genres_url = "https://api.themoviedb.org/3/genre/movie/list?language=fr&api_key=7b6c4ae4c36a426a868e59064d239972";
-    const movies_categories = "https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2022-12-08&primary_release_date.lte=2022-12-31&api_key=7b6c4ae4c36a426a868e59064d239972";
+    const movies_categories = "https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2022-12-09&primary_release_date.lte=2022-12-31&api_key=7b6c4ae4c36a426a868e59064d239972";
 
     const [moviesCategories, setmoviesCategories] = useState([]);
     const [genres, setGenres] = useState([]);
@@ -16,7 +16,7 @@ function Categories() {
     function getmoviesCategories() {
         axios.get(movies_categories).then(({data}) => {
           //console.log(data.results);
-          setmoviesCategories(data.results.slice(0,20)) 
+          setmoviesCategories(data.results.slice(0,10)) 
         })
     } 
 
@@ -39,12 +39,12 @@ function Categories() {
         <option key={-1}>Choississez un genre</option>
         <option key={0} disabled>---------------------------</option> 
         {
-            genres?.length && genres.map(g => { return(
+            genres?.length && genres.map(g => (
             <>                
                 <option key={g.id} value={g.id}>{g.name} </option>                
             </>
             )
-            })
+            )
         }
     </select>                   
     </div> 
@@ -57,7 +57,8 @@ function Categories() {
                     <div className="w-full p-4 md:w-1/2 lg:w-1/4">
                     <a href="#" className="relative block h-48 overflow-hidden rounded"/>
     */}
-    <div className="grid grid-cols-6 gap-10">
+    <center>
+    <div className="grid 2xl:grid-cols-8 xl:lg:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:lg:grid-cols-2 xm:lg_grid-cols-1 gap-10">
                     {
                         moviesCategories?.length && moviesCategories.map(mv => { return(
                         <>
@@ -77,6 +78,7 @@ function Categories() {
                         }) 
                     }   
                     </div>
+                    </center>
                     {/* </div>
                 </div>
             </div>
