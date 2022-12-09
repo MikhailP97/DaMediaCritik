@@ -16,7 +16,7 @@ const Tendances = () => {
 
       function getMovies() {
         axios.get(movies_url).then(({data}) => {
-          console.log(data.results);
+          // console.log(data.results);
           setMovies(data.results.slice(0,6))
         })
       } 
