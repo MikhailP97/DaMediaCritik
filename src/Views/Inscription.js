@@ -56,11 +56,12 @@ const Inscription = () => {
                     </div>
                 </div>
                 <div>
+                    {/* En attendant le submit du formulaire */}
                     <button type="submit" className=" mb-20 shadow-md shadow-stone-300/50 bg-stone-900 py-1 px-5 mt-10 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">S'inscrire</button>
                 </div>
             </form>
 
-            <p onClick={() => navigate("/profile")} className="cursor-pointer mb-10 text-amber-50 hover:underline text-sm" >Vous êtes déjà inscrit ?</p>
+            <p onClick={() => navigate("/login")} className="cursor-pointer mb-10 text-amber-50 hover:underline text-sm" >Vous êtes déjà inscrit ?</p>
 
         </>
     )

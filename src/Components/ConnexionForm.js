@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function ConnexionForm() {
+    
     const navigate = useNavigate();
 
     const [passVisibility, setPassVisibility] = useState(false);
@@ -55,15 +57,12 @@ export default function ConnexionForm() {
 
                 </div>
                 <div>
-                    <button type="submit" className="shadow-md shadow-stone-300/50 bg-stone-900 py-1 px-5 mt-10 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Se connecter</button>
+                    {/* En attendant le submit du formulaire */}
+                    <button onClick={()=> navigate('/profile')} className="shadow-md shadow-stone-300/50 bg-stone-900 py-1 px-5 mt-10 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Se connecter</button>
                 </div>
             </form>
 
 
-            <div className="flex flex-row justify-center space-x-5 pb-20">
-                <p className="mt-10 text-amber-50 hover:underline text-sm" onClick={() => navigate("/forgotten-pass")}>Mot de passe oublié ?</p>
-                <p onClick={() => navigate("/inscription")} className="cursor-pointer mt-10 text-amber-50 hover:underline text-sm" >Vous n'êtes pas encore inscrit ?</p>
-            </div>
 
         </>
     )

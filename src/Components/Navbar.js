@@ -110,7 +110,7 @@ function NavBar() {
                             <div className="cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
-                                navigate("/profile");
+                                navigate("/login");
                               }}
                             >
                               Profile
@@ -171,7 +171,7 @@ function NavBar() {
                 <div className="cursor-pointer" onClick={() => navigate("/contact")}>Contact</div>
               </li>
               <li>
-                <div className="cursor-pointer" onClick={() => navigate("/profile")}>
+                <div className="cursor-pointer" onClick={() => navigate("/login")}>
                   <svg
                     className="h-6 w-6 text-gray-100 hover:fill-current hover:text-amber-600"
                     xmlns="http://www.w3.org/2000/svg"

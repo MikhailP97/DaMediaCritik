@@ -1,33 +1,14 @@
-import React, { useState } from 'react'
-import ProfileConnected from '../Components/ProfileConnected'
-import ConnexionForm from '../Components/ConnexionForm'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function Profile() {
-
-  // En attendant d'avoir un token d'authentification pour switcher entre les composants (Profil, Connexion, Inscription, Mot-de-passe oublié)
-
-  const [connected, setConnectedState] = useState (false)
-  
-
-const connexion = () => {
-setConnectedState(!connected)
-}
+export default function Profile() {
+const navigate = useNavigate();
 
   return (
     <>
-    <button className="bg-white text-xl my-10 p-10 rounded-xl" onClick={connexion}>BOUTON DE CONNEXION FACTICE</button>
-
-
-     { connected ? <ProfileConnected /> : <ConnexionForm />
-  }
-
-  
-
-    
-
+    <div className="text-4xl text-amber-300">Bievenue </div>
+    {/* En attendant de faire la vraie fonction pour se déconnecter (factice) */}
+    <button onClick={()=> navigate('/login')} className="shadow-md shadow-stone-300/50 bg-stone-900 py-1 px-5 mt-10 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Se déconnecter</button>
     </>
-
   )
-
 }
-export default Profile
