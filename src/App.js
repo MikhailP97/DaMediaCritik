@@ -26,7 +26,7 @@ function App() {
                     <Route exact path="/login" element={<Connexion />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/films" element={<Films />} />
-                    <Route path="/categories" element={<FilmsParCategorie />} />
+                    {/* <Route path="/categories" element={<FilmsParCategorie />} /> */}
                     <Route path="/page-film/:id" element={<PageFilm />} />
                     <Route path="/page-film" element={<PageFilm />} />
                     <Route path="/inscription" element={<Inscription />} />
