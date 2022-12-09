@@ -6,10 +6,14 @@ import Films from "../src/Views/Films.js";
 import FilmsParCategorie from "../src/Views/FilmsParCategorie.js";
 import PageFilm from "../src/Views/PageFilm.js";
 import Profile from "../src/Views/Profile.js";
-
+import Inscription from './Views/Inscription';
+import ForgottenPassword from './Components/ForgottenPassword';
 
 
 import Footer from './Components/Footer.js'
+import Connexion from './Views/Connexion';
+
+
 
 function App() {
   return (
@@ -20,10 +24,14 @@ function App() {
 
                 <Routes>
                     <Route exact path="/" element={<Home />} />
+                    <Route exact path="/login" element={<Connexion />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/films" element={<Films />} />
                     <Route path="/categories" element={<FilmsParCategorie />} />
                     <Route path="/page-film" element={<PageFilm />} />
+                    <Route path="/inscription" element={<Inscription />} />
+                    <Route path="/forgotten-pass" element={<ForgottenPassword />} />
+                    
                 </Routes>
 
       </BrowserRouter>
