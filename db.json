@@ -1,0 +1,195 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstname": "Mika",
+      "lastname": "Mika",
+      "email": "mika@dawan.fr",
+      "pseudo": "mika",
+      "password": "mika"
+    },
+    {
+      "id": 2,
+      "firstname": "Pierre",
+      "lastname": "Pierre",
+      "email": "pierre@dawan.fr",
+      "pseudo": "pierre",
+      "password": "pierre"
+    },
+    {
+      "id": 3,
+      "firstname": "Thierry",
+      "lastname": "ZENNARO",
+      "email": "tzen@hotmail.fr",
+      "pseudo": "tzen",
+      "password": "tzen"
+    }
+  ],
+  "films": [
+    {
+      "id": 1,
+      "title": "Avatar 2 : le fil de l'eau"
+    },
+    {
+      "id": 2,
+      "title": "Black Adam"
+    },
+    {
+      "id": 3,
+      "title": "Black Panther 2"
+    },
+    {
+      "id": 4,
+      "title": "Indy 5"
+    },
+    {
+      "id": 5,
+      "title": "Alien 5"
+    },
+    {
+      "id": 6,
+      "title": "Les guardiens de la galaxie"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "note": 3.5,
+      "commentaire": "un bon film",
+      "filmId": 1,
+      "userId": "1"
+    },
+    {
+      "id": 2,
+      "note": 1.5,
+      "commentaire": "un mauvais film",
+      "filmId": 2,
+      "userId": "1"
+    },
+    {
+      "id": 3,
+      "note": 1,
+      "commentaire": "un très mauvais film",
+      "filmId": 3,
+      "userId": "2"
+    },
+    {
+      "id": 4,
+      "note": 1,
+      "commentaire": "un très mauvais film",
+      "filmId": 4,
+      "userId": "2"
+    },
+    {
+      "id": 5,
+      "note": 2.5,
+      "commentaire": "un film moyen",
+      "filmId": 5,
+      "userId": "3"
+    },
+    {
+      "id": 6,
+      "note": 3,
+      "commentaire": "un assez bon film",
+      "filmId": 6,
+      "userId": "3"
+    },
+    {
+      "note": 4,
+      "commentaire": "test",
+      "filmId": 7,
+      "userId": "1",
+      "id": 7
+    },
+    {
+      "note": "4",
+      "commentaire": "test",
+      "filmId": "7",
+      "userId": "1",
+      "id": 8
+    },
+    {
+      "note": "4",
+      "commentaire": "test",
+      "filmId": "7",
+      "userId": ":1",
+      "id": 9
+    },
+    {
+      "note": "4",
+      "commentaire": "test",
+      "filmId": "7",
+      "userId": "1",
+      "id": 10
+    },
+    {
+      "note": "4",
+      "commentaire": "test",
+      "filmId": "7",
+      "userId": "1",
+      "id": 11
+    },
+    {
+      "note": "4",
+      "commentaire": "\"test\"",
+      "filmId": "7",
+      "userId": "1",
+      "id": 12
+    },
+    {
+      "note": "4",
+      "commentaire": "\"test\"",
+      "filmId": "7",
+      "userId": "1",
+      "id": 13
+    },
+    {
+      "userId": "1",
+      "id": 14
+    },
+    {
+      "userId": "1",
+      "id": 15
+    },
+    {
+      "userId": "1",
+      "id": 16
+    },
+    {
+      "userId": "2",
+      "id": 17
+    }
+  ],
+  "favoris": [
+    {
+      "id": 1,
+      "filmId": 1,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "filmId": 2,
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "filmId": 3,
+      "userId": 2
+    },
+    {
+      "id": 4,
+      "filmId": 4,
+      "userId": 2
+    },
+    {
+      "id": 5,
+      "filmId": 5,
+      "userId": 3
+    },
+    {
+      "id": 6,
+      "filmId": 6,
+      "userId": 3
+    }
+  ]
+}

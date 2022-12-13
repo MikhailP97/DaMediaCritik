@@ -1,0 +1,50 @@
+body {
+  background-color: #1c1917;
+}
+
+.App-header {
+  background-color: #212121;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  /*Set the fixed height of the footer here*/
+  height: 110px;
+  background-color: #FFF5D0;
+}
+
+#avatar {
+  width:250px;
+  height: 250px;
+    border-radius: 100%;
+    border: solid rgb(255, 168, 38) 2px;
+    }
+
+#favoris {
+  width:100px;
+  height: 150px;
+  border-radius: 5px;
+}
+
+.card  {
+  display: inline;
+}
+
+.opacity1 img {
+	opacity: 1;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.opacity1 :hover img {
+	opacity: .5;
+}
+
