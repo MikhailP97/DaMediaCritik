@@ -17,7 +17,7 @@ const Footer = () => {
                 </tr>
                 <tr>
                   <td><a href="/mentions"><span className="">Mentions légales</span></a></td>
-                  <td><a href="https://www.themoviedb.org/?language=fr" target="_blank" className="hover:text-orange-100">The Movie Database (TMDB)</a></td>
+                  <td><a href="https://www.themoviedb.org/?language=fr" target="_blank" className="hover:text-orange-900">The Movie Database (TMDB)</a></td>
                 </tr>
                 <tr>
                   <td><a href="/Politiques"><span className={{}}>Politique de confidentialité</span></a></td>
