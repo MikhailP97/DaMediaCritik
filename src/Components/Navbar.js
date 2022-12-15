@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -100,6 +101,16 @@ function NavBar() {
                             <div className="cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
+                                navigate("/genres");
+                              }}
+                            >
+                              Genres
+                            </div>
+                          </li>
+                          <li className="text-gray-100">
+                            <div className="cursor-pointer"
+                              onClick={() => {
+                                setIsMenuOpen(false);
                                 navigate("/contact");
                               }}
                             >
@@ -166,6 +177,29 @@ function NavBar() {
               </li>
               <li className="transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">
                 <div className="cursor-pointer" onClick={() => navigate("/categories")}>Catégories</div>
+              </li>
+              <li className="cursor-pointer transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">Genres{/*<ion-icon name="caret-down"></ion-icon>*/}
+                               <ul>
+                                <li onClick={() => (navigate("/genres?id=28"))}><a href="#">Action</a></li>
+                                <li onClick={() => (navigate("/genres?id=12"))}><a href="#">Aventure</a></li>
+                                <li onClick={() => (navigate("/genres?id=16"))}><a href="#">Animation</a></li>
+                                <li onClick={() => (navigate("/genres?id=35"))}><a href="#">Aventure</a></li>
+                                <li onClick={() => (navigate("/genres?id=80"))}><a href="#">Comédie</a></li>
+                                <li onClick={() => (navigate("/genres?id=99"))}><a href="#">Crime</a></li>
+                                <li onClick={() => (navigate("/genres?id=18"))}><a href="#">Documentaire</a></li>
+                                <li onClick={() => (navigate("/genres?id=10751"))}><a href="#">Drame</a></li>
+                                <li onClick={() => (navigate("/genres?id=14"))}><a href="#">Familial</a></li>
+                                <li onClick={() => (navigate("/genres?id=36"))}><a href="#">Fantastique</a></li>
+                                <li onClick={() => (navigate("/genres?id=27"))}><a href="#">Horreur</a></li>
+                                <li onClick={() => (navigate("/genres?id=10402"))}><a href="#">Musique</a></li>
+                                <li onClick={() => (navigate("/genres?id=9648"))}><a href="#">Mystère</a></li>
+                                <li onClick={() => (navigate("/genres?id=10749"))}><a href="#">Romance</a></li>
+                                <li onClick={() => (navigate("/genres?id=878"))}><a href="#">Science-Fiction</a></li>
+                                <li onClick={() => (navigate("/genres?id=10770"))}><a href="#">Téléfilm</a></li>
+                                <li onClick={() => (navigate("/genres?id=53"))}><a href="#">Thriller</a></li>
+                                <li onClick={() => (navigate("/genres?id=10752"))}><a href="#">Guerre</a></li>
+                                <li onClick={() => (navigate("/genres?id=37"))}><a href="#">Western</a></li>
+                              </ul> 
               </li>
               <li className="transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">
                 <div className="cursor-pointer" onClick={() => navigate("/contact")}>Contact</div>

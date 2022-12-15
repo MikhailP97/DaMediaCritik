@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+
 
 const Inscription = () => {
     const navigate = useNavigate();
@@ -8,6 +10,15 @@ const Inscription = () => {
 
     const showHidePass = () => {
         setPassVisibility(!passVisibility)
+    }
+
+    const api_url = "http://localhost:3000/users/";
+    const createUser = (user) => {
+        axios.post(api_url, user)
+         .then(console.log('Nouvel utilisateur crée'))
+        .catch(err=>{
+            console.error(err);
+        })
     }
 
     const handleSubmit = (e) => {
@@ -19,24 +30,19 @@ const Inscription = () => {
         const password = form[3].value;
         const user = {pseudo, birthdate, email, password};
         console.log(user);
+
+        //Requete HTTP en POST
+        createUser(user);   
     }
-
-
-
- 
-
-
     console.log(passVisibility);
 
     return (
         <>
-
             <div className=" mt-5 relative flex py-5 items-center">
                 <div className="flex-grow border-t ml-20 border-amber-50"></div>
                 <span className="flex-shrink my-10 mx-4 text-amber-50 text-2xl font-bold">Inscription</span>
                 <div className="flex-grow border-t mr-20 border-amber-50"></div>
             </div>
-
 
             <form className="bg-stone-800 shadow-md w-2/3 flex flex-col  mb-10 mx-auto rounded-xl" onSubmit={handleSubmit}>
 
