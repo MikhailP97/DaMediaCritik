@@ -23,6 +23,13 @@
       "email": "tzen@hotmail.fr",
       "pseudo": "tzen",
       "password": "tzen"
+    },
+    {
+      "pseudo": "Pseudo",
+      "birthdate": "15/12/2022",
+      "email": "tzen@hotmail.fr",
+      "password": "123",
+      "id": 4
     }
   ],
   "films": [
@@ -95,69 +102,10 @@
       "userId": "3"
     },
     {
-      "note": 4,
-      "commentaire": "test",
-      "filmId": 7,
+      "commmentaire": "Autre commentaire User 1",
+      "filmId": "1",
       "userId": "1",
       "id": 7
-    },
-    {
-      "note": "4",
-      "commentaire": "test",
-      "filmId": "7",
-      "userId": "1",
-      "id": 8
-    },
-    {
-      "note": "4",
-      "commentaire": "test",
-      "filmId": "7",
-      "userId": ":1",
-      "id": 9
-    },
-    {
-      "note": "4",
-      "commentaire": "test",
-      "filmId": "7",
-      "userId": "1",
-      "id": 10
-    },
-    {
-      "note": "4",
-      "commentaire": "test",
-      "filmId": "7",
-      "userId": "1",
-      "id": 11
-    },
-    {
-      "note": "4",
-      "commentaire": "\"test\"",
-      "filmId": "7",
-      "userId": "1",
-      "id": 12
-    },
-    {
-      "note": "4",
-      "commentaire": "\"test\"",
-      "filmId": "7",
-      "userId": "1",
-      "id": 13
-    },
-    {
-      "userId": "1",
-      "id": 14
-    },
-    {
-      "userId": "1",
-      "id": 15
-    },
-    {
-      "userId": "1",
-      "id": 16
-    },
-    {
-      "userId": "2",
-      "id": 17
     }
   ],
   "favoris": [

@@ -11,7 +11,7 @@ const Footer = () => {
             <table width="100%" className="">
               <tbody>
                 <tr>
-                  <td rowspan="3"><img src={image} alt='Logo'/></td> 
+                  <td rowSpan="3"><img src={image} alt='Logo'/></td> 
                   <td><a href="/Conditions"><span className="hover:text-orange-900">Conditions générales d'utilisation</span></a></td>
                   <td>Liens utiles :</td>
                 </tr>
