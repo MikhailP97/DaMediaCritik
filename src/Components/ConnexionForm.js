@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 export default function ConnexionForm() {
 
@@ -12,28 +12,43 @@ export default function ConnexionForm() {
         setPassVisibility(!passVisibility)
     }
     console.log(passVisibility);
+    const[user, setUser] = useState({});
+
+    let isLogged = false;
+
+    //Vérification login/mot de passe
+    const api_url = "http://localhost:3000/users?email=tzen@hottmail.fr";
+    async function getUser(user) {     
+        console.log('Dans getUser() email=' + user.email);
+
+        const res = await axios.get(api_url).then(isLogged=true);
+        console.log(res.data);
+        setUser(res.data);
+
+        
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log('connecté');
         const form = e.target; //tableau inputs
         const email = form[0].value;
         const password = form[1].value;
         const user = { email, password };
         console.log(user.email, user.password);
+
+        getUser(user);
+        
+        (isLogged) ? navigate("/") : navigate("/login");         
     }
 
     return (
-
         <>
-
-
             <div className=" mt-5 relative flex py-5 items-center">
                 <div className="flex-grow border-t ml-20 border-amber-50"></div>
                 <span className="flex-shrink my-10 mx-4 text-amber-50 text-2xl font-bold">Connexion</span>
                 <div className="flex-grow border-t mr-20 border-amber-50"></div>
             </div>
-
-
 
             <form className=" bg-stone-800 shadow-md  w-2/3 flex flex-col pb-20 pt-10 m-auto rounded-xl" onSubmit={handleSubmit}>
                 <div className="flex justify-center  mt-10 mb-5">
@@ -59,17 +74,12 @@ export default function ConnexionForm() {
                         </svg>
                     }
 
-
-
                 </div>
                 <div className="flex justify-center">
                     {/* En attendant le submit du formulaire */}
                     <button type="submit" className="shadow-md shadow-stone-300/50 bg-stone-900 py-1 px-5 mt-10 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Se connecter</button>
                 </div>
             </form>
-
-
-
-        </>
+            </>
     )
 }

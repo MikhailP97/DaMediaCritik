@@ -24,7 +24,7 @@ const Footer = () => {
                   <td><a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank" rel="noreferrer" className="hover:text-orange-900">Documentation Api TMDB</a></td>
                 </tr>
                 <tr>
-                  <td align="left" colspan="3">&nbsp;&nbsp;© Copyright DaMovieCritik 2022-2023</td> 
+                  <td align="left" colSpan="3">&nbsp;&nbsp;© Copyright DaMovieCritik 2022-2023</td> 
                 </tr>
               </tbody>
             </table>
