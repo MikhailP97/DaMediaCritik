@@ -23,6 +23,13 @@
       "email": "tzen@hotmail.fr",
       "pseudo": "tzen",
       "password": "tzen"
+    },
+    {
+      "pseudo": "New",
+      "birthdate": "16/12/2022",
+      "email": "tzen@hotmail.fr",
+      "password": "123",
+      "id": 4
     }
   ],
   "films": [

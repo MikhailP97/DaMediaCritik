@@ -5,9 +5,9 @@ function Films() {
 
       return(
         <>
-          <div>Films</div>
           <FilmsListe/>
         </>
       )
+      
 }
 export default Films
