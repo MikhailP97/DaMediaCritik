@@ -4,7 +4,7 @@ import image from '../Images/Logo_footer.png';
   const Footer = () => {  
     return(
       <>
-       <div className="App-footer"> 
+        <div className="App-footer"> 
           <div>  
             <table width="100%">
               <tbody>
