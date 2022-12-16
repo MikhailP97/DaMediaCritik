@@ -13,7 +13,7 @@ export default function Profile() {
         {/* En attendant de faire la vraie fonction pour se déconnecter (factice) */}
 
 
-        <div className="flex flex-col text-center lg:text-left text-amber-100 py-10 lg:ml-40">
+        <div className="flex flex-col text-center lg:text-left text-amber-100 py-5 lg:ml-40">
           <p className="text-3xl underline">Infos</p>
           <br />
           <div className="flex flex-col space-y-1">
@@ -27,7 +27,7 @@ export default function Profile() {
         </div>
 
         </div>
-          <div className="m-auto w-1/4 mt-20 mb-10 border-b-4 border-amber-200"></div>
+          <div className="m-auto w-1/4 mt-10 mb-10 border-b-4 border-amber-200"></div>
 
 
         <div className="flex flex-col text-amber-100 py-10 ">

@@ -58,7 +58,7 @@ function Categories() {
 return (
     <>
         <div className="text-white">
-            <select id="genres" className='text-white bg-black' title="Choisir un genre...">
+            <select id="genres" className='text-white bg-black mt-20 md:mt-0' title="Choisir un genre...">
                 <option key={-1}>Choississez un genre</option>
                 <option key={0} disabled>---------------------------</option> 
                 {
@@ -70,7 +70,11 @@ return (
             </select>                   
         </div> 
 
-    <div align='left' style={{margin:+20}}><h1 className='text-4xl text-white py-0 font-bold'>Films par catégories</h1></div>
+        <div className=" relative flex py-5 items-center">
+                <div className="flex-grow border-t ml-20 border-amber-50"></div>
+                <span className="flex-shrink my-10 mx-4 text-amber-50 text-2xl font-bold text-center">Films par catégorie</span>
+                <div className="flex-grow border-t mr-20 border-amber-50"></div>
+            </div>
     {/* <div className="bg-indigo-50">
         <section className="min-h-screen body-font text-gray-600 ">
             <div className="container mx-auto px-5 py-10">
