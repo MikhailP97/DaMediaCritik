@@ -27,8 +27,7 @@ const Card = ({id, img, alt, title, cat, genres, year, style, click}) => {
                 <img key={id} src={img} alt={alt} title={alt} style={style} />        
                 <div className="mt-4">
                     <h2 className="title-font text-lg font-medium text-white">{title}</h2>
-                    <h3 className="title-font mb-1 text-xs tracking-widest text-gray-300">Catégories : {catName.map(v => 
-                        <span>v.name</span>)}</h3>
+                    <h3 className="title-font mb-1 text-xs tracking-widest text-gray-300">{cat}</h3>
                     <p className="text-white mt-1">{year}</p>
                 </div>
             </div>

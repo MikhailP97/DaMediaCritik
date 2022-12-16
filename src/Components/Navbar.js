@@ -22,6 +22,7 @@ function NavBar() {
     if(search !== ''){
       dispatch(searchMovie(search))
       setSearchResultsState(resultsOfSearch)
+      setInvisible('')
     } else {
       setSearchResultsState()
     }
@@ -32,7 +33,16 @@ function NavBar() {
   }
 
   console.log(search)
-  console.log(searchResultsState)
+  console.log(resultsOfSearch)
+
+  // document.addEventListener('click', function handleClickOutsideBox(event) {
+  //   const box = document.getElementById('results');
+  
+  //   if (!box.contains(event.target)) {
+  //     box.style.display = 'none';
+  //         setSearch('')
+  //   }
+  // });
 
   return (
     <div>
@@ -159,6 +169,16 @@ function NavBar() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
+              {search !== '' ?
+                <div className="grid place-items-center h-full w-12 bg-stone-700" onClick={() => setSearch('')}>
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                    className="h-6 w-6"
+                    viewBox="0 0 48 48"
+                    style={{fill:'#FFFFFF'}}>
+                    <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                  </svg>
+                </div>
+              : <></>}
               <div className="grid place-items-center h-full w-12 bg-stone-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -177,20 +197,27 @@ function NavBar() {
               </div>
             </div>
 
-              {searchResultsState?.length ? 
-                <div className={`absolute mt-2 w-96 z-10 ${invisible} overflow-hidden rounded-md bg-amber-50 divide-y`}>
-                  {searchResultsState?.length && searchResultsState.slice(0,10).map((res) => 
-                  <div className="flex items-center space-x-4 py-1" key={res.id} onClick={(id) => {
-                                                                                                    navigate(`/page-film/${res.id}`)
-                                                                                                    // setInvisible('invisible')
-                                                                                                  }}>
-                    <img className="ml-2" src={serverPosters + res.backdrop_path} alt={res.title} width='50' />
-                    <div className="flex flex-col space-y-2">
-                        <span>{res.title}</span>
-                        <span>{res.release_date.slice(0,4)}</span>
+              {resultsOfSearch?.length ? 
+                <div id='results' className={`absolute mt-2 w-96 z-10 ${invisible} overflow-hidden rounded-md bg-amber-50 divide-y`}>
+                  {resultsOfSearch?.length ? resultsOfSearch.slice(0,5).map((res) => 
+                    <div className="flex items-center space-x-4 py-1" key={res.id} onClick={() => {
+                                                                                                      navigate(`/page-film/${res.id}`)
+                                                                                                      setInvisible('invisible')
+                                                                                                      setSearch('')
+                                                                                                    }}>
+                      <img className="ml-2" src={serverPosters + res.backdrop_path} alt={res.title} width='50' />
+                      <div className="flex flex-col space-y-2">
+                          <span>{res.title}</span>
+                          <span>{res?.release_date ? res.release_date.slice(0,4) : ''}</span>
+                      </div>
                     </div>
-                  </div>
-                    )}
+                    )
+                    : <div class="flex justify-center items-center">
+                          <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                              <span class="visually-hidden">Loading...</span>
+                          </div>
+                      </div>
+                  }
                 </div>
               : <></>
               }
