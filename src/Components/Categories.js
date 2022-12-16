@@ -22,12 +22,15 @@ function Categories() {
     // const [moviesCategories, setmoviesCategories] = useState([]);
     const [genres, setGenres] = useState([]);
 
-    // function getmoviesCategories() {
-    //     axios.get(movies_categories).then(({data}) => {
-    //       //console.log(data.results);
-    //         setmoviesCategories(data.results.slice(0,10)) 
-    //     })
-    // } 
+    function getmoviesCategories() {
+        axios.get(
+            'https://api.themoviedb.org/3/search/movie?api_key=7b6c4ae4c36a426a868e59064d239972&language=en-US&query=av').then(({data}) => {
+          console.log(data.results);
+            // setmoviesCategories(data.results) 
+        })
+    } 
+
+
 
     function getGenres() {
         axios.get(genres_url).then(({data}) => {
@@ -37,7 +40,7 @@ function Categories() {
     }
 
     useEffect(() => {
-        // getmoviesCategories();
+        getmoviesCategories();
         getGenres();
     }, []);
 
@@ -83,6 +86,7 @@ return (
                     <a href="#" className="relative block h-48 overflow-hidden rounded"/>
     */}
         <center>
+        { movies.length ?
             <div className="grid 2xl:grid-cols-8 xl:lg:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:lg:grid-cols-2 xm:lg_grid-cols-1 gap-10">
                         {
                             movies?.length && movies.map(mv => { return(
@@ -104,6 +108,13 @@ return (
                             }) 
                         }   
             </div>
+        :   
+            <div class="flex justify-center items-center">
+                <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        }
         </center>
     </>
     )
