@@ -5,7 +5,6 @@ function Mentions() {
 
       return(
         <>
-        <br/>
           <div className="text-white text-center">Mentions légales</div>
           
           <br/>

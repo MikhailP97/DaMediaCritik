@@ -23,10 +23,6 @@ function PageFilm() {
     
     <img src={`https://image.tmdb.org/t/p/original/${movieData.poster_path}`} alt={movieData.title}/>
 
-    Ici les ... Détails :
-    Résumé : {movieData.overview}
-
-
     </div>
   )
 }

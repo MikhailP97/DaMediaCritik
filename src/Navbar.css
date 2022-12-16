@@ -1,5 +1,5 @@
 :root {
-    --list-padding: 5px;
+    --list-padding: 1px;
     --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
   
@@ -42,6 +42,7 @@
     padding-bottom: var(--list-padding);
     text-align: center;
     display: block;
+    z-index: 1000;
   }
   
   nav ul li a ion-icon {

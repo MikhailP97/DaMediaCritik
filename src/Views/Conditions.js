@@ -5,7 +5,6 @@ function Conditions() {
 
       return(
         <>
-        <br/>
           <div className="text-white text-center">Conditions générales d'utilisations</div>
           
           <br/>

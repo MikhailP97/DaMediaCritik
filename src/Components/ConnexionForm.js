@@ -80,6 +80,6 @@ export default function ConnexionForm() {
                     <button type="submit" className="shadow-md shadow-stone-300/50 bg-stone-900 py-1 px-5 mt-10 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Se connecter</button>
                 </div>
             </form>
-        </>
+            </>
     )
 }

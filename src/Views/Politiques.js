@@ -5,7 +5,6 @@ function Politiques() {
 
       return(
         <>
-        <br/>
           <div className="text-white text-center">Politique de confidentialité</div>
           <br/>
 

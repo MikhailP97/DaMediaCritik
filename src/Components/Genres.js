@@ -38,7 +38,7 @@ function Genres() {
     useEffect(() => {
         getmoviesCategories();
         getGenres();
-    }, []);
+    }, [id]);
 
   return (
     <>

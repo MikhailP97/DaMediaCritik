@@ -30,7 +30,6 @@ const Tendances = () => {
               <div className="flex-grow border-t mr-20 border-amber-50"></div>
           </div>
             
-          {/* <center> */}
               <div className="grid 2xl:grid-cols-8-mx-1 xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xm:grid-cols-1 gap-5">
               {
                   movies?.length && movies.map(mv => <Card key={mv.id} 
@@ -45,7 +44,7 @@ const Tendances = () => {
                                                       </Card> )     
               }   
               </div>
-          {/* </center> */}
+
           <br/><br/>
         </>
       )

@@ -38,7 +38,7 @@ function App() {
                     <Route exact path="/conditions" element={<Conditions />}/>
                     <Route exact path="/mentions" element={<Mentions />}/>
                     <Route exact path="/politiques" element={<Politiques />}/>
-                    
+
                 </Routes>
 
       </BrowserRouter>
