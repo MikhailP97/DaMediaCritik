@@ -37,7 +37,8 @@ const Tendances = () => {
                                                            id={mv.id} 
                                                            title={mv.title} 
                                                            alt={mv.title} 
-                                                           cat={mv.genre_ids.map(name => { return tab_genres[name] + ' ' })}                                                           year={mv.release_date}
+                                                           cat={mv.genre_ids.map(name => { return tab_genres[name] + ' ' })}                                                           
+                                                           year={mv.release_date}
                                                            resume={mv.overview}
                                                            note={mv.vote_average.toFixed(2)+' / 10'}
                                                            style={{width: "250px", padding: "10px"}}>

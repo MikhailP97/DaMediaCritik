@@ -14,8 +14,7 @@ export default function Connexion() {
     return (
         <>
             {!forgottenPage ? <ConnexionForm /> : <ForgottenPassword />}
- 
-            <div className="flex flex-row justify-center space-x-5 pb-20">
+            <div className="flex flex-row justify-center space-x-5 pb-40">
                 {!forgottenPage 
                 ?<p className="mt-10 text-amber-50 hover:underline text-sm cursor-pointer" onClick={changePage}>Mot de passe oublié ?</p> 
                 :<p className="mt-10 text-amber-50 hover:underline text-sm cursor-pointer" onClick={changePage}>Retour page connexion</p>}
