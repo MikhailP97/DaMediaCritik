@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { searchMovie, searchResults } from "../features/movies/movieSlice";
+import { serverPosters } from '../apiMovieDatabase';
 
 function NavBar() {
 
@@ -7,6 +10,29 @@ function NavBar() {
 
   //navigation
   const navigate = useNavigate();
+
+  const [search, setSearch] = useState('');
+  const [invisible, setInvisible] = useState('');
+  const [searchResultsState, setSearchResultsState] = useState([]);
+
+  const resultsOfSearch = useSelector(searchResults);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(search !== ''){
+      dispatch(searchMovie(search))
+      setSearchResultsState(resultsOfSearch)
+    } else {
+      setSearchResultsState()
+    }
+  }, [search])
+
+  const click = (id) => {
+    // navigate(`/page-film/${id}`)
+  }
+
+  console.log(search)
+  console.log(searchResultsState)
 
   return (
     <div>
@@ -96,15 +122,11 @@ function NavBar() {
                               Catégories
                             </div>
                           </li>
-                          <li className="text-gray-100">
-                            <div className="cursor-pointer"
-                              onClick={() => {
+                          <li className="text-gray-100 cursor-pointer" onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/contact");
-                              }}
-                            >
+                              }}>
                               Contact
-                            </div>
                           </li>
                           <li className="text-gray-100">
                             <div className="cursor-pointer"
@@ -128,12 +150,14 @@ function NavBar() {
           {/* Search Bar */}
 
           <div className="max-w-md invisible lg:mx-20 lg:visible w-full">
-            <div className="border border-white relative flex items-center  max-h-10 h-8 rounded-full focus-within:shadow-lg bg-stone-700 overflow-hidden">
+            <div className="border border-white relative flex items-center max-h-10 h-8 w-96 rounded-full focus-within:shadow-lg bg-stone-700 overflow-hidden">
               <input
                 className="peer h-full w-full outline-none text-sm text-c text-gray-100 bg-stone-700 pr-2 ml-2"
                 type="text"
                 id="search"
                 placeholder="Recherche"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
               <div className="grid place-items-center h-full w-12 bg-stone-700">
                 <svg
@@ -152,7 +176,26 @@ function NavBar() {
                 </svg>
               </div>
             </div>
-          </div>
+
+              {searchResultsState?.length ? 
+                <div className={`absolute mt-2 w-96 z-10 ${invisible} overflow-hidden rounded-md bg-amber-50 divide-y`}>
+                  {searchResultsState?.length && searchResultsState.slice(0,10).map((res) => 
+                  <div className="flex items-center space-x-4 py-1" key={res.id} onClick={(id) => {
+                                                                                                    navigate(`/page-film/${res.id}`)
+                                                                                                    // setInvisible('invisible')
+                                                                                                  }}>
+                    <img className="ml-2" src={serverPosters + res.backdrop_path} alt={res.title} width='50' />
+                    <div className="flex flex-col space-y-2">
+                        <span>{res.title}</span>
+                        <span>{res.release_date.slice(0,4)}</span>
+                    </div>
+                  </div>
+                    )}
+                </div>
+              : <></>
+              }
+              
+            </div>
 
           <div
             className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0  block`}

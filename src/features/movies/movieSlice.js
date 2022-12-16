@@ -8,7 +8,7 @@ import { apiMovieDatabase } from '../../apiMovieDatabase';
 // }
 
 export const getAsyncMovies = createAsyncThunk(
-  'movies/fetchAsyncMovies',
+  'movies/getAsyncMovies',
       async () => {
           // const movieText = 'batman';
           const response = await axios.get(
@@ -19,7 +19,7 @@ export const getAsyncMovies = createAsyncThunk(
 });
 
 export const getAsyncMoviesRelease = createAsyncThunk(
-  'movies/fetchAsyncMovies',
+  'movies/getAsyncMoviesRelease',
       async () => {
           // const movieText = 'batman';
           const response = await axios.get(
@@ -30,12 +30,21 @@ export const getAsyncMoviesRelease = createAsyncThunk(
 });
 
 export const getAsyncMoviePage = createAsyncThunk(
-    'movies/fetchAsyncMoviePage',
+    'movies/getAsyncMoviePage',
         async (id) => {
             const response = await axios.get(
                 `${apiMovieDatabase}/movie/${id}?${apiKey}&language=en-US`
                 );
         return response.data;
+})
+
+export const searchMovie = createAsyncThunk(
+    'movies/searchMovie',
+        async (name) => {
+            const response = await axios.get(
+                `${apiMovieDatabase}search/movie?${apiKey}&language=en-US&query=${name}`
+                );
+        return response.data.results;
 })
 
 export const movieSlice = createSlice({
@@ -44,6 +53,7 @@ export const movieSlice = createSlice({
     trendingMovies: {},
     moviePage: {},
     releaseMovies: {},
+    searchResults: {},
   },
   extraReducers: {
     [getAsyncMovies.pending]: () => {
@@ -64,6 +74,10 @@ export const movieSlice = createSlice({
         console.log("fullfilled release");
         return {...state, releaseMovies: payload};
     },
+    [searchMovie.fulfilled]: (state, {payload}) => {
+        console.log("fullfilled release");
+        return {...state, searchResults: payload};
+    },
   }
 })
 
@@ -72,5 +86,6 @@ export const movieSlice = createSlice({
 export const trendings = (state) => state.movies.trendingMovies;
 export const moviePage = (state) => state.movies.moviePage;
 export const releaseMovies = (state) => state.movies.releaseMovies;
+export const searchResults = (state) => state.movies.searchResults;
 
 export default movieSlice.reducer
