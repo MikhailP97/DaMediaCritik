@@ -46,7 +46,7 @@ function NavBar() {
 
   return (
     <div>
-      <nav className="w-full bg-stone-700 shadow py-2">
+      <nav className="w-full fixed-top md:static bg-stone-700 shadow py-2">
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8 max-h-16">
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">

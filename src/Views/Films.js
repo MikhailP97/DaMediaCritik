@@ -5,7 +5,7 @@ function Films() {
 
       return(
         <>
-          <div>Films</div>
+          
           <FilmsListe/>
         </>
       )
