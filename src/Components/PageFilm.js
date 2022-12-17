@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import { getAsyncMovieCredits, getAsyncMovieDetails, movieCredits, moviePage } from '../features/movies/movieSlice';
+import Stars from './Stars';
 
 function PageFilm() {
 
@@ -56,14 +57,14 @@ function PageFilm() {
              
         </div>
             
-          <div className=" sm:text-xl md:text-2xl 2xl:text-3xl text-center pt-10 bg-black bg-opacity-70 rounded-xl p-5 my-10 md:bg-transparent ">Description :
+          <div className=" sm:text-xl md:text-2xl 2xl:text-3xl text-center pt-10 bg-black bg-opacity-70 rounded-xl p-5 my-10 md:bg-transparent font-bold">Description :
             <p className="text-md sm:text-lg md:text-xl 2xl:text-2xl  py-10">
               "{movieData.overview}
             </p>
           </div>
 
           <div className="w-full mx-0 md:grid md:grid-cols-2   gap-10 bg-black md:bg-opacity-60 bg-opacity-60 rounded-xl py-5 px-5 lg:px-10 ">
-            <p className=" col-span-2 sm:text-xl md:text-2xl text-center 2xl:text-3xl my-5">Commentaires :</p>
+            <p className=" col-span-2 sm:text-xl md:text-2xl text-center 2xl:text-3xl my-5 font-bold">Commentaires :</p>
             <div className=""> 
               <p className="text-amber-500 font-extrabold">John Doe</p>
               <p className="text-amber-300 font-semibold py-2">Note : (récup dynamique)</p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lacinia at neque id elementum. Nullam pretium scelerisque turpis, eu congue tellus facilisis eu. Proin et ante commodo velit ultricies hendrerit nec ut nisl. Sed efficitur lacinia mauris, sit amet vulputate lorem ornare ut. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec id mauris egestas, elementum nisl non, elementum ipsum. Aliquam consectetur rhoncus nunc, a volutpat sem ultrices ac. Quisque porta porta metus ac scelerisque. Sed nisi mi, cursus a rutrum nec, luctus sed ligula. Etiam porta imperdiet libero a dapibus. In hac habitasse platea dictumst. Nulla dapibus semper molestie. Suspendisse in tortor blandit, molestie nisl sed, convallis felis. Pellentesque a sem vehicula, congue dui a, tempor orci.
@@ -86,10 +87,12 @@ function PageFilm() {
             </div>
 
           </div>
-          <form className="my-10 md:my-20 h-72 text-black">
+          <form className="my-10 md:my-20 h-72 text-black ">
           
-              <label htmlFor="comment" className='text-3xl text-amber-200 font-extrabold'>Commenter : </label>
-              <textarea className="text-lg w-full h-2/3 mt-10 p-7 " type="text" size="5" />
+              <label htmlFor="comment" className='text-3xl text-amber-500 font-extrabold'>Critik <span className='text-white'>:</span> </label>
+              <textarea className="text-lg w-full h-2/3 mt-10 p-7 rounded-xl " type="text" size="5" />
+
+             <p><Stars/></p>
            
         
 
