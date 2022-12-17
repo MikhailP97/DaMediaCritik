@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getAsyncMovieCredits, getAsyncMovieDetails, movieCredits, moviePage } from '../features/movies/movieSlice';
 
 function PageFilm() {
@@ -9,18 +9,20 @@ function PageFilm() {
   const { id } = useParams();
   console.log(id);
 
-    const movieData = useSelector(moviePage);
-    const movieCreditsData = useSelector(movieCredits);
-    const dispatch = useDispatch();
-    const bgImgMovie = `https://image.tmdb.org/t/p/original/${movieData.poster_path}`
+  const movieData = useSelector(moviePage);
+  const movieCreditsData = useSelector(movieCredits);
+  const dispatch = useDispatch();
+  const bgImgMovie = `https://image.tmdb.org/t/p/original/${movieData.poster_path}`
 
-    console.log(movieData)
-    console.log(movieCreditsData)
+  console.log(movieData)
+  console.log(movieCreditsData)
 
-    useEffect(() => {
-        dispatch(getAsyncMovieDetails(id))
-        dispatch(getAsyncMovieCredits(id))
-    }, [id])
+  useEffect(() => {
+    dispatch(getAsyncMovieDetails(id))
+    dispatch(getAsyncMovieCredits(id))
+  }, [id])
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -28,42 +30,74 @@ function PageFilm() {
 
       <img className="fixed h-full w-full sm:w-auto sm:h-auto md:hidden  " src={`https://image.tmdb.org/t/p/original/${movieData.poster_path}`} alt={movieData.title} />
 
-      <div 
-    className = "md:py-10 bg-cover"
-    style={{backgroundImage: `url(${bgImgMovie})`}}>
+      <div
+        className="md:py-10 bg-cover"
+        style={{ backgroundImage: `url(${bgImgMovie})` }}>
 
 
 
-        <div className=" mt-20 md:mt-0 md:grid md:grid-rows-2 relative bg-black bg-opacity-80 md:bg-opacity-90 md:mx-20 lg:mx-40 px-3 sm:px-10 md:px-16 lg:px-20  md:rounded-xl  text-white">
-          <div className="  col-span-2 border-b-2 border-amber-200 my-5 md:border-none  relative flex items-center">
+        <div className=" mt-20 md:mt-0 md:flex md:flex-col relative bg-black bg-opacity-80 md:bg-opacity-90 md:mx-20 lg:mx-40 px-3  sm:px-16 lg:px-20  md:rounded-xl  text-white">
+          <div className="  mb-14  border-b-2 border-amber-200 my-5 md:border-none  relative flex items-center">
             <div className="flex-grow border-t ml-20 border-amber-200"></div>
             <span className="flex-shrink my-10 mx-4 text-amber-500 text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">{movieData.title}</span>
             <div className="flex-grow border-t mr-20 border-amber-200"></div>
           </div>
-          <div className="block">
 
-
-
-            <p className="sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ">Date de sortie : </p>
-            <p className="sm:text-lg md:text-xl lg:text-2xl xl:text-3xl pt-3 pb-10 text-amber-500  ">{movieData.release_date}</p>
-          </div>
-
-
-          <div className="row-span-2 hidden md:block  md:justify-self-end  xl:mr-20">
-            <img className="border-amber-100 border-2" src={`https://image.tmdb.org/t/p/original/${movieData.poster_path}`} alt={movieData.title} />
-          </div>
-          <div className=" sm:text-xl md:text-2xl lg:text-3xl text-center pt-20 ">Description :
-            <p className="text-xl pr-5 py-10">
+ 
+            <div className="  sm:flex justify-between">
+              <div className="flex flex-col justify-between sm:w-1/2 bg-black bg-opacity-70 rounded-xl p-5 md:bg-inherit  ">
+              <p className="  text-center  sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{movieData.release_date}</span></p>
+              <p className=" text-center   sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{movieData.release_date}</span></p>
+              <p className=" text-center sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{movieData.release_date}</span></p>
+              <p className=" text-center sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{movieData.release_date}</span></p>
+              </div>
+           
+              <img className="  border-amber-100 border-2 hidden sm:flex sm:w-2/6 md:w-2/6 lg:w-2/6 xl:w-5/12" src={`https://image.tmdb.org/t/p/original/${movieData.poster_path}`} alt={movieData.title} />
+             
+        </div>
+            
+          <div className=" sm:text-xl md:text-2xl 2xl:text-3xl text-center pt-10 bg-black bg-opacity-70 rounded-xl p-5 my-10 md:bg-transparent ">Description :
+            <p className="text-md sm:text-lg md:text-xl 2xl:text-2xl  py-10">
               "{movieData.overview}
             </p>
           </div>
-          <form className="py-10">
-            <div>
-              <label htmlFor="comment" className="mb-3 text-white text-lg opacity-98 ">dsqdsq</label>
-              <input type="text"/>
+
+          <div className="w-full mx-0 md:grid md:grid-cols-2   gap-10 bg-black md:bg-opacity-60 bg-opacity-60 rounded-xl py-5 px-5 lg:px-10 ">
+            <p className=" col-span-2 sm:text-xl md:text-2xl text-center 2xl:text-3xl my-5">Commentaires :</p>
+            <div className=""> 
+              <p className="text-amber-500 font-extrabold">John Doe</p>
+              <p className="text-amber-300 font-semibold py-2">Note : (récup dynamique)</p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lacinia at neque id elementum. Nullam pretium scelerisque turpis, eu congue tellus facilisis eu. Proin et ante commodo velit ultricies hendrerit nec ut nisl. Sed efficitur lacinia mauris, sit amet vulputate lorem ornare ut. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec id mauris egestas, elementum nisl non, elementum ipsum. Aliquam consectetur rhoncus nunc, a volutpat sem ultrices ac. Quisque porta porta metus ac scelerisque. Sed nisi mi, cursus a rutrum nec, luctus sed ligula. Etiam porta imperdiet libero a dapibus. In hac habitasse platea dictumst. Nulla dapibus semper molestie. Suspendisse in tortor blandit, molestie nisl sed, convallis felis. Pellentesque a sem vehicula, congue dui a, tempor orci.
             </div>
-            
+
+            <div className="">
+              <p className="text-amber-500 font-extrabold">John Doe</p>
+              <p className="text-amber-300 font-semibold py-2">Note : (récup dynamique)</p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lacinia at neque id elementum. Nullam pretium scelerisque turpis, eu congue tellus facilisis eu. Proin et ante commodo velit ultricies hendrerit nec ut nisl. Sed efficitur lacinia mauris, sit amet vulputate lorem ornare ut. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec id mauris egestas, elementum nisl non, elementum ipsum. Aliquam consectetur rhoncus nunc, a volutpat sem ultrices ac. Quisque porta porta metus ac scelerisque. Sed nisi mi, cursus a rutrum nec, luctus sed ligula. Etiam porta imperdiet libero a dapibus. In hac habitasse platea dictumst. Nulla dapibus semper molestie. Suspendisse in tortor blandit, molestie nisl sed, convallis felis. Pellentesque a sem vehicula, congue dui a, tempor orci.
+            </div>
+
+            <div className=""> 
+              <p className="text-amber-500 font-extrabold">John Doe</p>
+              <p className="text-amber-300 font-semibold py-2">Note : (récup dynamique)</p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lacinia at neque id elementum. Nullam pretium scelerisque turpis, eu congue tellus facilisis eu. Proin et ante commodo velit ultricies hendrerit nec ut nisl. Sed efficitur lacinia mauris, sit amet vulputate lorem ornare ut. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec id mauris egestas, elementum nisl non, elementum ipsum. Aliquam consectetur rhoncus nunc, a volutpat sem ultrices ac. Quisque porta porta metus ac scelerisque. Sed nisi mi, cursus a rutrum nec, luctus sed ligula. Etiam porta imperdiet libero a dapibus. In hac habitasse platea dictumst. Nulla dapibus semper molestie. Suspendisse in tortor blandit, molestie nisl sed, convallis felis. Pellentesque a sem vehicula, congue dui a, tempor orci.
+            </div>
+
+            <div className=""> 
+              <p className="text-amber-500 font-extrabold">John Doe</p>
+              <p className="text-amber-300 font-semibold py-2">Note : (récup dynamique)</p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lacinia at neque id elementum. Nullam pretium scelerisque turpis, eu congue tellus facilisis eu. Proin et ante commodo velit ultricies hendrerit nec ut nisl. Sed efficitur lacinia mauris, sit amet vulputate lorem ornare ut. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec id mauris egestas, elementum nisl non, elementum ipsum. Aliquam consectetur rhoncus nunc, a volutpat sem ultrices ac. Quisque porta porta metus ac scelerisque. Sed nisi mi, cursus a rutrum nec, luctus sed ligula. Etiam porta imperdiet libero a dapibus. In hac habitasse platea dictumst. Nulla dapibus semper molestie. Suspendisse in tortor blandit, molestie nisl sed, convallis felis. Pellentesque a sem vehicula, congue dui a, tempor orci.
+            </div>
+
+          </div>
+          <form className="my-10 md:my-20 h-72 text-black">
+          
+              <label htmlFor="comment" className='text-3xl text-amber-200 font-extrabold'>Commenter : </label>
+              <textarea className="text-lg w-full h-2/3 mt-10 p-7 " type="text" size="5" />
+           
+        
+
           </form>
+<div className='bg-black bg-opacity-70 text-center md:flex md:justify-center py-10  md:pb-0'>
+<p onClick={() => navigate("/inscription")} className="mb-3 md:mr-10 cursor-pointer text-amber-50 hover:underline text-sm" >Vous n'êtes pas encore inscrit ?</p>
+          <p onClick={() => navigate("/login")} className=" md:ml-10 text-base sm:text-sm text-center cursor-pointer  text-amber-50 hover:underline" >Vous n'êtes pas connecté ?</p>
+          </div>
         </div>
       </div>
 
