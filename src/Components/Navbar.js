@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { searchMovie, searchResults } from "../features/movies/movieSlice";
-import { serverPosters } from '../apiMovieDatabase';
+import { getGenres, searchMovie, searchResults, tabDesGenres, tabGenres } from "../features/movies/movieSlice";
+import { genres_url, serverPosters } from '../apiMovieDatabase';
+import axios from "axios";
 
 function NavBar() {
 
@@ -14,10 +15,18 @@ function NavBar() {
 
   const [search, setSearch] = useState('');
   const [invisible, setInvisible] = useState('');
+  const [genres, setGenres] = useState('');
   const [searchResultsState, setSearchResultsState] = useState([]);
 
   const resultsOfSearch = useSelector(searchResults);
   const dispatch = useDispatch();
+
+  function getGenres() {
+        axios.get(genres_url).then(({data}) => {
+          console.log(data.genres);
+          setGenres(data.genres)
+        })
+    }
 
   useEffect(() => {
     if(search !== ''){
@@ -27,23 +36,8 @@ function NavBar() {
     } else {
       setSearchResultsState()
     }
+    getGenres()
   }, [search])
-
-  const click = (id) => {
-    // navigate(`/page-film/${id}`)
-  }
-
-  console.log(search)
-  console.log(resultsOfSearch)
-
-  // document.addEventListener('click', function handleClickOutsideBox(event) {
-  //   const box = document.getElementById('results');
-  
-  //   if (!box.contains(event.target)) {
-  //     box.style.display = 'none';
-  //         setSearch('')
-  //   }
-  // });
 
   return (
     <div>
@@ -139,7 +133,6 @@ function NavBar() {
                               }}
                             >
                               Genres
-                            </div>
                           </li>
                           <li className="text-gray-100">
                             <div className="cursor-pointer"
@@ -148,6 +141,7 @@ function NavBar() {
                                 navigate("/contact");
                               }}>
                               Contact
+                            </div>
                           </li>
                           <li className="text-gray-100">
                             <div className="cursor-pointer"
@@ -190,7 +184,7 @@ function NavBar() {
                   </svg>
                 </div>
               : <></>}
-              <div className="grid place-items-center h-full w-12 bg-stone-700">
+              {/* <div className="grid place-items-center h-full w-12 bg-stone-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 text-gray-100"
@@ -205,25 +199,25 @@ function NavBar() {
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                   />
                 </svg>
-              </div>
+              </div> */}
             </div>
 
               {resultsOfSearch?.length ? 
                 <div id='results' className={`absolute mt-2 w-96 z-10 ${invisible} overflow-hidden rounded-md bg-amber-50 divide-y`}>
-                  {resultsOfSearch?.length ? resultsOfSearch.slice(0,5).map((res) => 
-                    <div className="flex items-center space-x-4 py-1" key={res.id} onClick={() => {
+                  {resultsOfSearch?.length && search !== '' ? resultsOfSearch.slice(0,5).map((res) => 
+                    <div className="flex items-center space-x-4 py-1 hover:bg-amber-200 cursor-pointer" key={res.id} onClick={() => {
                                                                                                       navigate(`/page-film/${res.id}`)
                                                                                                       setInvisible('invisible')
                                                                                                       setSearch('')
                                                                                                     }}>
                       <img className="ml-2" src={serverPosters + res.backdrop_path} alt={res.title} width='50' />
                       <div className="flex flex-col space-y-2">
-                          <span>{res.title}</span>
+                          <span className="font-semibold">{res.title}</span>
                           <span>{res?.release_date ? res.release_date.slice(0,4) : ''}</span>
                       </div>
                     </div>
                     )
-                    : <div class="flex justify-center items-center">
+                    : <div class="flex justify-center items-center py-5">
                           <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
                               <span class="visually-hidden">Loading...</span>
                           </div>
@@ -249,27 +243,11 @@ function NavBar() {
                 <div className="cursor-pointer" onClick={() => navigate("/categories")}>Catégories</div>
               </li>
               <li className="cursor-pointer transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">Genres{/*<ion-icon name="caret-down"></ion-icon>*/}
-                               <ul>
-                                <li onClick={() => (navigate("/genres?id=28"))}><a href="#">Action</a></li>
-                                <li onClick={() => (navigate("/genres?id=12"))}><a href="#">Aventure</a></li>
-                                <li onClick={() => (navigate("/genres?id=16"))}><a href="#">Animation</a></li>
-                                <li onClick={() => (navigate("/genres?id=35"))}><a href="#">Aventure</a></li>
-                                <li onClick={() => (navigate("/genres?id=80"))}><a href="#">Comédie</a></li>
-                                <li onClick={() => (navigate("/genres?id=99"))}><a href="#">Crime</a></li>
-                                <li onClick={() => (navigate("/genres?id=18"))}><a href="#">Documentaire</a></li>
-                                <li onClick={() => (navigate("/genres?id=10751"))}><a href="#">Drame</a></li>
-                                <li onClick={() => (navigate("/genres?id=14"))}><a href="#">Familial</a></li>
-                                <li onClick={() => (navigate("/genres?id=36"))}><a href="#">Fantastique</a></li>
-                                <li onClick={() => (navigate("/genres?id=27"))}><a href="#">Horreur</a></li>
-                                <li onClick={() => (navigate("/genres?id=10402"))}><a href="#">Musique</a></li>
-                                <li onClick={() => (navigate("/genres?id=9648"))}><a href="#">Mystère</a></li>
-                                <li onClick={() => (navigate("/genres?id=10749"))}><a href="#">Romance</a></li>
-                                <li onClick={() => (navigate("/genres?id=878"))}><a href="#">Science-Fiction</a></li>
-                                <li onClick={() => (navigate("/genres?id=10770"))}><a href="#">Téléfilm</a></li>
-                                <li onClick={() => (navigate("/genres?id=53"))}><a href="#">Thriller</a></li>
-                                <li onClick={() => (navigate("/genres?id=10752"))}><a href="#">Guerre</a></li>
-                                <li onClick={() => (navigate("/genres?id=37"))}><a href="#">Western</a></li>
-                              </ul> 
+                                <ul>
+                                  {genres?.length && genres.map((genre) => 
+                                    <li key={genre.id} onClick={() => (navigate(`/genres/${genre.id}`))}><a href="#">{genre.name}</a></li>
+                                  )}
+                                </ul> 
               </li>
               <li className="transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">
                 <div className="cursor-pointer" onClick={() => navigate("/contact")}>Contact</div>
