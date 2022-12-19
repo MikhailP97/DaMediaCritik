@@ -129,7 +129,7 @@ function NavBar() {
                           </li>
                           <li className="text-gray-100 cursor-pointer" onClick={() => {
                                 setIsMenuOpen(false);
-                                navigate("/genres");
+                                navigate("/genres-mobile");
                               }}
                             >
                               Genres
