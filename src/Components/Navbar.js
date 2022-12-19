@@ -139,7 +139,7 @@ function NavBar() {
                               }}
                             >
                               Genres
-                            </div>
+                            
                           </li>
                           <li className="text-gray-100">
                             <div className="cursor-pointer"
@@ -148,6 +148,7 @@ function NavBar() {
                                 navigate("/contact");
                               }}>
                               Contact
+                              </div>
                           </li>
                           <li className="text-gray-100">
                             <div className="cursor-pointer"
