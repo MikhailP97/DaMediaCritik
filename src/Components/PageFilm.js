@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
-import { getAsyncMovieCredits, getAsyncMovieDetails, movieCredits, moviePage } from '../features/movies/movieSlice';
+import { getAsyncMovieCredits, getAsyncMovieDetails, getAsyncMovieVideos, movieCredits, moviePage, moviesVideos } from '../features/movies/movieSlice';
+import YouTube from 'react-youtube';
 
 function PageFilm() {
 
@@ -11,15 +12,55 @@ function PageFilm() {
 
     const movieData = useSelector(moviePage);
     const movieCreditsData = useSelector(movieCredits);
+    const movieVideosData = useSelector(moviesVideos);
+    const opts = {
+      height: '390',
+      width: '640',
+      playerVars: {
+        // https://developers.google.com/youtube/player_parameters
+        autoplay: 0,
+      },
+    };
+
+    const onPlayerReady = (event) => {
+      // access to player in all event handlers via event.target
+      event.target.pauseVideo();
+    }
     const dispatch = useDispatch();
     const bgImgMovie = `https://image.tmdb.org/t/p/original/${movieData.poster_path}`
 
     console.log(movieData)
     console.log(movieCreditsData)
+    console.log(movieVideosData)
+    console.log(movieVideosData?.length && movieVideosData.filter((v) => {return v.name.includes('Bande-annonce') 
+                                                                              || v.name.includes('Bande annonce') 
+                                                                              || v.name.includes('Bande Annonce') 
+                                                                              || v.name.includes('bande-annonce') 
+                                                                              || v.name.includes('bande-annonce') 
+                                                                              || v.name.includes('Official Trailer')
+                                                                              || v.name.includes('Official-Trailer')
+                                                                              || v.name.includes('official-trailer')
+                                                                              || v.name.includes('official trailer')
+                                                                              || v.name.includes('Official-trailer')
+                                                                              || v.name.includes('Official trailer')
+                                                                          }))
+    const movieTrailers = movieVideosData?.length && movieVideosData.filter((v) => {return v.name.includes('Bande-annonce') 
+                                                                                        || v.name.includes('Bande annonce')
+                                                                                        || v.name.includes('Bande Annonce') 
+                                                                                        || v.name.includes('bande-annonce') 
+                                                                                        || v.name.includes('bande-annonce') 
+                                                                                        || v.name.includes('Official Trailer')
+                                                                                        || v.name.includes('Official-Trailer')
+                                                                                        || v.name.includes('official-trailer')
+                                                                                        || v.name.includes('official trailer')
+                                                                                        || v.name.includes('Official-trailer')
+                                                                                        || v.name.includes('Official trailer')
+                                                                                    })
 
     useEffect(() => {
         dispatch(getAsyncMovieDetails(id))
         dispatch(getAsyncMovieCredits(id))
+        dispatch(getAsyncMovieVideos(id))
     }, [id])
 
   return (
@@ -63,6 +104,16 @@ function PageFilm() {
               <input type="text"/>
             </div>
             
+            {movieTrailers?.length ? 
+            
+            <YouTube 
+              videoId={movieTrailers[0].key} 
+              opts={opts} onReady={onPlayerReady} />
+            
+            :
+
+            <></>
+            }
           </form>
         </div>
       </div>

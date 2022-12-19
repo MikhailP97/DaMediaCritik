@@ -25,7 +25,7 @@ export const getAsyncMoviesRelease = createAsyncThunk(
     });
 
 export const getAsyncMovieDetails = createAsyncThunk(
-    'movies/getAsyncMoviePage',
+    'movies/getAsyncMovieDetails',
         async (id) => {
             const response = await axios.get(
                 `${apiMovieDatabase}/movie/${id}?${apiKey}&language=fr`
@@ -37,9 +37,18 @@ export const getAsyncMovieCredits = createAsyncThunk(
     'movies/getAsyncMovieCredits',
         async (id) => {
             const response = await axios.get(
-                `${apiMovieDatabase}/movie/${id}/credits?${apiKey}&language=en-US`
+                `${apiMovieDatabase}/movie/${id}/credits?${apiKey}&language=fr`
                 );
         return response.data;
+})
+
+export const getAsyncMovieVideos = createAsyncThunk(
+    'movies/getAsyncMovieVideos',
+        async (id) => {
+            const response = await axios.get(
+                `${apiMovieDatabase}/movie/${id}/videos?${apiKey}&language=fr`
+                );
+        return response.data.results;
 })
 
 export const searchMovie = createAsyncThunk(
@@ -53,9 +62,9 @@ export const searchMovie = createAsyncThunk(
 
 export const getAsyncMovieCategories = createAsyncThunk(
     'movies/getAsyncMoviePage',
-        async (id, date) => {
+        async (payload) => {
             const response = await axios.get(
-                `${apiMovieDatabase}discover/movie?primary_release_date.gte=2022-12-10&primary_release_date.lte=2022-12-31&with_genres=${id}&api_key=7b6c4ae4c36a426a868e59064d239972`
+                    `${apiMovieDatabase}discover/movie?&primary_release_date.lte=${payload.currentDate}&with_genres=${payload.id}&api_key=7b6c4ae4c36a426a868e59064d239972`
                 );
         return response.data.results.slice(0,10);
 })
@@ -69,6 +78,7 @@ export const movieSlice = createSlice({
         searchResults: {},
         movieCredits: {},
         moviesByCategory: {},
+        moviesVideos: {},
         tab_genres: { 28: "Action", 12: "Aventure", 16: "Animation", 35: "Comédie", 80: "Crime", 99: "Documentaire", 18: "Drame", 10751: "Familial", 14: "Fantastique", 36: "Histoire", 27: "Horreur", 10402: "Musique", 9648: "Mystère", 10749: "Romance", 878: "Science-Fiction", 10770: "Téléfilm", 53: "Thriller", 10752: "Guerre", 37: "Western" },
     },
     extraReducers: {
@@ -85,7 +95,7 @@ export const movieSlice = createSlice({
         },
         // getAsyncMovieDetails
         [getAsyncMovieDetails.fulfilled]: (state, { payload }) => {
-            console.log("fullfilled");
+            console.log("fullfilled details");
             return { ...state, movieDetails: payload };
         },
         [getAsyncMovieDetails.rejected]: () => {
@@ -123,6 +133,14 @@ export const movieSlice = createSlice({
         [getAsyncMovieCategories.rejected]: () => {
             console.log("rejected");
         },
+        // getAsyncMovieVideos
+        [getAsyncMovieVideos.fulfilled]: (state, { payload }) => {
+            console.log("fullfilled release");
+            return { ...state, moviesVideos: payload };
+        },
+        [getAsyncMovieVideos.rejected]: () => {
+            console.log("rejected");
+        },
     }
 })
 
@@ -133,5 +151,6 @@ export const releaseMovies = (state) => state.movies.releaseMovies;
 export const searchResults = (state) => state.movies.searchResults;
 export const tabGenres = (state) => state.movies.tab_genres;
 export const moviesByCategory = (state) => state.movies.moviesByCategory;
+export const moviesVideos = (state) => state.movies.moviesVideos;
 
 export default movieSlice.reducer

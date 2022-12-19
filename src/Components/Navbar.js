@@ -217,11 +217,13 @@ function NavBar() {
                       </div>
                     </div>
                     )
-                    : <div class="flex justify-center items-center py-5">
-                          <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-                              <span class="visually-hidden">Loading...</span>
-                          </div>
-                      </div>
+                    : <></>
+                    
+                      // <div class="flex justify-center items-center py-5">
+                      //     <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                      //         <span class="visually-hidden">Loading...</span>
+                      //     </div>
+                      // </div>
                   }
                 </div>
               : <></>
@@ -242,7 +244,7 @@ function NavBar() {
               <li className="transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">
                 <div className="cursor-pointer" onClick={() => navigate("/categories")}>Catégories</div>
               </li>
-              <li className="cursor-pointer transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">Genres{/*<ion-icon name="caret-down"></ion-icon>*/}
+              <li className="cursor-pointer z-10 transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">Genres{/*<ion-icon name="caret-down"></ion-icon>*/}
                                 <ul>
                                   {genres?.length && genres.map((genre) => 
                                     <li key={genre.id} onClick={() => (navigate(`/genres/${genre.id}`))}><a href="#">{genre.name}</a></li>
