@@ -39,21 +39,6 @@ const FilmsListe = () => {
         })
       } 
 
-      // function getNamesList(ids){
-      //   //Split des ids
-      //   console.log('ids='.ids);
-      //   let tab_ids=ids.split(',')
-
-      //   tab_ids.forEach(element => {
-      //       axios.get(genres_url).then(({data}) => {
-      //           if (element===data.id)
-      //           {
-      //             setNamesList(data.name)
-      //           }                
-      //       })
-      //   });        
-      // }
-
       useEffect(() => {
         // getMoviesDates();
         getGenres();
@@ -68,8 +53,6 @@ const FilmsListe = () => {
           dispatch(getAsyncMoviesRelease(date))
       }, [])
 
-      console.log(movies)
-
       const navigate = useNavigate();
 
       return(
@@ -78,15 +61,15 @@ const FilmsListe = () => {
           <center>
           <div className="grid 2xl:grid-cols-6 xl:lg:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:lg:grid-cols-2 xm:lg_grid-cols-1 gap-10">
           {
-              movies?.length && movies.map(mv => <Card key={mv.id} 
-                                                       click={() => navigate(`/page-film/${mv.id}`)}
-                                                       img={serverPosters+mv.poster_path} 
-                                                       Mid={mv.id} 
-                                                       title={mv.title} 
-                                                       alt={mv.title} 
-                                                       cat={mv.genre_ids.map(name => { return tab_genres[name] + ' ' })}
-                                                       year={mv.release_date}
-                                                       tyle={{width: "250px", padding: "10px"}}>
+              movies?.length && movies.map(mv => <Card  key={mv.id} 
+                                                        click={() => navigate(`/page-film/${mv.id}`)}
+                                                        img={serverPosters+mv.poster_path} 
+                                                        Mid={mv.id} 
+                                                        title={mv.title} 
+                                                        alt={mv.title} 
+                                                        cat={mv.genre_ids.map(name => { return tab_genres[name] + ' ' })}
+                                                        year={mv.release_date}
+                                                        tyle={{width: "250px", padding: "10px"}}>
                                                   </Card>
               )     
           }   

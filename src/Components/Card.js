@@ -5,7 +5,7 @@ import "../index.css";
 import axios from 'axios';
 import Stars from './Stars';
 
-const Card = ({id, img, alt, title, cat, resume, year, note, style, rate}) => {
+const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}) => {
 
     const [modal, setModal] = useState(false);
     const toggleModal = () => { setModal(!modal) }
@@ -60,10 +60,10 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate}) => {
     return (
         <>
             <div className="card text-white">
-                <img className="opacity1" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} />        
+                <img className="opacity1 cursor-pointer" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} onClick={click}/>        
           
                 <div className="mt-4">
-                    <h2 className="title-font text-lg font-medium text-white">{title}</h2>
+                    <h2 className="title-font text-lg font-medium text-white cursor-pointer">{title}</h2>
                     <h3 className="title-font mb-1 text-xs tracking-widest text-gray-300">{cat}</h3>
                     <p className="text-white mt-1">{year}</p>
                     <a href="#" onClick={toggleModal}>Détails</a> | <a href="#" onClick={toggleModalCritik}> ⭐Critiker !</a>&nbsp;<a href="#" onClick={toggleModalFavoris}>❤️Favoris</a><br/>
