@@ -30,7 +30,7 @@ export const getAsyncMoviesRelease = createAsyncThunk(
 });
 
 export const getAsyncMovieDetails = createAsyncThunk(
-    'movies/getAsyncMoviePage',
+    'movies/getAsyncMovieDetails',
         async (id) => {
             const response = await axios.get(
                 `${apiMovieDatabase}/movie/${id}?${apiKey}&language=fr`
@@ -80,7 +80,7 @@ export const movieSlice = createSlice({
     },
     // getAsyncMovieDetails
     [getAsyncMovieDetails.fulfilled]: (state, {payload}) => {
-        console.log("fullfilled");
+        console.log("fullfilled details");
         return {...state, movieDetails: payload};
     },
     [getAsyncMovieDetails.rejected]: () => {

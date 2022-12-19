@@ -15,6 +15,8 @@ import Connexion from './Views/Connexion';
 import Conditions from './Views/Conditions';
 import Mentions from './Views/Mentions';
 import Politiques from './Views/Politiques';
+import Contact from './Views/Contact';
+import NotFound from './Views/NotFound';
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
                     <Route exact path="/conditions" element={<Conditions />}/>
                     <Route exact path="/mentions" element={<Mentions />}/>
                     <Route exact path="/politiques" element={<Politiques />}/>
+                    <Route exact path="/contact" element={<Contact />}/>
+                    <Route path='*' element={<NotFound />}/>
 
                 </Routes>
 

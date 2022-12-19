@@ -5,6 +5,15 @@ body.active-modal {
 .btn-modal {
     right:0;
     font-size: 18px;
+    color: white;
+    
+}
+
+:hover.btn-modal {
+    right:0;
+    font-size: 18px;
+    color: rgb(241, 184, 60);
+    
 }
 
 .modal, .overlay {
@@ -26,11 +35,13 @@ body.active-modal {
     left: 50%;
     transform: translate(-50%, -50%);
     line-height: 1.4;
-    background: #f1f1f1;
+    background: #27231d;
     padding: 14px 28px;
-    border-radius: 3px;
+    border-radius: 10px;
     max-width: 600px;
     min-width: 300px;
+    color: white;
+   
 }
 
 .close-modal {
@@ -42,4 +53,12 @@ body.active-modal {
 
 svg {
     float:left;
+}
+
+.title {
+    color:black
+}
+
+.modalForm {
+    color:black
 }

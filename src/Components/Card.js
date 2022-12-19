@@ -71,14 +71,14 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate}) => {
             {modal && (
                 <div className="modal">
                     <div className="overlay"></div>
-                        <div className="modal-content text-black">                        
+                        <div className="modal-content">                        
                         <button 
                             onClick={toggleModal}
                             className="btn-modal text-black float-right">
                             [X]
                         </button>
                             <br/>                            
-                            <h1 className='title-font text-lg'>{title}</h1>
+                            <h1 className=' title-font text-lg'>{title}</h1>
                             Sortie : {year}
                             <br/>
                             Genre : {cat} 
@@ -104,14 +104,14 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate}) => {
                         
                             <button 
                                 onClick={toggleModalCritik}
-                                className="btn-modal text-black float-right">
+                                className="btn-modal  float-right">
                                 [X]
                             </button>
                             <br/>                            
                             
                             <form onSubmit={handleSubmit}>  
                                 <center>
-                                    <h1 className='title-font text-lg'>{title}</h1>
+                                    <h1 className='title bg-amber-500 py-5 px-5 title-font text-xl font-bold rounded-xl mt-5'>{title}</h1>
                                     <br/>
                                     <img src={img} width="200" alt={alt}/>
                                 </center>
@@ -119,7 +119,7 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate}) => {
                                 FilmId : {id}<input type='hidden' size='6' defaultValue={id} />
                                 <br/><br/>
                                 Votre commentaire : <br/>
-                                <textarea rows='4' cols='50'></textarea>
+                                <textarea className="modalForm rounded-xl mt-2 p-3"rows='4' cols='50'></textarea>
                                 <br/><br/>                                
                                 Votre note :<Stars/> {rate}
                                 <input type='hidden' defaultValue={rate}/>

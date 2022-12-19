@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { getAsyncMovieCredits, getAsyncMovieDetails, movieCredits, moviePage } from '../features/movies/movieSlice';
 import Stars from './Stars';
 
-function PageFilm() {
+function PageFilm({rate}) {
 
   //get url
   const { id } = useParams();
@@ -14,14 +14,25 @@ function PageFilm() {
   const movieCreditsData = useSelector(movieCredits);
   const dispatch = useDispatch();
   const bgImgMovie = `https://image.tmdb.org/t/p/original/${movieData.poster_path}`
+  const casting = movieCreditsData.cast
+  const crew = movieCreditsData.crew
 
   console.log(movieData)
   console.log(movieCreditsData)
+  console.log(crew);
+
 
   useEffect(() => {
     dispatch(getAsyncMovieDetails(id))
     dispatch(getAsyncMovieCredits(id))
   }, [id])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target; //tableau inputs
+    const comment = form[0].value;
+    console.log(comment);
+  }
 
   const navigate = useNavigate();
 
@@ -48,8 +59,8 @@ function PageFilm() {
             <div className="  sm:flex justify-between">
               <div className="flex flex-col justify-between sm:w-1/2 bg-black bg-opacity-70 rounded-xl p-5 md:bg-inherit  ">
               <p className="  text-center  sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{movieData.release_date}</span></p>
-              <p className=" text-center   sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{movieData.release_date}</span></p>
-              <p className=" text-center sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{movieData.release_date}</span></p>
+              <ul className=" text-center sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Casting :<br/>{casting?.length && casting.slice(0, 5).map((cast) => <li className=' text-amber-500' key={cast.id}>{cast.name}</li> )}</ul>
+              {/* <p className=" text-center sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{crew?.length && crew.filter((dir)=> dir.known_for_department == 'Directing')}</span></p> */}
               <p className=" text-center sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{movieData.release_date}</span></p>
               </div>
            
@@ -87,17 +98,19 @@ function PageFilm() {
             </div>
 
           </div>
-          <form className="my-10 md:my-20 h-72 text-black ">
+          <form className="my-10 md:my-20 h-72 text-black " onSubmit={handleSubmit}>
           
               <label htmlFor="comment" className='text-3xl text-amber-500 font-extrabold'>Critik <span className='text-white'>:</span> </label>
               <textarea className="text-lg w-full h-2/3 mt-10 p-7 rounded-xl " type="text" size="5" />
 
-             <p><Stars/></p>
+             <p className="text-white text-lg"><Stars/> {rate}</p>
+
+             <button type="submit" className="py-4 mb-5 px-12 sm:py-1 sm:px-5  shadow-md shadow-stone-300/50 bg-stone-900 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Critik !</button>
            
         
 
           </form>
-<div className='bg-black bg-opacity-70 text-center md:flex md:justify-center py-10  md:pb-0'>
+<div className='bg-black bg-opacity-70 text-center md:flex md:justify-center pt-3 mt-40 md:py-10  md:pb-0'>
 <p onClick={() => navigate("/inscription")} className="mb-3 md:mr-10 cursor-pointer text-amber-50 hover:underline text-sm" >Vous n'êtes pas encore inscrit ?</p>
           <p onClick={() => navigate("/login")} className=" md:ml-10 text-base sm:text-sm text-center cursor-pointer  text-amber-50 hover:underline" >Vous n'êtes pas connecté ?</p>
           </div>

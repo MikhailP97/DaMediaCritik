@@ -48,24 +48,22 @@ const Inscription = () => {
 
               <div className=" flex flex-col m-auto ">
                   <label htmlFor="email" className=" mt-10 mb-5 text-white text-lg opacity-98">Pseudonyme <span className="text-amber-300">*</span> : </label>
-                  <input className="py-2 px-2 w-80 rounded-md bg-stone-100" type="text" placeholder='Votre pseudo...' />
+                  <input className="py-2 px-2 w-80 rounded-md bg-stone-100" type="text" placeholder='Votre pseudo...' required />
               </div>
               <div className=" flex flex-col m-auto ">
                   <label htmlFor="date" className=" mt-10 mb-5 text-white text-lg opacity-98">Date de naissance <span className="text-amber-300">*</span> : </label>
-                  <input className="py-2 px-2 w-80 rounded-md bg-stone-100" type="text" placeholder='jj/mm/aaaa' />
+                  <input className="py-2 px-2 w-80 rounded-md bg-stone-100" type="date" placeholder='jj/mm/aaaa' required />
               </div>
               <div className=" flex flex-col m-auto ">
                   <label htmlFor="date" className=" mt-10 mb-5 text-white text-lg opacity-98">E-mail <span className="text-amber-300">*</span> :</label>
-
-
-                  <input className="py-2 px-2 w-80 rounded-md bg-stone-100" type="email" placeholder='xyz@mail.com' />
+                  <input className="py-2 px-2 w-80 rounded-md bg-stone-100" type="email" placeholder='xyz@mail.com' required />
               </div>
 
               <div className=" flex flex-col m-auto ">
                   <label htmlFor="password" className=" sm:ml-9 mt-10 mb-5 text-white text-lg opacity-98">Mot de passe <span className="text-amber-300">*</span> :</label>
 
               <div className="flex flex-col sm:flex-row items-center">
-                  <input className="py-2 px-2 w-80 sm:ml-9  rounded-md bg-stone-100" type={passVisibility ? "text" : "password"} placeholder="Votre mot de passe..." />
+                  <input className="py-2 px-2 w-80 sm:ml-9  rounded-md bg-stone-100" type={passVisibility ? "text" : "password"} placeholder="Votre mot de passe..."required />
                   {!passVisibility
                       ?
                       <svg onClick={showHidePass} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="cursor-pointer invert mt-2 w-9 h-9 sm:w-7 sm:h-7 sm:mt-0  sm:ml-3 ">
