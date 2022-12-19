@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Card from './Card';
 import '../App.css';
 import '../Navbar.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAsyncMovieCategories, moviesByCategory } from '../features/movies/movieSlice';
 
@@ -26,6 +26,8 @@ function Genres() {
         dispatch(getAsyncMovieCategories(id, date))
     }, [id]);
 
+    const navigate = useNavigate();
+
 return (
     <>
         <div align='left' style={{margin:+20}}>
@@ -46,6 +48,7 @@ return (
                                 cat={mv.genre_ids.map(name => { return tab_genres[name] + ' ' })}
                                 year={mv.release_date}
                                 resume={mv.overview}
+                                click={() => navigate(`/page-film/${mv.id}`)}
                                 style={{width: "250px", padding: "10px"}} >                            
                         </Card>  
                     )
