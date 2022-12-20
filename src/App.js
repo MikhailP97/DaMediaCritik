@@ -15,8 +15,10 @@ import Connexion from './Views/Connexion';
 import Conditions from './Views/Conditions';
 import Mentions from './Views/Mentions';
 import Politiques from './Views/Politiques';
+import GenresMobile from './Views/GenresMobile';
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -30,6 +32,7 @@ function App() {
                     <Route path="/films" element={<Films />} />
                     <Route path="/categories" element={<FilmsParCategorie />} />
                     <Route path="/genres" element={<FilmsParGenres />} />
+                    <Route path="/genres-mobile" element={<GenresMobile />} />
                     <Route path="/genres/:id" element={<FilmsParGenres />} />
                     <Route path="/page-film/:id" element={<PageFilm />} />
                     <Route path="/page-film" element={<PageFilm />} />
