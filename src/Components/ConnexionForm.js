@@ -14,18 +14,18 @@ export default function ConnexionForm() {
     console.log(passVisibility);
     const[user, setUser] = useState({});
 
-    let isLogged = false;
 
     //Vérification login/mot de passe
-    const api_url = "http://localhost:3000/users?email=tzen@hottmail.fr";
+    const api_url = "http://localhost:3001/login";
     async function getUser(user) {     
-        console.log('Dans getUser() email=' + user.email);
-
-        const res = await axios.get(api_url).then(isLogged=true);
-        console.log(res.data);
-        setUser(res.data);
-
-        
+        await axios.post(api_url, user)
+        .then((response) => {
+            setUser(response.data)
+            navigate("/")
+        })
+        .catch(err=>{
+            console.error(err)
+        })
     }
 
     const handleSubmit = (e) => {
@@ -37,9 +37,7 @@ export default function ConnexionForm() {
         const user = { email, password };
         console.log(user.email, user.password);
 
-        getUser(user);
-        
-        (isLogged) ? navigate("/") : navigate("/login");         
+        getUser(user);       
     }
 
     return (

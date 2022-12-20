@@ -12,7 +12,7 @@ const Inscription = () => {
         setPassVisibility(!passVisibility)
     }
 
-    const api_url = "http://localhost:3000/users/";
+    const api_url = "http://localhost:3001/register";
     const createUser = (user) => {
         axios.post(api_url, user)
          .then(console.log('Nouvel utilisateur crée'))

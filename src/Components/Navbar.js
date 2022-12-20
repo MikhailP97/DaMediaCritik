@@ -138,12 +138,12 @@ function NavBar(props) {
                             >
                               Genres
                           </li>
-                          <li className="text-gray-100">
-                            <div className="cursor-pointer"
+                          <li className="text-gray-100 cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/contact");
-                              }}>
+                              }}
+                              >
                               Contact
                             </div>
                           </li>
