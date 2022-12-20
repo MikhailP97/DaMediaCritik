@@ -163,22 +163,51 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                     {/* <a href="#" onClick={toggleModal}>Détails</a> | */}
                     <a href="#" onClick={toggleModalCritik} title="Critiker ce film !"> ⭐Critiker !
                     </a>&nbsp;<a href="#" onClick={handleClick} title="Mettre en favoris">🖤 ❤️Favoris</a><br/>
+         
+            {modal && (
+                <div className="modal">
+                    <div className="overlay"></div>
+                        <div className="modal-content">                        
+                        <button 
+                            onClick={toggleModal}
+                            className="btn-modal text-black float-right font-black ">
+                            X
+                        </button>
+                            <br/>                            
+                            <h1 className=' title-font text-lg'>{title}</h1>
+                            Sortie : {year}
+                            <br/>
+                            Genre : {cat} 
+                            <br/>
+                            Note : {note}
+                            <br/>
+                            <br/>
+                            <center>
+                            <img src={img} width="200" alt={alt}/>
+                            </center>
+                            <br/>
+                            <p>{resume}</p>
+                            <br/>
+                    </div>
+                </div>
+            )}
+
             
-                    {modalCritik && (
-                        <div className="modal">
-                            <div className="overlay"></div>
-                                <div className="modal-content text-black">
-                                
-                                    <button 
-                                        onClick={toggleModalCritik}
-                                        className="btn-modal text-black float-right">
-                                        [X]
-                                    </button>
-                                    <br/>                            
-                                    
-                                    <form onSubmit={handleSubmit}>  
-                                        <center>
-                                            <h1 className='title-font text-lg'>{title}</h1>
+            {modalCritik && (
+                <div className="modal">
+                    <div className="overlay"></div>
+                        <div className="modal-content text-black">
+                        
+                            <button 
+                                onClick={toggleModalCritik}
+                                className="btn-modal  float-right font-black ">
+                                X
+                            </button>
+                            <br/>                            
+                            
+                            <form onSubmit={handleSubmit}>  
+                                <center>
+                                    <h1 className='title bg-amber-500 py-5 px-5 title-font text-xl font-bold rounded-xl mt-5'>{title}</h1>
                                             <br/>
                                             <img src={img} width="200" alt={alt}/>
                                         </center>

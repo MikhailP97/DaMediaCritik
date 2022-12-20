@@ -7,7 +7,8 @@ export default function Profile() {
   return (
     <>
      <div>
-        <div className=" flex flex-col lg:flex lg:flex-row lg:justify-center py-20 " ><img className="mt-10 m-auto lg:m-0" id="avatar" src="Images/sheep-7624863_1920.jpg" alt="mouton" />
+        <div className=" flex flex-col lg:flex lg:flex-row lg:justify-center py-20 " >
+          <img className="mt-10 m-auto lg:m-0" id="avatar" src="Images/sheep-7624863_1920.jpg" alt="mouton" />
           <div id="pseudo" className="text-center lg:ml-40 lg:pb-0 text-4xl text-amber-100  pt-24 pb-10  border-amber-200  border-b-8">Bievenue <span className="text-amber-500 font-bold">John Doe</span> </div>
         </div>
         {/* En attendant de faire la vraie fonction pour se déconnecter (factice) */}

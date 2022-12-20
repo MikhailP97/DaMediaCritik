@@ -32,6 +32,7 @@ function PageFilm({rate}) {
       // access to player in all event handlers via event.target
       event.target.pauseVideo();
     }
+    
     const movieTrailers = movieVideosData?.length && movieVideosData.filter((v) => {return v.name.includes('Bande-annonce') 
                                                                                         || v.name.includes('Bande annonce')
                                                                                         || v.name.includes('Bande Annonce') 
@@ -98,6 +99,17 @@ function PageFilm({rate}) {
             </p>
           </div>
 
+          {movieTrailers?.length ? 
+            
+            <YouTube 
+              videoId={movieTrailers[0].key} 
+              opts={opts} onReady={onPlayerReady} />
+            
+            :
+
+            <></>
+           }
+
           <div className="w-full mx-0 md:grid md:grid-cols-2   gap-10 bg-black md:bg-opacity-60 bg-opacity-60 rounded-xl py-5 px-5 lg:px-10 ">
             <p className=" col-span-2 sm:text-xl md:text-2xl text-center 2xl:text-3xl my-5 font-bold">Commentaires :</p>
             <div className=""> 
@@ -123,16 +135,7 @@ function PageFilm({rate}) {
 
           </div>
           
-          {movieTrailers?.length ? 
-            
-            <YouTube 
-              videoId={movieTrailers[0].key} 
-              opts={opts} onReady={onPlayerReady} />
-            
-            :
-
-            <></>
-           }
+          
             
           <form className="my-10 md:my-20 h-72 text-black " onSubmit={handleSubmit}>
           
