@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
-import { getAsyncMovieCredits, getAsyncMovieDetails, movieCredits, moviePage } from '../features/movies/movieSlice';
 import Stars from './Stars';
+import { getAsyncMovieCredits, getAsyncMovieDetails, getAsyncMovieVideos, movieCredits, moviePage, moviesVideos } from '../features/movies/movieSlice';
+import YouTube from 'react-youtube';
 
 function PageFilm({rate}) {
 
@@ -12,19 +13,44 @@ function PageFilm({rate}) {
 
   const movieData = useSelector(moviePage);
   const movieCreditsData = useSelector(movieCredits);
+  const movieVideosData = useSelector(moviesVideos);
   const dispatch = useDispatch();
   const bgImgMovie = `https://image.tmdb.org/t/p/original/${movieData.poster_path}`
   const casting = movieCreditsData.cast
-  const crew = movieCreditsData.crew
-
-  console.log(movieData)
-  console.log(movieCreditsData)
-  console.log(crew);
-
+  const crew = movieCreditsData.crew;
+  
+  const opts = {
+      height: '390',
+      width: '640',
+      playerVars: {
+        // https://developers.google.com/youtube/player_parameters
+        autoplay: 0,
+      },
+    };
+  
+  const onPlayerReady = (event) => {
+      // access to player in all event handlers via event.target
+      event.target.pauseVideo();
+    }
+    const dispatch = useDispatch();
+    const bgImgMovie = `https://image.tmdb.org/t/p/original/${movieData.poster_path}`
+    const movieTrailers = movieVideosData?.length && movieVideosData.filter((v) => {return v.name.includes('Bande-annonce') 
+                                                                                        || v.name.includes('Bande annonce')
+                                                                                        || v.name.includes('Bande Annonce') 
+                                                                                        || v.name.includes('bande-annonce') 
+                                                                                        || v.name.includes('bande-annonce') 
+                                                                                        || v.name.includes('Official Trailer')
+                                                                                        || v.name.includes('Official-Trailer')
+                                                                                        || v.name.includes('official-trailer')
+                                                                                        || v.name.includes('official trailer')
+                                                                                        || v.name.includes('Official-trailer')
+                                                                                        || v.name.includes('Official trailer')
+                                                                                    })
 
   useEffect(() => {
     dispatch(getAsyncMovieDetails(id))
     dispatch(getAsyncMovieCredits(id))
+    dispatch(getAsyncMovieVideos(id))
   }, [id])
 
   const handleSubmit = (e) => {
@@ -98,6 +124,18 @@ function PageFilm({rate}) {
             </div>
 
           </div>
+          
+          {movieTrailers?.length ? 
+            
+            <YouTube 
+              videoId={movieTrailers[0].key} 
+              opts={opts} onReady={onPlayerReady} />
+            
+            :
+
+            <></>
+           }
+            
           <form className="my-10 md:my-20 h-72 text-black " onSubmit={handleSubmit}>
           
               <label htmlFor="comment" className='text-3xl text-amber-500 font-extrabold'>Critik <span className='text-white'>:</span> </label>
@@ -106,9 +144,7 @@ function PageFilm({rate}) {
              <p className="text-white text-lg"><Stars/> {rate}</p>
 
              <button type="submit" className="py-4 mb-5 px-12 sm:py-1 sm:px-5  shadow-md shadow-stone-300/50 bg-stone-900 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Critik !</button>
-           
-        
-
+            
           </form>
 <div className='bg-black bg-opacity-70 text-center md:flex md:justify-center pt-3 mt-40 md:py-10  md:pb-0'>
 <p onClick={() => navigate("/inscription")} className="mb-3 md:mr-10 cursor-pointer text-amber-50 hover:underline text-sm" >Vous n'êtes pas encore inscrit ?</p>

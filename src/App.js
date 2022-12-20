@@ -18,12 +18,14 @@ import Politiques from './Views/Politiques';
 import Contact from './Views/Contact';
 import NotFound from './Views/NotFound';
 import NewFooter from './Components/NewFooter';
+import GenresMobile from './Views/GenresMobile';
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>
-
+      
         <NavBar />
 
         <Routes>
@@ -33,6 +35,7 @@ function App() {
           <Route path="/films" element={<Films />} />
           <Route path="/categories" element={<FilmsParCategorie />} />
           <Route path="/genres" element={<FilmsParGenres />} />
+          <Route path="/genres-mobile" element={<GenresMobile />} />
           <Route path="/genres/:id" element={<FilmsParGenres />} />
           <Route path="/page-film/:id" element={<PageFilm />} />
           <Route path="/page-film" element={<PageFilm />} />
@@ -49,8 +52,6 @@ function App() {
         <NewFooter />
 
       </BrowserRouter>
-
-
 
     </div>
   );
