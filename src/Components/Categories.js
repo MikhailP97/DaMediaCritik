@@ -33,7 +33,7 @@ function Categories() {
 
     function getGenres() {
         axios.get(genres_url).then(({data}) => {
-          //console.log(data.genres);
+          console.log(data.genres);
             setGenres(data.genres)
         })
     }

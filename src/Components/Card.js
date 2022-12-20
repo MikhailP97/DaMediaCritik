@@ -5,7 +5,7 @@ import "../index.css";
 import axios from 'axios';
 import Stars from './Stars';
 
-const Card = ({id, img, alt, title, cat, resume, year, note, style, rate}) => {
+const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}) => {
 
     const [modal, setModal] = useState(false);
     const toggleModal = () => { setModal(!modal) }
@@ -59,11 +59,11 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate}) => {
 
     return (
         <>
-            <div className="card text-white">
-                <img className="opacity1" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} />        
+            <div className="card text-white text-center">
+                <img className="opacity1 cursor-pointer" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} onClick={click}/>  
           
                 <div className="mt-4">
-                    <h2 className="title-font text-lg font-medium text-white">{title}</h2>
+                    <h2 className="title-font text-lg font-medium text-white cursor-pointer">{title}</h2>
                     <h3 className="title-font mb-1 text-xs tracking-widest text-gray-300">{cat}</h3>
                     <p className="text-white mt-1">{year}</p>
                     <a href="#" onClick={toggleModal}>Détails</a> | <a href="#" onClick={toggleModalCritik}> ⭐Critiker !</a>&nbsp;<a href="#" onClick={toggleModalFavoris}>❤️Favoris</a><br/>
@@ -71,14 +71,14 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate}) => {
             {modal && (
                 <div className="modal">
                     <div className="overlay"></div>
-                        <div className="modal-content text-black">                        
+                        <div className="modal-content">                        
                         <button 
                             onClick={toggleModal}
                             className="btn-modal text-black float-right">
                             [X]
                         </button>
                             <br/>                            
-                            <h1 className='title-font text-lg'>{title}</h1>
+                            <h1 className=' title-font text-lg'>{title}</h1>
                             Sortie : {year}
                             <br/>
                             Genre : {cat} 
@@ -104,14 +104,14 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate}) => {
                         
                             <button 
                                 onClick={toggleModalCritik}
-                                className="btn-modal text-black float-right">
+                                className="btn-modal  float-right">
                                 [X]
                             </button>
                             <br/>                            
                             
                             <form onSubmit={handleSubmit}>  
                                 <center>
-                                    <h1 className='title-font text-lg'>{title}</h1>
+                                    <h1 className='title bg-amber-500 py-5 px-5 title-font text-xl font-bold rounded-xl mt-5'>{title}</h1>
                                     <br/>
                                     <img src={img} width="200" alt={alt}/>
                                 </center>
@@ -119,7 +119,7 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate}) => {
                                 FilmId : {id}<input type='hidden' size='6' defaultValue={id} />
                                 <br/><br/>
                                 Votre commentaire : <br/>
-                                <textarea rows='4' cols='50'></textarea>
+                                <textarea className="modalForm rounded-xl mt-2 p-3"rows='4' cols='50'></textarea>
                                 <br/><br/>                                
                                 Votre note :<Stars/> {rate}
                                 <input type='hidden' defaultValue={rate}/>

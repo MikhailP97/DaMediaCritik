@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Card from '../Components/Card';
 import '../App.css';
+import { useNavigate } from 'react-router-dom';
 
 const Tendances = () => {
 
@@ -22,6 +23,8 @@ const Tendances = () => {
         getMovies();
       }, []);
 
+      const navigate = useNavigate();
+
       return(
         <>
           <div className=" mt-5 relative flex py-5 items-center">
@@ -32,16 +35,17 @@ const Tendances = () => {
             
               <div className="grid 2xl:grid-cols-8-mx-1 xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xm:grid-cols-1 gap-5">
               {
-                  movies?.length && movies.map(mv => <Card key={mv.id} 
-                                                           img={server+mv.poster_path} 
-                                                           id={mv.id} 
-                                                           title={mv.title} 
-                                                           alt={mv.title} 
-                                                           cat={mv.genre_ids.map(name => { return tab_genres[name] + ' ' })}                                                           
-                                                           year={mv.release_date}
-                                                           resume={mv.overview}
-                                                           note={mv.vote_average.toFixed(2)+' / 10'}
-                                                           style={{width: "250px", padding: "10px"}}>
+                  movies?.length && movies.map(mv => <Card  key={mv.id} 
+                                                            img={server+mv.poster_path} 
+                                                            id={mv.id} 
+                                                            title={mv.title} 
+                                                            alt={mv.title} 
+                                                            cat={mv.genre_ids.map(name => { return tab_genres[name] + ' ' })}                                                           
+                                                            year={mv.release_date}
+                                                            resume={mv.overview}
+                                                            note={mv.vote_average.toFixed(2)+' / 10'}
+                                                            style={{width: "250px", padding: "10px"}}
+                                                            click={() => navigate(`/page-film/${mv.id}`)}>
                                                       </Card> )     
               }   
               </div>
