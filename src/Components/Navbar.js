@@ -145,7 +145,6 @@ function NavBar(props) {
                               }}
                               >
                               Contact
-                            </div>
                           </li>
                           <li className="text-gray-100">
                             <div className="cursor-pointer"
