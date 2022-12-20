@@ -59,8 +59,8 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
 
     return (
         <>
-            <div className="card text-white">
-                <img className="opacity1 cursor-pointer" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} onClick={click}/>        
+            <div className="card text-white text-center">
+                <img className="opacity1 cursor-pointer" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} onClick={click}/>  
           
                 <div className="mt-4">
                     <h2 className="title-font text-lg font-medium text-white cursor-pointer">{title}</h2>
@@ -71,14 +71,14 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
             {modal && (
                 <div className="modal">
                     <div className="overlay"></div>
-                        <div className="modal-content text-black">                        
+                        <div className="modal-content">                        
                         <button 
                             onClick={toggleModal}
                             className="btn-modal text-black float-right">
                             [X]
                         </button>
                             <br/>                            
-                            <h1 className='title-font text-lg'>{title}</h1>
+                            <h1 className=' title-font text-lg'>{title}</h1>
                             Sortie : {year}
                             <br/>
                             Genre : {cat} 
@@ -104,14 +104,14 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                         
                             <button 
                                 onClick={toggleModalCritik}
-                                className="btn-modal text-black float-right">
+                                className="btn-modal  float-right">
                                 [X]
                             </button>
                             <br/>                            
                             
                             <form onSubmit={handleSubmit}>  
                                 <center>
-                                    <h1 className='title-font text-lg'>{title}</h1>
+                                    <h1 className='title bg-amber-500 py-5 px-5 title-font text-xl font-bold rounded-xl mt-5'>{title}</h1>
                                     <br/>
                                     <img src={img} width="200" alt={alt}/>
                                 </center>
@@ -119,7 +119,7 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                                 FilmId : {id}<input type='hidden' size='6' defaultValue={id} />
                                 <br/><br/>
                                 Votre commentaire : <br/>
-                                <textarea rows='4' cols='50'></textarea>
+                                <textarea className="modalForm rounded-xl mt-2 p-3"rows='4' cols='50'></textarea>
                                 <br/><br/>                                
                                 Votre note :<Stars/> {rate}
                                 <input type='hidden' defaultValue={rate}/>

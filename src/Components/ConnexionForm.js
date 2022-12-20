@@ -52,14 +52,14 @@ export default function ConnexionForm() {
 
             <form className=" bg-stone-800 shadow-md w-full sm:w-2/3 lg:w-1/2 xl:w-1/3 flex flex-col pb-16 pt-16 m-auto sm:rounded-xl" onSubmit={handleSubmit}>
                 <div className=" flex flex-col m-auto ">
-                    <label htmlFor="email" className="mb-3 text-white text-lg opacity-98 ">Identifiant (email) : </label>
-                    <input className=" py-2 px-2 w-80 rounded-md bg-stone-100" type="email" placeholder='Votre adresse mail...' />
+                    <label htmlFor="email" className="mb-3 text-white text-lg opacity-98">Identifiant (email) : </label>
+                    <input className=" py-2 px-2 w-80 rounded-md bg-stone-100" type="email" placeholder='Votre adresse mail...' required />
                 </div>
                 <div className=" flex flex-col m-auto ">
                     <label htmlFor="password" className="sm:ml-10 mt-10 mb-3 text-white text-lg opacity-98">Mot de passe : </label>
 
                     <div className="flex flex-col sm:flex-row items-center">
-                        <input className="py-2 px-2 w-80 sm:ml-10  rounded-md bg-stone-100" type={passVisibility ? "text" : "password"} placeholder="Votre mot de passe..." />
+                        <input className="py-2 px-2 w-80 sm:ml-10  rounded-md bg-stone-100" type={passVisibility ? "text" : "password"} placeholder="Votre mot de passe..." required />
 
                         {!passVisibility
                             ?
