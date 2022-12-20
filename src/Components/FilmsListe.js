@@ -16,7 +16,7 @@ import { serverPosters } from '../apiMovieDatabase';
 const FilmsListe = () => {
 
       // const server = "https://image.tmdb.org/t/p/w300_and_h450_bestv2/";
-      const tab_genres= {28:"Action", 12:"Aventure", 16:"Animation", 35:"Comédie", 80:"Crime", 99:"Documentaire", 18:"Drame", 10751:"Familial", 14:"Fantastique", 36:"Histoire", 27:"Horreur", 10402:"Musique", 9648:"Mystère", 10749:"Romance", 878:"Science-Fiction", 10770:"Téléfilm", 53:"Thriller", 10752: "Guerre", 37:"Western"};
+//      const tab_genres= {28:"Action", 12:"Aventure", 16:"Animation", 35:"Comédie", 80:"Crime", 99:"Documentaire", 18:"Drame", 10751:"Familial", 14:"Fantastique", 36:"Histoire", 27:"Horreur", 10402:"Musique", 9648:"Mystère", 10749:"Romance", 878:"Science-Fiction", 10770:"Téléfilm", 53:"Thriller", 10752: "Guerre", 37:"Western"};
       const genres_url = "https://api.themoviedb.org/3/genre/movie/list?language=fr&api_key=7b6c4ae4c36a426a868e59064d239972";
       // const movies_dates_url = "https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2022-12-08&primary_release_date.lte=2022-12-31&api_key=7b6c4ae4c36a426a868e59064d239972";
       //const movies_dates_genre_url = "https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2022-12-08&primary_release_date.lte=2022-12-31&with_genres=28&api_key=7b6c4ae4c36a426a868e59064d239972";

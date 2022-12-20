@@ -139,14 +139,13 @@ function NavBar() {
                               }}
                             >
                               Genres
-                            </div>
                           </li>
-                          <li className="text-gray-100">
-                            <div className="cursor-pointer"
+                          <li className="text-gray-100 cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/contact");
-                              }}>
+                              }}
+                              >
                               Contact
                           </li>
                           <li className="text-gray-100">
