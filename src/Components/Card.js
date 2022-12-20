@@ -59,7 +59,7 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate}) => {
 
     return (
         <>
-            <div className="card text-white">
+            <div className="card text-white text-center">
                 <img className="opacity1" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} />        
           
                 <div className="mt-4">

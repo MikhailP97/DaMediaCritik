@@ -172,7 +172,7 @@ function NavBar() {
           {/* Search Bar */}
 
           <div className="max-w-md invisible lg:mx-20 lg:visible w-full">
-            <div className="border border-white relative flex items-center max-h-10 h-8 w-96 rounded-full focus-within:shadow-lg bg-stone-700 overflow-hidden">
+            <div className="border border-white relative flex items-center max-h-10 h-8 w-full rounded-full focus-within:shadow-lg bg-stone-700 overflow-hidden">
               <input
                 className="peer h-full w-full outline-none text-sm text-c text-gray-100 bg-stone-700 pr-2 ml-2"
                 type="text"

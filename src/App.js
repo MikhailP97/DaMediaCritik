@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter , Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from './Views/NavBar';
 import Home from "../src/Views/Home.js";
 import Films from "../src/Views/Films.js";
@@ -17,37 +17,41 @@ import Mentions from './Views/Mentions';
 import Politiques from './Views/Politiques';
 import Contact from './Views/Contact';
 import NotFound from './Views/NotFound';
+import NewFooter from './Components/NewFooter';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
 
-                <NavBar />
+        <NavBar />
 
-                <Routes>
-                    <Route exact path="/" element={<Home />} />
-                    <Route exact path="/login" element={<Connexion />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/films" element={<Films />} />
-                    <Route path="/categories" element={<FilmsParCategorie />} />
-                    <Route path="/genres" element={<FilmsParGenres />} />
-                    <Route path="/genres/:id" element={<FilmsParGenres />} />
-                    <Route path="/page-film/:id" element={<PageFilm />} />
-                    <Route path="/page-film" element={<PageFilm />} />
-                    <Route path="/inscription" element={<Inscription />} />
-                    <Route path="/forgotten-pass" element={<ForgottenPassword />} />
-                    <Route exact path="/conditions" element={<Conditions />}/>
-                    <Route exact path="/mentions" element={<Mentions />}/>
-                    <Route exact path="/politiques" element={<Politiques />}/>
-                    <Route exact path="/contact" element={<Contact />}/>
-                    <Route path='*' element={<NotFound />}/>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/login" element={<Connexion />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/films" element={<Films />} />
+          <Route path="/categories" element={<FilmsParCategorie />} />
+          <Route path="/genres" element={<FilmsParGenres />} />
+          <Route path="/genres/:id" element={<FilmsParGenres />} />
+          <Route path="/page-film/:id" element={<PageFilm />} />
+          <Route path="/page-film" element={<PageFilm />} />
+          <Route path="/inscription" element={<Inscription />} />
+          <Route path="/forgotten-pass" element={<ForgottenPassword />} />
+          <Route exact path="/conditions" element={<Conditions />} />
+          <Route exact path="/mentions" element={<Mentions />} />
+          <Route exact path="/politiques" element={<Politiques />} />
+          <Route exact path="/contact" element={<Contact />} />
+          <Route path='*' element={<NotFound />} />
 
-                </Routes>
+        </Routes>
+
+        <NewFooter />
 
       </BrowserRouter>
 
-      <Footer/>
+
+
     </div>
   );
 }
