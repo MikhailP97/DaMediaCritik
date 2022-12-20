@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from './Views/NavBar';
 import Home from "../src/Views/Home.js";
 import Films from "../src/Views/Films.js";
-import FilmsParCategorie from "../src/Views/FilmsParCategorie.js";
 import FilmsParGenres from "../src/Views/FilmsParGenres.js";
 import PageFilm from "./Views/PageFilmView.js";
 import Profile from "../src/Views/Profile.js";
@@ -33,7 +32,6 @@ function App() {
           <Route exact path="/login" element={<Connexion />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/films" element={<Films />} />
-          <Route path="/categories" element={<FilmsParCategorie />} />
           <Route path="/genres" element={<FilmsParGenres />} />
           <Route path="/genres-mobile" element={<GenresMobile />} />
           <Route path="/genres/:id" element={<FilmsParGenres />} />

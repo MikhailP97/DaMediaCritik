@@ -32,7 +32,7 @@ function PageFilm({rate}) {
       // access to player in all event handlers via event.target
       event.target.pauseVideo();
     }
-   
+    
     const movieTrailers = movieVideosData?.length && movieVideosData.filter((v) => {return v.name.includes('Bande-annonce') 
                                                                                         || v.name.includes('Bande annonce')
                                                                                         || v.name.includes('Bande Annonce') 

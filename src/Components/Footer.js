@@ -6,7 +6,7 @@ const Footer = () => {
 
     return(
       <>
-       <div className="App-footer"> 
+        <div className="App-footer"> 
           <div>  
             <table width="100%" className="">
               <tbody>
@@ -21,7 +21,7 @@ const Footer = () => {
                 </tr>
                 <tr>
                   <td><a href="/Politiques" className="hover:text-orange-900">Politique de confidentialité</a></td>
-                  <td><a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank" rel="noreferrer"><span className="hover:text-orange-900"></span>Api de TMDB</a></td>
+                  <td><a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank" rel="noreferrer" className="hover:text-orange-900">Api de TMDB</a></td>
                 </tr>
                 <tr>
                   <td><span>&nbsp;&nbsp;© Copyright DaMovieCritik 2022-2023</span></td> 

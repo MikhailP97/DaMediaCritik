@@ -1,40 +1,25 @@
 {
   "users": [
     {
-      "id": 1,
-      "firstname": "Mika",
-      "lastname": "Mika",
-      "email": "mika@dawan.fr",
-      "pseudo": "mika",
-      "password": "mika"
-    },
-    {
-      "id": 2,
-      "firstname": "Pierre",
-      "lastname": "Pierre",
-      "email": "pierre@dawan.fr",
-      "pseudo": "pierre",
-      "password": "pierre"
-    },
-    {
-      "id": 3,
-      "firstname": "Thierry",
-      "lastname": "ZENNARO",
       "email": "tzen@hotmail.fr",
+      "password": "$2a$10$19AXXg.5gIMVV6e/m.eSX.YB.n/YUaIp023TZtBziBwHASULNEga2",
+      "pseudo": "test",
+      "birthdate": "12/12/2022",
+      "id": 1
+    },
+    {
+      "email": "tzen1@hotmail.fr",
+      "password": "$2a$10$5RuwBPHHGtFWnoZtXWLLauP.ZGykxmazyX48l3KDN7pC4z6d9qVL2",
       "pseudo": "tzen",
-      "password": "tzen"
+      "birthdate": "13/12/2022",
+      "id": 2
     },
     {
-      "pseudo": "Pseudo",
-      "birthdate": "15/12/2022",
-      "email": "tzen@hotmail.fr",
-      "password": "123",
-      "id": 4
-    },
-    {
-      "commmentaire": "Autre commentaire User 1",
-      "filmId": "1",
-      "id": 5
+      "email": "tzen2@hotmail.fr",
+      "password": "$2a$10$TYQvWHt9bNpDLKxMKZ0vZOockFDMmY1eCUgPYRyCa44q8sHyU2Y6e",
+      "filmId": "1111",
+      "titre": "titre film",
+      "id": 3
     }
   ],
   "films": [
@@ -65,121 +50,55 @@
   ],
   "comments": [
     {
-      "id": 1,
-      "note": 3.5,
-      "commentaire": "un bon film",
-      "filmId": 1,
-      "userId": "1"
-    },
-    {
-      "id": 2,
-      "note": 1.5,
-      "commentaire": "un mauvais film",
-      "filmId": 2,
-      "userId": "1"
-    },
-    {
-      "id": 3,
-      "note": 1,
-      "commentaire": "un très mauvais film",
-      "filmId": 3,
-      "userId": "2"
-    },
-    {
-      "id": 4,
-      "note": 1,
-      "commentaire": "un très mauvais film",
-      "filmId": 4,
-      "userId": "2"
-    },
-    {
-      "id": 5,
-      "note": 2.5,
-      "commentaire": "un film moyen",
-      "filmId": 5,
-      "userId": "3"
-    },
-    {
-      "id": 6,
-      "note": 3,
-      "commentaire": "un assez bon film",
-      "filmId": 6,
-      "userId": "3"
-    },
-    {
-      "commmentaire": "Autre commentaire User 1",
-      "filmId": "1",
-      "userId": "1",
-      "id": 7
-    },
-    {
-      "commmentaire": "Autre commentaire User 1",
-      "filmId": "1",
-      "userId": "1",
-      "id": 8
-    },
-    {
-      "commmentaire": "Autre commentaire User 1",
-      "filmId": "1",
-      "userId": "1",
-      "id": 9
-    },
-    {
-      "userId": "1",
-      "id": 10
-    },
-    {
-      "filmId": "436270",
-      "comment": "",
-      "note": "",
-      "userId": "1",
-      "id": 11
-    },
-    {
-      "filmId": "436270",
-      "comment": "tz",
-      "note": "1",
-      "userId": "1",
-      "id": 12
-    },
-    {
-      "filmId": "436270",
-      "comment": "",
-      "note": "",
-      "userId": "1",
+      "filmId": "76600",
+      "comment": "Avatar!",
+      "note": "5",
+      "userId": 1,
       "id": 13
+    },
+    {
+      "filmId": "436270",
+      "comment": "zzz",
+      "note": "0",
+      "userId": 1,
+      "id": 14
+    },
+    {
+      "filmId": "436270",
+      "comment": "Adam",
+      "note": "3",
+      "userId": 1,
+      "id": 15
     }
   ],
   "favoris": [
     {
-      "id": 1,
-      "filmId": 1,
-      "userId": 1
+      "filmId": 555604,
+      "title": "Pinocchio par Guillermo del Toro",
+      "userId": "1",
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYALH5NPM7xk2XQd2J8wrfmliIW.jpg",
+      "id": 25
     },
     {
-      "id": 2,
-      "filmId": 2,
-      "userId": 1
+      "filmId": 436270,
+      "title": "Black Adam",
+      "userId": 1,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYALH5NPM7xk2XQd2J8wrfmliIW.jpg",
+      "id": 31
     },
     {
-      "id": 3,
-      "filmId": 3,
-      "userId": 2
+      "filmId": 76600,
+      "title": "Avatar : La voie de l'eau",
+      "userId": 1,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYeB9GpFaT7ysabBoGG5rbo9mF4.jpg",
+      "id": 32
     },
     {
-      "id": 4,
-      "filmId": 4,
-      "userId": 2
-    },
-    {
-      "id": 5,
-      "filmId": 5,
-      "userId": 3
-    },
-    {
-      "id": 6,
-      "filmId": 6,
-      "userId": 3
+      "filmId": 76600,
+      "title": "Avatar : La voie de l'eau",
+      "userId": 1,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYeB9GpFaT7ysabBoGG5rbo9mF4.jpg",
+      "id": 33
     }
   ]
 }
