@@ -8,7 +8,8 @@ import {
     trendings,
     getAsyncMovies,
     releaseMovies,
-    getAsyncMoviesRelease
+    getAsyncMoviesRelease, 
+    tabGenres
 } from '../features/movies/movieSlice';
 import { serverPosters } from '../apiMovieDatabase';
 
@@ -56,14 +57,15 @@ const FilmsListe = () => {
       useEffect(() => {
         // getMoviesDates();
         getGenres();
-        //getNamesList();
       }, []);
 
       const movies = useSelector(releaseMovies);
+      const tab_genres = useSelector(tabGenres);
       const dispatch = useDispatch();
+      const date = (new Date()).toISOString().split('T')[0];
 
       useEffect(() => {
-          dispatch(getAsyncMoviesRelease())
+          dispatch(getAsyncMoviesRelease(date))
       }, [])
 
       console.log(movies)
@@ -84,7 +86,7 @@ const FilmsListe = () => {
                                                        alt={mv.title} 
                                                        cat={mv.genre_ids.map(name => { return tab_genres[name] + ' ' })}
                                                        year={mv.release_date}
-                                                       tyle={{width: "250px", padding: "10px"}}>                                                        
+                                                       tyle={{width: "250px", padding: "10px"}}>
                                                   </Card>
               )     
           }   

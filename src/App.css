@@ -15,19 +15,22 @@ body {
 }
 
 .App-footer {
-  position: relative;
+   position: relative;
   bottom: 0;
+  
   width: 100%;
   /*Set the fixed height of the footer here*/
   height: 110px;
   background-color: #FFF5D0;
 }
 
+
 #avatar {
   width:250px;
   height: 250px;
     border-radius: 100%;
-    border: solid rgb(255, 168, 38) 2px;
+    border: solid rgb(255, 206, 133) 5px;
+  
     }
 
 .card  {

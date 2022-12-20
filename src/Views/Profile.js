@@ -34,9 +34,7 @@ export default function Profile() {
 
           <p className=" text-3xl underline m-auto lg:ml-40 pb-5">Favoris</p>
           <br />
-
           <div className=" grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 lg:mx-40 xl:grid-cols-4 mx-20 gap-20 ">
-            {/* ICI Code pour récupérer les favoris */}
             <div>
               <img className="rounded-md" id="favoris" src="Images/sheep-7624863_1920.jpg" alt="affiche de film" /><p className="text-lg">Favoris  </p>
             </div>
