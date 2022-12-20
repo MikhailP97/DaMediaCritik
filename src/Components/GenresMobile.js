@@ -18,7 +18,7 @@ function GenresMobile() {
 
     const currentDate = moment(new Date()).format("YYYY-MM-DD").toString();
 
-    const [id, setId] = useState(); 
+    const [id, setId] = useState(28); 
 
     const [genres, setGenres] = useState([]);
 
@@ -45,8 +45,8 @@ function GenresMobile() {
     return (
         <>
 
-            <div className="text-white">
-                <select id="genres" className='text-white bg-black mt-20 md:mt-0' title="Choisir un genre..." onChange = {onChange}>
+            <div className="text-white w-1/3 pt-5 m-auto text-center">
+                <select id="genres" className='text-white bg-black mt-20 md:mt-0 ' title="Choisir un genre..." onChange = {onChange}>
                     <option key={-1}>Choississez un genre</option>
                     <option key={0} disabled>---------------------------</option> 
                     {

@@ -18,6 +18,7 @@ import Politiques from './Views/Politiques';
 import GenresMobile from './Views/GenresMobile';
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>

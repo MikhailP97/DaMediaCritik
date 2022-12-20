@@ -1,17 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getGenres, searchMovie, searchResults, tabDesGenres, tabGenres } from "../features/movies/movieSlice";
 import { genres_url, serverPosters } from '../apiMovieDatabase';
 import axios from "axios";
+import SearchBar from "./SearchBar";
 
-function NavBar() {
+function NavBar(props) {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   //navigation
   const navigate = useNavigate();
+
+  const ref = useRef(null);
 
   const [search, setSearch] = useState('');
   const [invisible, setInvisible] = useState('');
@@ -29,6 +32,7 @@ function NavBar() {
     }
 
   useEffect(() => {
+
     if(search !== ''){
       dispatch(searchMovie(search))
       setSearchResultsState(resultsOfSearch)
@@ -37,6 +41,16 @@ function NavBar() {
       setSearchResultsState()
     }
     getGenres()
+
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setSearch('');
+      }
+    };
+    document.addEventListener('click', handleClickOutside, true);
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
   }, [search])
 
   return (
@@ -200,10 +214,10 @@ function NavBar() {
                   />
                 </svg>
               </div> */}
-            </div>
+            </div> 
 
               {resultsOfSearch?.length ? 
-                <div id='results' className={`absolute mt-2 w-96 z-10 ${invisible} overflow-hidden rounded-md bg-amber-50 divide-y`}>
+                <div ref={ref} id='results' className={`absolute mt-2 w-96 z-10 ${invisible} overflow-hidden rounded-md bg-amber-50 divide-y`}>
                   {resultsOfSearch?.length && search !== '' ? resultsOfSearch.slice(0,5).map((res) => 
                     <div className="flex items-center space-x-4 py-1 hover:bg-amber-200 cursor-pointer" key={res.id} onClick={() => {
                                                                                                       navigate(`/page-film/${res.id}`)
@@ -230,6 +244,8 @@ function NavBar() {
               }
               
             </div>
+
+            {/* <SearchBar /> */}
 
           <div
             className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0  block`}
