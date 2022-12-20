@@ -74,8 +74,8 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                         <div className="modal-content">                        
                         <button 
                             onClick={toggleModal}
-                            className="btn-modal text-black float-right">
-                            [X]
+                            className="btn-modal text-black float-right font-black ">
+                            X
                         </button>
                             <br/>                            
                             <h1 className=' title-font text-lg'>{title}</h1>
@@ -104,8 +104,8 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                         
                             <button 
                                 onClick={toggleModalCritik}
-                                className="btn-modal  float-right">
-                                [X]
+                                className="btn-modal  float-right font-black ">
+                                X
                             </button>
                             <br/>                            
                             

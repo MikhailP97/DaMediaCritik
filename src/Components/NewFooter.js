@@ -8,7 +8,7 @@ export default function NewFooter() {
 
     return (
         <>
-            <div className="mt-10 bg-black text-amber-100 relative bottom-0 w-full md:grid md:grid-cols-3">
+            <div className="mt-0 bg-black text-amber-100 relative bottom-0 w-full md:grid md:grid-cols-3">
 
                 <div className='md:ml-5 py-8 text-center md:text-left '>
                     <img className="rounded-2xl " src={image} alt='Logo' />
