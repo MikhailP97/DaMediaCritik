@@ -1,13 +1,16 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import '../App.css';
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Modal/Modal.css";
 import "../index.css";
 import axios from 'axios';
 import Stars from './Stars';
 import { useParams } from 'react-router-dom';
+
 import { useNavigate } from 'react-router-dom'
 
-const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}) => {
+
+const Card = ({id, img, alt, title, cat, resume, year, note, style, rate}) => {
 
     const navigate = useNavigate();
 
@@ -18,7 +21,9 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
     const toggleModalCritik = () => { setModalCritik(!modalCritik) }
 
     const [modalFavoris, setModalFavoris] = useState(false);
-    const toggleModalFavoris = () => { setModalFavoris(!modalFavoris) }
+    const toggleModalFavoris = () => { 
+        setModalFavoris(!modalFavoris);
+    }
 
     const [favoris, setFavoris] = useState([]);
     const [critiks, setCritiks] = useState([]);
@@ -44,16 +49,21 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
     if(modal) { document.body.classList.add('active-modal') }
     else {      document.body.classList.remove('active-modal') }
 
-    const api_url = "http://localhost:3000/users/1/comments";
+    const api_url = "http://localhost:3001/comments";
     const createCritik = async (critik) => {
-        await axios.post(api_url+'?filmId='+critik.film+'&commentaire='+critik.comment+'&note='+critik.note, critik)
+        await axios.post(api_url+'?filmId='+critik.filmId+'&commentaire='+critik.comment+'&note='+critik.note, critik)
          .then(console.log('Nouvelle critique de l utilisateur n°... crée'))
-        .catch(err=>{
+         .catch(err=>{
             console.error(err);
         });
         console.log('Commentaire crée');
     }
 
+     /*
+    * Fonction handleSubmit
+    * Ajoute 1 Critik de film 
+    * params : id (id du film)
+    */
     const handleSubmit = (e) => {
         console.log('Vous avez validé la modale modalCritik !');
         e.preventDefault(); //La page n'est pas chargée
@@ -67,9 +77,9 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
         //Requete HTTP en POST
         createCritik(critik);   
         toggleModalCritik(); //Ferme la modale Critik
-        toggleModalConfirmationCritik(); //Affiche le formulaire d'ajout de Critik   
-    }
-
+        toggleModalConfirmationCritik(); //Affiche le formulaire d'ajout de Critik
+    }    
+    
     /*
     * Fonction handleClick 
     * Ajoute 1 film en favori
@@ -145,12 +155,10 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
         getCritiks();
     }, [id]);
 
-    
-
     return (
         <>
-            <div className="card text-white text-center">
-                <img className="opacity1 cursor-pointer" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} onClick={click}/>  
+            <div className="card text-white">
+                <img className="opacity1" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} />        
                 <center>
                 <div className="mt-4">
                     <h2 className="title-font text-lg font-medium text-white">{title}</h2>

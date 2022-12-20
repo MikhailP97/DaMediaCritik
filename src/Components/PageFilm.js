@@ -32,8 +32,6 @@ function PageFilm({rate}) {
       // access to player in all event handlers via event.target
       event.target.pauseVideo();
     }
-    const dispatch = useDispatch();
-    const bgImgMovie = `https://image.tmdb.org/t/p/original/${movieData.poster_path}`
     const movieTrailers = movieVideosData?.length && movieVideosData.filter((v) => {return v.name.includes('Bande-annonce') 
                                                                                         || v.name.includes('Bande annonce')
                                                                                         || v.name.includes('Bande Annonce') 

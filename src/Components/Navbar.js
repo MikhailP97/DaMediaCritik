@@ -131,16 +131,6 @@ function NavBar(props) {
                               Films
                             </div>
                           </li>
-                          <li className="text-gray-100">
-                            <div className="cursor-pointer"
-                              onClick={() => {
-                                setIsMenuOpen(false);
-                                navigate("/categories");
-                              }}
-                            >
-                              Catégories
-                            </div>
-                          </li>
                           <li className="text-gray-100 cursor-pointer" onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/genres-mobile");
@@ -256,9 +246,6 @@ function NavBar(props) {
               </li>
               <li className="transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">
                 <div className="cursor-pointer" onClick={() => navigate("/films")}>Films</div>
-              </li>
-              <li className="transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">
-                <div className="cursor-pointer" onClick={() => navigate("/categories")}>Catégories</div>
               </li>
               <li className="cursor-pointer z-10 transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">Genres{/*<ion-icon name="caret-down"></ion-icon>*/}
                                 <ul>
