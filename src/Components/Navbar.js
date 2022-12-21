@@ -26,7 +26,6 @@ function NavBar(props) {
 
   function getGenres() {
         axios.get(genres_url).then(({data}) => {
-          console.log(data.genres);
           setGenres(data.genres)
         })
     }
@@ -111,25 +110,21 @@ function NavBar(props) {
                       </div>
                       <nav>
                         <ul className="space-y-4">
-                          <li className="text-gray-100">
-                            <div className="cursor-pointer" 
+                          <li className="text-gray-100 cursor-pointer" 
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/");
                               }}
                             >
-                              Accueill
-                            </div>
+                              Accueil
                           </li>
-                          <li className="text-gray-100">
-                            <div className="cursor-pointer"
+                          <li className="text-gray-100 cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/films");
                               }}
                             >
                               Films
-                            </div>
                           </li>
                           <li className="text-gray-100 cursor-pointer" onClick={() => {
                                 setIsMenuOpen(false);
@@ -146,15 +141,13 @@ function NavBar(props) {
                               >
                               Contact
                           </li>
-                          <li className="text-gray-100">
-                            <div className="cursor-pointer"
+                          <li className="text-gray-100 cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/login");
                               }}
                             >
                               Profile
-                            </div>
                           </li>
                         </ul>
                       </nav>

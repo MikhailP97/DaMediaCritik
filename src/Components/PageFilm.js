@@ -1,15 +1,19 @@
-import React, { useEffect } from 'react'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import Stars from './Stars';
 import { getAsyncMovieCredits, getAsyncMovieDetails, getAsyncMovieVideos, movieCredits, moviePage, moviesVideos } from '../features/movies/movieSlice';
 import YouTube from 'react-youtube';
+import axios from 'axios';
+import dateFormat from "dateformat"
+
 
 function PageFilm({rate}) {
 
   //get url
   const { id } = useParams();
-  console.log(id);
+  //console.log(id);
 
   const movieData = useSelector(moviePage);
   const movieCreditsData = useSelector(movieCredits);
@@ -32,7 +36,7 @@ function PageFilm({rate}) {
       // access to player in all event handlers via event.target
       event.target.pauseVideo();
     }
-    
+   
     const movieTrailers = movieVideosData?.length && movieVideosData.filter((v) => {return v.name.includes('Bande-annonce') 
                                                                                         || v.name.includes('Bande annonce')
                                                                                         || v.name.includes('Bande Annonce') 
@@ -46,20 +50,70 @@ function PageFilm({rate}) {
                                                                                         || v.name.includes('Official trailer')
                                                                                     })
 
+  const [critiks, setCritiks] = useState([]);
+
   useEffect(() => {
     dispatch(getAsyncMovieDetails(id))
     dispatch(getAsyncMovieCredits(id))
     dispatch(getAsyncMovieVideos(id))
+    getCritiks();
   }, [id])
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target; //tableau inputs
-    const comment = form[0].value;
-    console.log(comment);
+    const filmId = form[0].value;
+    const comment = form[1].value;
+    const note = form[2].value;
+    const critik = {filmId, comment, note, userId:1, pseudo:"todo"};
+
+    //Requete HTTP en POST
+    createCritik(critik); 
+    toggleModalConfirmationCritik(); //Affiche le formulaire d'ajout de Critik
   }
 
+  //Modale de confirmation d'ajout de critik
+  let [modalConfirmationCritik, setModalConfirmationCritik] = useState(false);
+  const toggleModalConfirmationCritik = () => { 
+      setModalConfirmationCritik(!modalConfirmationCritik);
+  }
+
+  //Afficher/Masquer mes critiks
+  let [listCritiks, setListCritiks] = useState(false);
+  const toggleListCritiks = () => { 
+      setListCritiks(!listCritiks);
+  }
+
+  const api_url = "http://localhost:3001/comments";
+    const createCritik = async (critik) => {
+        //await axios.post(api_url+'?filmId='+critik.filmId+'&commentaire='+critik.comment+'&note='+critik.note, critik)
+        await axios.post(api_url, critik)
+         .then(console.log('Nouvelle critique de l utilisateur n°... crée'))
+         .catch(err=>{
+            console.error(err);
+        });
+    }
+
   const navigate = useNavigate();
+
+  //Récup des commentaires de tous les users pour un film
+  const getCritiks = async (critik) => {
+    //let filmId = 76600; //Todo: Récupéré le filId
+    const api_url = `http://localhost:3001/comments?filmId=${id}`;
+    await axios.get(api_url)
+    .then(({data}) => {
+        //console.log(data);
+        setCritiks(data)})
+    .catch(err=>{
+        console.error(err);
+    });
+  }
+
+  const toggleListeCritik = (e) => {
+    listCritiks = !listCritiks;
+}
+
+
 
   return (
     <div>
@@ -83,10 +137,10 @@ function PageFilm({rate}) {
  
             <div className="  sm:flex justify-between">
               <div className="flex flex-col justify-between sm:w-1/2 bg-black bg-opacity-70 rounded-xl p-5 md:bg-inherit  ">
-              <p className="  text-center  sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{movieData.release_date}</span></p>
+              <p className="  text-center  sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{dateFormat(movieData.release_date, 'dd/mm/yyyy')}</span></p>
               <ul className=" text-center sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Casting :<br/>{casting?.length && casting.slice(0, 5).map((cast) => <li className=' text-amber-500' key={cast.id}>{cast.name}</li> )}</ul>
               {/* <p className=" text-center sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{crew?.length && crew.filter((dir)=> dir.known_for_department == 'Directing')}</span></p> */}
-              <p className=" text-center sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{movieData.release_date}</span></p>
+              <p className=" text-center sm:text-start md:m-0 sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl ">Date de sortie : <br/><span className=' text-amber-500'>{dateFormat(movieData.release_date, 'dd/mm/yyyy')}</span></p>
               </div>
            
               <img className="  border-amber-100 border-2 hidden sm:flex sm:w-2/6 md:w-2/6 lg:w-2/6 xl:w-5/12" src={`https://image.tmdb.org/t/p/original/${movieData.poster_path}`} alt={movieData.title} />
@@ -112,43 +166,84 @@ function PageFilm({rate}) {
 
           <div className="w-full mx-0 md:grid md:grid-cols-2   gap-10 bg-black md:bg-opacity-60 bg-opacity-60 rounded-xl py-5 px-5 lg:px-10 ">
             <p className=" col-span-2 sm:text-xl md:text-2xl text-center 2xl:text-3xl my-5 font-bold">Commentaires :</p>
+{/* 
             <div className=""> 
               <p className="text-amber-500 font-extrabold">John Doe</p>
               <p className="text-amber-300 font-semibold py-2">Note : (récup dynamique)</p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lacinia at neque id elementum. Nullam pretium scelerisque turpis, eu congue tellus facilisis eu. Proin et ante commodo velit ultricies hendrerit nec ut nisl. Sed efficitur lacinia mauris, sit amet vulputate lorem ornare ut. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec id mauris egestas, elementum nisl non, elementum ipsum. Aliquam consectetur rhoncus nunc, a volutpat sem ultrices ac. Quisque porta porta metus ac scelerisque. Sed nisi mi, cursus a rutrum nec, luctus sed ligula. Etiam porta imperdiet libero a dapibus. In hac habitasse platea dictumst. Nulla dapibus semper molestie. Suspendisse in tortor blandit, molestie nisl sed, convallis felis. Pellentesque a sem vehicula, congue dui a, tempor orci.
-            </div>
+            </div> */}
 
-            <div className="">
-              <p className="text-amber-500 font-extrabold">John Doe</p>
-              <p className="text-amber-300 font-semibold py-2">Note : (récup dynamique)</p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lacinia at neque id elementum. Nullam pretium scelerisque turpis, eu congue tellus facilisis eu. Proin et ante commodo velit ultricies hendrerit nec ut nisl. Sed efficitur lacinia mauris, sit amet vulputate lorem ornare ut. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec id mauris egestas, elementum nisl non, elementum ipsum. Aliquam consectetur rhoncus nunc, a volutpat sem ultrices ac. Quisque porta porta metus ac scelerisque. Sed nisi mi, cursus a rutrum nec, luctus sed ligula. Etiam porta imperdiet libero a dapibus. In hac habitasse platea dictumst. Nulla dapibus semper molestie. Suspendisse in tortor blandit, molestie nisl sed, convallis felis. Pellentesque a sem vehicula, congue dui a, tempor orci.
-            </div>
+            {/* Début de traitement liste de commentaires d'1 user */}
+            {   
+                    critiks?.length && critiks.map(crt => {   
+                            return(                                                            
+                                  <>        
+                                    <div className="">   
+                                    <p className="text-amber-500 font-extrabold">Pseudo : {crt.pseudo}</p>
 
-            <div className=""> 
-              <p className="text-amber-500 font-extrabold">John Doe</p>
-              <p className="text-amber-300 font-semibold py-2">Note : (récup dynamique)</p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lacinia at neque id elementum. Nullam pretium scelerisque turpis, eu congue tellus facilisis eu. Proin et ante commodo velit ultricies hendrerit nec ut nisl. Sed efficitur lacinia mauris, sit amet vulputate lorem ornare ut. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec id mauris egestas, elementum nisl non, elementum ipsum. Aliquam consectetur rhoncus nunc, a volutpat sem ultrices ac. Quisque porta porta metus ac scelerisque. Sed nisi mi, cursus a rutrum nec, luctus sed ligula. Etiam porta imperdiet libero a dapibus. In hac habitasse platea dictumst. Nulla dapibus semper molestie. Suspendisse in tortor blandit, molestie nisl sed, convallis felis. Pellentesque a sem vehicula, congue dui a, tempor orci.
-            </div>
+                                    <p className="text-amber-300 font-semibold py-2">Note : {crt.note} / 5</p>
+                                      <p className="text-lg text-white">{crt.comment}</p>
+                                    </div>
+                                  </>
+                            )
+                    })                 
+            }   
+            {/* Fin de traitement liste de commentaires d'1 user */}   
 
-            <div className=""> 
-              <p className="text-amber-500 font-extrabold">John Doe</p>
-              <p className="text-amber-300 font-semibold py-2">Note : (récup dynamique)</p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lacinia at neque id elementum. Nullam pretium scelerisque turpis, eu congue tellus facilisis eu. Proin et ante commodo velit ultricies hendrerit nec ut nisl. Sed efficitur lacinia mauris, sit amet vulputate lorem ornare ut. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec id mauris egestas, elementum nisl non, elementum ipsum. Aliquam consectetur rhoncus nunc, a volutpat sem ultrices ac. Quisque porta porta metus ac scelerisque. Sed nisi mi, cursus a rutrum nec, luctus sed ligula. Etiam porta imperdiet libero a dapibus. In hac habitasse platea dictumst. Nulla dapibus semper molestie. Suspendisse in tortor blandit, molestie nisl sed, convallis felis. Pellentesque a sem vehicula, congue dui a, tempor orci.
-            </div>
-
+            {modalConfirmationCritik&& (
+                        <div className="modal">
+                            <div className="overlay"></div>
+                                <div className="modal-content text-black">                        
+                                <button 
+                                    onClick={toggleModalConfirmationCritik}
+                                    className="btn-modal text-black float-right">
+                                    [X]
+                                </button>
+                                    <br/><br/>                              
+                                    Vous&nbsp;avez&nbsp;bien&nbsp;ajouté&nbsp;une&nbsp;Critik&nbsp;et/ou&nbsp;note&nbsp;pour&nbsp;le&nbsp;film
+                                    <br/><br/>
+                                    <center><b>"{movieData.title}"</b></center> 
+                                    <br/><br/>                                    
+                                    {/* <a href="#" onClick={toggleListCritiks}>Afficher/masquer vos critiks</a>
+                                    <br/><br/>
+                                    {listCritiks ?                                        
+                                            <div>
+                                            Mes critiks :<br/>
+                                            {/* Début de traitement liste de critiks d'1 user */}
+                                            {/*                                             */}
+                                            {/* Fin de traitement liste de critiks d'1 user */}
+                                    {/*        
+                                            </div>                                                   
+                                        : {critiks?.length && critiks.map(crt => {   
+                                                    return(                                                            
+                                                        <>                                                                
+                                                            - id: {crt.id} {crt.comment} 
+                                                        <br/>
+                                                        </>
+                                                    )
+                                                })                 
+                                            }    
+                                        <br/>
+                                    } */}
+                            </div>
+                        </div>
+                    )}    
           </div>
           
           
             
           <form className="my-10 md:my-20 h-72 text-black " onSubmit={handleSubmit}>
-          
+          {/* <br/> FilmId : {id} */}
+          <input type='hidden' size='6' defaultValue={id} />
               <label htmlFor="comment" className='text-3xl text-amber-500 font-extrabold'>Critik <span className='text-white'>:</span> </label>
               <textarea className="text-lg w-full h-2/3 mt-10 p-7 rounded-xl " type="text" size="5" />
 
-             <p className="text-white text-lg"><Stars/> {rate}</p>
-
+             <p className="text-white text-lg"><Stars/> {/* {rate} */}</p>
+             {/* <input type='hidden' defaultValue={rate}/> */}
              <button type="submit" className="py-4 mb-5 px-12 sm:py-1 sm:px-5  shadow-md shadow-stone-300/50 bg-stone-900 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Critik !</button>
             
           </form>
-<div className='bg-black bg-opacity-70 text-center md:flex md:justify-center pt-3 mt-40 md:py-10  md:pb-0'>
-<p onClick={() => navigate("/inscription")} className="mb-3 md:mr-10 cursor-pointer text-amber-50 hover:underline text-sm" >Vous n'êtes pas encore inscrit ?</p>
+      <div className='bg-black bg-opacity-70 text-center md:flex md:justify-center pt-3 mt-40 md:py-10  md:pb-0'>
+      <p onClick={() => navigate("/inscription")} className="mb-3 md:mr-10 cursor-pointer text-amber-50 hover:underline text-sm" >Vous n'êtes pas encore inscrit ?</p>
           <p onClick={() => navigate("/login")} className=" md:ml-10 text-base sm:text-sm text-center cursor-pointer  text-amber-50 hover:underline" >Vous n'êtes pas connecté ?</p>
           </div>
         </div>

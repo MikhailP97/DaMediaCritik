@@ -10,7 +10,6 @@ function Stars({rate}) {
     const handleRating = (rate) => {
         setRating(rate);
         // other logic
-        console.log(rating);
     }
 
     return (
@@ -24,7 +23,7 @@ function Stars({rate}) {
                 onClick={handleRating}
                 ratingValue={rating} /* Available Props */
              />
-             &nbsp;{rating} <input type="hidden" value={rating} />
+             &nbsp;{rating} / 5 <input type="hidden" name="rating" id="rating" value={rating} />
         </div>
   )
   
