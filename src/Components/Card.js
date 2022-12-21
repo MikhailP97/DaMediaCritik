@@ -5,15 +5,15 @@ import "./Modal/Modal.css";
 import "../index.css";
 import axios from 'axios';
 import Stars from './Stars';
-import { useParams } from 'react-router-dom';
+import dateFormat from "dateformat"
 import { useNavigate } from 'react-router-dom'
 
-const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}) => {
 
+const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}) => {
     const navigate = useNavigate();
 
-    const [modal, setModal] = useState(false);
-    const toggleModal = () => { setModal(!modal) }
+    const [modalDetail, setModalDetail] = useState(false);
+    const toggleModalDetail = () => { setModalDetail(!modalDetail) }
 
     const [modalCritik, setModalCritik] = useState(false);
     const toggleModalCritik = () => { setModalCritik(!modalCritik) }
@@ -32,7 +32,7 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
         setListFavoris(!listFavoris);
     }
 
-    //Modale de confirmation d'ajout de critiks
+    //Afficher/Masquer mes critiks
     let [listCritiks, setListCritiks] = useState(false);
     const toggleListCritiks = () => { 
         setListCritiks(!listCritiks);
@@ -44,33 +44,31 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
         setModalConfirmationCritik(!modalConfirmationCritik);
     }
 
-    if(modal) { document.body.classList.add('active-modal') }
+    if(modalDetail) { document.body.classList.add('active-modal') }
     else {      document.body.classList.remove('active-modal') }
 
     const api_url = "http://localhost:3001/comments";
     const createCritik = async (critik) => {
-        await axios.post(api_url+'?filmId='+critik.filmId+'&commentaire='+critik.comment+'&note='+critik.note, critik)
+       //await axios.post(api_url+'?filmId='+critik.filmId+'&commentaire='+critik.comment+'&note='+critik.note, critik)
+        await axios.post(api_url, critik)
          .then(console.log('Nouvelle critique de l utilisateur n°... crée'))
          .catch(err=>{
             console.error(err);
         });
-        console.log('Commentaire crée');
     }
 
      /*
-    * Fonction handleSubmit
+    * Fonction handleSubmit (Validation de formulaire) sur la Modale "modaleCritik"
     * Ajoute 1 Critik de film 
-    * params : id (id du film)
+    * Appelle les fonctions createCritik(), toggleModalCritik() et toggleModalConfirmationCritik()
     */
     const handleSubmit = (e) => {
-        console.log('Vous avez validé la modale modalCritik !');
         e.preventDefault(); //La page n'est pas chargée
         const form = e.target; //tableau inputs
         const filmId = form[0].value;
         const comment = form[1].value;
         const note = form[2].value;
-        const critik = {filmId, comment, note, userId:1};
-        //console.log(critik);
+        const critik = {filmId, comment, note, userId:1, pseudo:"todo"}; //Todo: Récupérer l'UserId et le pseudo de l'user conencté
 
         //Requete HTTP en POST
         createCritik(critik);   
@@ -80,44 +78,40 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
     
     /*
     * Fonction handleClick 
-    * Ajoute 1 film en favori
-    * params : id (id du film)
+    * Appelle les fonctions createFavoris et toggleModalFavoris
     */
     const handleClick = (e) => {
         e.preventDefault();
-        // const favori = {filmId: id, titre: title, img: img};
-         const favori = {filmId: id, title: title, userId:1, img: img};
-         console.log(favori);
+        const favori = {filmId: id, title: title, userId:1, img: img}; //Todo: Récupérer l'UserId de l'user conencté
         createFavoris(favori);
         toggleModalFavoris(); //Affiche la modale de confirmation de l'ajout des favoris
     }
 
+    /*
+    * Fonction createFavoris 
+    * Ajoute 1 film en favori
+    */
     const createFavoris = async (favori) => {
-        //console.log('favori='+favori.filmId);
-        let userId = 1; //A récupérer en dynamique en fonction de l'ID de l'user connecté
+        let userId = 1;  //Todo: Récupérer l'UserId de l'user conencté
         let filmId = id; //est récupéré dynamiquement en fonction du film mis en favori
-        //let image = img;
         const api_url = "http://localhost:3001/favoris";
-        //console.log('userID='+userId);
-        //console.log('filmId='+id);
-        //console.log('Titre='+title);
-        //console.log('image'+image);
 
-        //console.log(api_url);
         await axios.post(api_url, favori)
-         .then(console.log('Nouveau favori enregistré pour le film '+filmId+' et l utilisateur n°'+userId))
+         .then(console.log(`Nouveau favori enregistré pour le film ${filmId} et l utilisateur n°${userId}`))
          .catch(err=>{
             console.error(err);
         });
-        console.log('Favoris crée');
     }
 
+    /*
+    * Fonction getFavoris 
+    * Obtiens la liste des films d'1 user mis en favori
+    */
     const getFavoris = async (favori) => {
-        let userId = 1;
-         const api_url = "http://localhost:3001/users/"+userId+"/favoris";
+        let userId = 1; //Todo: Récupérer l'UserId de l'user conencté
+         const api_url = `http://localhost:3001/users/${userId}/favoris`;
         await axios.get(api_url)
          .then(({data}) => {
-            console.log(data); //Favoris
             setFavoris(data)
          })
          .catch(err=>{
@@ -125,12 +119,15 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
          });
      }
 
+    /*
+    * Fonction getCritiks 
+    * Obtiens la liste des films d'1 user mis en favori
+    */
      const getCritiks = async (critik) => {
-        let userId = 1;
-         const api_url = "http://localhost:3001/users/"+userId+"/comments";
+        let userId = 1; //Todo: Récupérer l'UserId de l'user conencté
+         const api_url = `http://localhost:3001/users/${userId}/comments`;
         await axios.get(api_url)
          .then(({data}) => {
-            console.log(data); //Critiks
             setCritiks(data)
          })
          .catch(err=>{
@@ -138,25 +135,37 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
          });
      }
 
-    const toggleListeFavoris = (e) => {
-        console.log('Vpus avez listé vos favoris !');        
+    /*
+    * Fonction toggleListeFavoris 
+    * Liste les films d'1 user mis en favori
+    */    
+        const toggleListeFavoris = (e) => {
         listFavoris = !listFavoris;
     }
-//-----------------------------------------------------------
+
+    /*
+    * Fonction toggleListeCritik 
+    * Liste les films d'1 user mis en favori
+    */
+    // const toggleListeCritik = (e) => {
+    //     listCritiks = !listCritiks;
+    // }
 
     useEffect(() => {
         getFavoris();
         getCritiks();
     }, [id]);
 
-    
-
     return (
         <>
-            <div className="card text-white text-center">
-                <img className="opacity1 cursor-pointer" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} onClick={click}/>  
-                <center>
+            <div className="card text-white">
+            <center><img className="opacity1" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} onClick={click}/>        
+                
                 <div className="mt-4">
+                <a href="#" onClick={toggleModalDetail} title="Détail du film" alt="Détail du film" className="hover:text-amber-200">🔍Détails</a>&nbsp;
+                <a href="#" onClick={toggleModalCritik} title="Critiker ce film !" alt="Critiker ce film !" className="hover:text-amber-200">⭐Critiker&nbsp;
+                </a>&nbsp;<a href="#" onClick={handleClick} title="Mettre en favoris" alt="Mettre en favoris" className="hover:text-amber-200">❤️ Favoris</a><br/><br/>
+
                     <h2 className="title-font text-lg font-medium text-white">{title}</h2>
                     <h3 className="title-font mb-1 text-xs tracking-widest text-gray-300">{cat}</h3>
                     <p className="text-white mt-1">{year}</p>
@@ -164,7 +173,7 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                     <a href="#" onClick={toggleModalCritik} title="Critiker ce film !"> ⭐Critiker !
                     </a>&nbsp;<a href="#" onClick={handleClick} title="Mettre en favoris">🖤 ❤️Favoris</a><br/>
          
-            {modal && (
+            {modalDetail && (
                 <div className="modal">
                     <div className="overlay"></div>
                         <div className="modal-content">                        
@@ -175,7 +184,7 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                         </button>
                             <br/>                            
                             <h1 className=' bg-amber-500 py-5 px-5 title-font text-xl font-bold rounded-xl my-5 text-black '>{title}</h1>
-                            Sortie : {year}
+                            Sortie : {dateFormat(year, 'dd/mm/yyyy')}
                             <br/>
                             Genre : {cat} 
                             <br/>
@@ -191,22 +200,6 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                     </div>
                 </div>
             )}
-
-            
-            {modalCritik && (
-                <div className="modal">
-                    <div className="overlay"></div>
-                        <div className="modal-content text-black">
-                        
-                            <button 
-                                onClick={toggleModalCritik}
-                                className="btn-modal  float-right font-black ">
-                                X
-                            </button>
-                            <br/>                            
-                            
-                            <form onSubmit={handleSubmit}>  
-                                <center>
                                     <h1 className='title bg-amber-500 py-5 px-5 title-font text-xl font-bold rounded-xl mt-5'>{title}</h1>
                                             <br/>
                                             <img src={img} width="200" alt={alt}/>
@@ -227,7 +220,51 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                                         </center> 
                                         <br/> 
                                     </form>
-                                </div>  
+                                </div>
+                                <img src={img} width="200" alt={alt}/>
+                                </center>
+                                <br/>
+                                <p>{resume}</p>
+                                <br/>
+
+                            </div>
+                        </div>
+                    )} 
+
+                    {modalCritik && (
+                        <div className="modal">
+                            <div className="overlay"></div>
+                            <div className="modal-content text-black">
+                                
+                                <button 
+                                    onClick={toggleModalCritik}
+                                    className="btn-modal text-black float-right">
+                                    [X]
+                                </button>
+                                <br/>                            
+                                
+                                <form onSubmit={handleSubmit}>  
+                                    <center>
+                                        <h1 className='title-font text-lg'>{title}</h1>
+                                        <br/>
+                                        <img src={img} width="200" alt={alt}/>
+                                    </center>
+                                    {/* <br/> FilmId : {id} */}
+                                    <input type='hidden' size='6' defaultValue={id} />
+                                    <br/><br/>
+                                    Votre commentaire : <br/>
+                                    <textarea rows='4' cols='50'></textarea>
+                                    <br/><br/>                                
+                                    Votre note :<Stars/>{/* &nbsp;{rate} */}
+                                    {/* <input type='hidden' defaultValue={rate}/> */}
+                                    <br/>
+                                    <center>
+                                        <button className='btn-modal' type="submit">Critiker !</button>
+                                    </center> 
+                                    <br/> 
+                                </form>
+
+                            </div> 
                         </div>
                     )}
 
@@ -241,7 +278,7 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                                     X
                                 </button>
                                     <br/>                            
-                                    Vous avez bien ajouté <br/><b>"{title}"</b><br/> à vos favoris
+                                    Vous avez bien ajouté le film <br/><b>"{title}"</b><br/> à vos favoris
                                     <br/><br/>                                    
                                     {/* <a href="#" onClick={() => navigate('/profile')}>Accéder à votre liste de favoris</a> */}
                                     {/* <br/>ou<br/> */}
@@ -253,11 +290,9 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                                             {/* Début de traitement liste de favoris d'1 user */}
                                             {   
                                                 favoris?.length && favoris.map(fav => {   
-                                                        console.log('Liste de favoris'+fav.img); 
                                                         return(                                                            
                                                              <>                                                                
-                                                                 - {fav.title} 
-                                                                <br/>
+                                                                 - {fav.title} <br/>
                                                              </>
                                                         )
                                                     })                 
@@ -271,7 +306,7 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                         </div>
                     )}
 
-                    {modalConfirmationCritik&& (
+                    {modalConfirmationCritik && (
                         <div className="modal">
                             <div className="overlay"></div>
                                 <div className="modal-content text-black">                        
@@ -283,13 +318,13 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                                     <br/>                            
                                     Vous&nbsp;avez&nbsp;bien&nbsp;ajouté&nbsp;une&nbsp;Critik/note&nbsp;pour&nbsp;le&nbsp;film<br/><b>"{title}"</b> 
                                     <br/><br/>                                    
-                                    <a href="#" onClick={toggleListCritiks}>Afficher/masquer vos critiks</a>
+                                    {/* <a href="#" onClick={toggleListCritiks}>Afficher/masquer vos critiks</a>
                                     <br/><br/>
                                     {listCritiks ?                                        
                                             <div>
                                             Mes critiks :<br/>
                                             {/* Début de traitement liste de critiks d'1 user */}
-                                            {critiks?.length && critiks.map(crt => {   
+                                            {/* {critiks?.length && critiks.map(crt => {   
                                                     console.log('Liste de critiks'+crt.comment); 
                                                     return(                                                            
                                                         <>                                                                
@@ -298,11 +333,14 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                                                         </>
                                                     )
                                                 })                 
-                                            }                                               {/* Fin de traitement liste de critiks d'1 user */}
+                                            }                                                */}
+                                            {/* Fin de traitement liste de critiks d'1 user */}
+                                    {/*        
                                             </div>                                                   
-                                        : 
+                                        : <></>
                                         <br/>
                                     }
+                                    */}
                             </div>
                         </div>
                     )}

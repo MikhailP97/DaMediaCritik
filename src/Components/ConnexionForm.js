@@ -1,43 +1,41 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { connectUser, currentUser } from '../features/users/userSlice';
+import { UserContext } from '../UserContext';
 
 export default function ConnexionForm() {
 
     const navigate = useNavigate();
 
     const [passVisibility, setPassVisibility] = useState(false);
+    // const [context, setContext] = useContext(UserContext);
+    // console.log(context)
 
     const showHidePass = () => {
         setPassVisibility(!passVisibility)
     }
-    console.log(passVisibility);
-    const[user, setUser] = useState({});
+    // console.log(passVisibility);
 
+    const dispatch = useDispatch();
+    const userData = useSelector(currentUser)
+    console.log(userData)
 
-    //Vérification login/mot de passe
-    const api_url = "http://localhost:3001/login";
-    async function getUser(user) {     
-        await axios.post(api_url, user)
-        .then((response) => {
-            setUser(response.data)
-            navigate("/")
-        })
-        .catch(err=>{
-            console.error(err)
-        })
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('connecté');
         const form = e.target; //tableau inputs
         const email = form[0].value;
         const password = form[1].value;
         const user = { email, password };
-        console.log(user.email, user.password);
+        console.log(user);
 
-        getUser(user);       
+        dispatch(connectUser(user)) 
+        
+        setTimeout(() => {
+            navigate('/profile')
+        }, 2000);
     }
 
     return (

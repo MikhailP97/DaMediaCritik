@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getGenres, searchMovie, searchResults, tabDesGenres, tabGenres } from "../features/movies/movieSlice";
 import { genres_url, serverPosters } from '../apiMovieDatabase';
 import axios from "axios";
 import SearchBar from "./SearchBar";
+import { UserContext } from "../UserContext";
+import { currentUser } from "../features/users/userSlice";
 
 function NavBar(props) {
 
@@ -26,11 +28,10 @@ function NavBar(props) {
   const dispatch = useDispatch();
 
   function getGenres() {
-    axios.get(genres_url).then(({ data }) => {
-      console.log(data.genres);
-      setGenres(data.genres)
-    })
-  }
+        axios.get(genres_url).then(({data}) => {
+          setGenres(data.genres)
+        })
+    }
 
   useEffect(() => {
 
@@ -53,6 +54,17 @@ function NavBar(props) {
       document.removeEventListener('click', handleClickOutside, true);
     };
   }, [search])
+
+  const currentUserVerif = useSelector(currentUser)
+  console.log(Object.keys(currentUserVerif).length !== 0)
+
+  const profileOrConnectRoute = () => {
+    if(Object.keys(currentUserVerif).length !== 0) {
+      navigate('/profile')
+    } else if(Object.keys(currentUserVerif).length === 0) {
+      navigate('/login')
+    }
+  }
 
   return (
     <div>
@@ -122,25 +134,21 @@ function NavBar(props) {
                       </div>
                       <nav>
                         <ul className="space-y-4">
-                          <li className="text-gray-100">
-                            <div className="cursor-pointer"
+                          <li className="text-gray-100 cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/");
                               }}
                             >
-                              Accueill
-                            </div>
+                              Accueil
                           </li>
-                          <li className="text-gray-100">
-                            <div className="cursor-pointer"
+                          <li className="text-gray-100 cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/films");
                               }}
                             >
                               Films
-                            </div>
                           </li>
                           <li className="text-gray-100 cursor-pointer" onClick={() => {
                             setIsMenuOpen(false);
@@ -157,15 +165,13 @@ function NavBar(props) {
                           >
                             Contact
                           </li>
-                          <li className="text-gray-100">
-                            <div className="cursor-pointer"
+                          <li className="text-gray-100 cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
                                 navigate("/login");
                               }}
                             >
                               Profile
-                            </div>
                           </li>
                         </ul>
                       </nav>
@@ -277,7 +283,7 @@ function NavBar(props) {
                 <div className="cursor-pointer" onClick={() => navigate("/contact")}>Contact</div>
               </li>
               <li>
-                <div className="cursor-pointer" onClick={() => navigate("/login")}>
+                <div className="cursor-pointer" onClick={profileOrConnectRoute}>
                   <svg
                     className="h-6 w-6 text-gray-100 hover:fill-current hover:text-amber-600"
                     xmlns="http://www.w3.org/2000/svg"

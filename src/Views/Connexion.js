@@ -7,11 +7,10 @@ import ForgottenPassword from '../Components/ForgottenPassword';
 export default function Connexion() {
    
     const navigate = useNavigate();
-    const [forgottenPage, setForgottenPage] = useState (false)
+    const [forgottenPage, setForgottenPage] = useState(false)
     const changePage= () => {
         setForgottenPage(!forgottenPage)
     }  
-
 
     return (
         <>

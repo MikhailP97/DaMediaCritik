@@ -28,7 +28,6 @@ function Genres() {
 
     function getGenres() {
         axios.get(genres_url).then(({data}) => {
-          console.log(data.genres);
             setGenres(data.genres)
         })
     }
@@ -46,11 +45,10 @@ function Genres() {
 
 return (
     <>
-
         <div className="text-white md:invisible">
             <select id="genres" className='text-white bg-black mt-20 md:mt-0' title="Choisir un genre...">
-                <option key={-1}>Choississez un genre</option>
-                <option key={0} disabled>---------------------------</option> 
+                <option key="0">Choississez un genre</option>
+                <option key="1" disabled>---------------------------</option> 
                 {
                     genres?.length && genres.map(g => (
                     <>                

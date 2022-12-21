@@ -3,6 +3,8 @@ import axios from 'axios';
 import { apiKey } from '../../apiKey';
 import { apiMovieDatabase } from '../../apiMovieDatabase';
 
+
+// TMDB API calls
 export const getAsyncMovies = createAsyncThunk(
     'movies/getAsyncMovies',
     async () => {
@@ -72,6 +74,7 @@ export const getAsyncMovieCategories = createAsyncThunk(
 export const movieSlice = createSlice({
     name: 'movies',
     initialState: {
+        //TMDB states
         trendingMovies: {},
         movieDetails: {},
         releaseMovies: {},
@@ -87,63 +90,62 @@ export const movieSlice = createSlice({
         // },
         //getAsyncMovies
         [getAsyncMovies.fulfilled]: (state, { payload }) => {
-            console.log("fullfilled");
+            console.log("fullfilled getAsyncMovies");
             return { ...state, trendingMovies: payload };
         },
         [getAsyncMovies.rejected]: () => {
-            console.log("rejected");
+            console.log("rejected getAsyncMovies");
         },
         // getAsyncMovieDetails
         [getAsyncMovieDetails.fulfilled]: (state, { payload }) => {
-            console.log("fullfilled details");
+            console.log("fullfilled getAsyncMovieDetails");
             return { ...state, movieDetails: payload };
         },
         [getAsyncMovieDetails.rejected]: () => {
-            console.log("rejected");
+            console.log("rejected getAsyncMovieDetails");
         },
         // getAsyncMovieCredits
         [getAsyncMovieCredits.fulfilled]: (state, { payload }) => {
-            console.log("fullfilled");
+            console.log("fullfilled getAsyncMovieCredits");
             return { ...state, movieCredits: payload };
         },
         [getAsyncMovieCredits.rejected]: () => {
-            console.log("rejected");
+            console.log("rejected getAsyncMovieCredits");
         },
         // getAsyncMoviesRelease
         [getAsyncMoviesRelease.fulfilled]: (state, { payload }) => {
-            console.log("fullfilled release");
+            console.log("fullfilled getAsyncMoviesRelease");
             return { ...state, releaseMovies: payload };
         },
         [getAsyncMoviesRelease.rejected]: () => {
-            console.log("rejected");
+            console.log("rejected getAsyncMoviesRelease");
         },
         // searchMovie
         [searchMovie.fulfilled]: (state, { payload }) => {
-            console.log("fullfilled release");
+            console.log("fullfilled searchMovie");
             return { ...state, searchResults: payload };
         },
         [searchMovie.rejected]: () => {
-            console.log("rejected");
+            console.log("rejected searchMovie");
         },
         // getAsyncMovieCategories
         [getAsyncMovieCategories.fulfilled]: (state, { payload }) => {
-            console.log("fullfilled release");
+            console.log("fullfilled getAsyncMovieCategoriesrelease");
             return { ...state, moviesByCategory: payload };
         },
         [getAsyncMovieCategories.rejected]: () => {
-            console.log("rejected");
+            console.log("rejected getAsyncMovieCategories");
         },
         // getAsyncMovieVideos
         [getAsyncMovieVideos.fulfilled]: (state, { payload }) => {
-            console.log("fullfilled release");
+            console.log("fullfilled getAsyncMovieVideos");
             return { ...state, moviesVideos: payload };
         },
         [getAsyncMovieVideos.rejected]: () => {
-            console.log("rejected");
+            console.log("rejected getAsyncMovieVideos");
         },
     }
 })
-
 export const trendings = (state) => state.movies.trendingMovies;
 export const moviePage = (state) => state.movies.movieDetails;
 export const movieCredits = (state) => state.movies.movieCredits;
@@ -152,5 +154,6 @@ export const searchResults = (state) => state.movies.searchResults;
 export const tabGenres = (state) => state.movies.tab_genres;
 export const moviesByCategory = (state) => state.movies.moviesByCategory;
 export const moviesVideos = (state) => state.movies.moviesVideos;
+
 
 export default movieSlice.reducer
