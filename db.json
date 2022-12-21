@@ -122,6 +122,13 @@
       "userId": 1,
       "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//9z4jRr43JdtU66P0iy8h18OyLql.jpg",
       "id": 35
+    },
+    {
+      "filmId": 436270,
+      "title": "Black Adam",
+      "userId": 1,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYALH5NPM7xk2XQd2J8wrfmliIW.jpg",
+      "id": 36
     }
   ]
 }

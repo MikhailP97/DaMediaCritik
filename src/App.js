@@ -8,8 +8,6 @@ import PageFilm from "./Views/PageFilmView.js";
 import Profile from "../src/Views/Profile.js";
 import Inscription from './Views/Inscription';
 import ForgottenPassword from './Components/ForgottenPassword';
-
-import Footer from './Components/Footer.js'
 import Connexion from './Views/Connexion';
 import Conditions from './Views/Conditions';
 import Mentions from './Views/Mentions';
@@ -19,26 +17,12 @@ import NotFound from './Views/NotFound';
 import NewFooter from './Components/NewFooter';
 import GenresMobile from './Views/GenresMobile';
 import { UserContext } from './UserContext';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { currentUser, getUser, subscribedUser } from './features/users/userSlice';
 
 function App() {
 
-  const user = {
-    pseudo: 'john',
-    email: 'john@john.john'
-  }
-
-  const currentUserData = useSelector(currentUser);
-  const currentSubscribedUserData = useSelector(subscribedUser);
-  console.log(currentUserData)
-  const dispatch = useDispatch();
-  // console.log(currentUserData[0])
 
   const [context, setContext] = useState(null);
-  console.log(context)
 
 useEffect(() => {
   // getUser();
