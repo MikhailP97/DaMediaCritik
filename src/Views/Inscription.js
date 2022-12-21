@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { useDispatch } from "react-redux";
+import { createNewUser } from "../features/users/userSlice";
 
 
 const Inscription = () => {
@@ -14,19 +16,20 @@ const Inscription = () => {
     const [confirmation, setConfirmation] = useState(false);
     const [avatarPreview, setAvatarPreview] = useState('');
 
+    const dispatch = useDispatch()
 
     const showHidePass = () => {
         setPassVisibility(!passVisibility)
     }
 
-    const api_url = "http://localhost:3001/register";
-    const createUser = (user) => {
-        axios.post(api_url, user)
-            .then(console.log('Nouvel utilisateur créé'))
-            .catch(err => {
-                console.error(err);
-            })
-    }
+    // const api_url = "http://localhost:3001/register";
+    // const createUser = (user) => {
+    //     axios.post(api_url, user)
+    //         .then(console.log('Nouvel utilisateur créé'))
+    //         .catch(err => {
+    //             console.error(err);
+    //         })
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -45,7 +48,8 @@ const Inscription = () => {
 
         //Requete HTTP en POST
         if (password === passwordConfirm) {
-            createUser(user);
+            // createUser(user);
+            dispatch(createNewUser(user))
             setConfirmation(true)
         } 
     }

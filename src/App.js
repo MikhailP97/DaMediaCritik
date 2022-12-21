@@ -18,38 +18,64 @@ import Contact from './Views/Contact';
 import NotFound from './Views/NotFound';
 import NewFooter from './Components/NewFooter';
 import GenresMobile from './Views/GenresMobile';
+import { UserContext } from './UserContext';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { currentUser, getUser, subscribedUser } from './features/users/userSlice';
 
 function App() {
 
+  const user = {
+    pseudo: 'john',
+    email: 'john@john.john'
+  }
+
+  const currentUserData = useSelector(currentUser);
+  const currentSubscribedUserData = useSelector(subscribedUser);
+  console.log(currentUserData)
+  const dispatch = useDispatch();
+  // console.log(currentUserData[0])
+
+  const [context, setContext] = useState(null);
+  console.log(context)
+
+useEffect(() => {
+  // getUser();
+  // dispatch(getUser(5))
+}, [])
+
   return (
     <div className="App">
-      <BrowserRouter>
-      
-        <NavBar />
+      <UserContext.Provider value={[context, setContext]}>
+        <BrowserRouter>
+        
+          <NavBar />
 
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/login" element={<Connexion />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/films" element={<Films />} />
-          <Route path="/genres" element={<FilmsParGenres />} />
-          <Route path="/genres-mobile" element={<GenresMobile />} />
-          <Route path="/genres/:id" element={<FilmsParGenres />} />
-          <Route path="/page-film/:id" element={<PageFilm />} />
-          <Route path="/page-film" element={<PageFilm />} />
-          <Route path="/inscription" element={<Inscription />} />
-          <Route path="/forgotten-pass" element={<ForgottenPassword />} />
-          <Route exact path="/conditions" element={<Conditions />} />
-          <Route exact path="/mentions" element={<Mentions />} />
-          <Route exact path="/politiques" element={<Politiques />} />
-          <Route exact path="/contact" element={<Contact />} />
-          <Route path='*' element={<NotFound />} />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/login" element={<Connexion />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/films" element={<Films />} />
+            <Route path="/genres" element={<FilmsParGenres />} />
+            <Route path="/genres-mobile" element={<GenresMobile />} />
+            <Route path="/genres/:id" element={<FilmsParGenres />} />
+            <Route path="/page-film/:id" element={<PageFilm />} />
+            <Route path="/page-film" element={<PageFilm />} />
+            <Route path="/inscription" element={<Inscription />} />
+            <Route path="/forgotten-pass" element={<ForgottenPassword />} />
+            <Route exact path="/conditions" element={<Conditions />} />
+            <Route exact path="/mentions" element={<Mentions />} />
+            <Route exact path="/politiques" element={<Politiques />} />
+            <Route exact path="/contact" element={<Contact />} />
+            <Route path='*' element={<NotFound />} />
 
-        </Routes>
+          </Routes>
 
-        <NewFooter />
+          <NewFooter />
 
-      </BrowserRouter>
+        </BrowserRouter>
+      </UserContext.Provider>
 
     </div>
   );
