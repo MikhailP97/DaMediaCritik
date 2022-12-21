@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+img {display:inline}
+
+.widget-review .etoile-review .etoile {
+    background-position: 0 0;
+  }
+
+.widget-review .etoile-review li {
+    background-image: url('https://static.aliasdmc.fr/img/widgets/review.png');
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 36px;
+    margin-left: 2px;
+    overflow: hidden;
+    text-indent: 999px;
+    width: 36px;
+  }

@@ -1,0 +1,127 @@
+{
+  "users": [
+    {
+      "email": "tzen@hotmail.fr",
+      "password": "$2a$10$19AXXg.5gIMVV6e/m.eSX.YB.n/YUaIp023TZtBziBwHASULNEga2",
+      "pseudo": "test",
+      "birthdate": "12/12/2022",
+      "id": 1
+    },
+    {
+      "email": "tzen1@hotmail.fr",
+      "password": "$2a$10$5RuwBPHHGtFWnoZtXWLLauP.ZGykxmazyX48l3KDN7pC4z6d9qVL2",
+      "pseudo": "tzen",
+      "birthdate": "13/12/2022",
+      "id": 2
+    },
+    {
+      "email": "tzen2@hotmail.fr",
+      "password": "$2a$10$TYQvWHt9bNpDLKxMKZ0vZOockFDMmY1eCUgPYRyCa44q8sHyU2Y6e",
+      "pseudo": "tzen",
+      "birthdate": "13/12/2022",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "filmId": "76600",
+      "comment": "Avatar!",
+      "note": "5",
+      "userId": 1,
+      "pseudo": "todo",
+      "id": 13
+    },
+    {
+      "filmId": "76600",
+      "comment": "zzz",
+      "note": "0",
+      "userId": 1,
+      "pseudo": "todo",
+      "id": 14
+    },
+    {
+      "filmId": "436270",
+      "comment": "Adam",
+      "note": "3",
+      "userId": 1,
+      "pseudo": "todo",
+      "id": 15
+    },
+    {
+      "filmId": "76600",
+      "comment": "Avatar Avatar ! ! ",
+      "note": "5",
+      "userId": 1,
+      "pseudo": "todo",
+      "id": 16
+    },
+    {
+      "filmId": "76600",
+      "comment": "",
+      "note": "0",
+      "userId": 1,
+      "pseudo": "todo",
+      "id": 17
+    },
+    {
+      "filmId": "76600",
+      "comment": "test",
+      "note": "5",
+      "userId": 1,
+      "pseudo": "todo",
+      "id": 18
+    },
+    {
+      "filmId": "436270",
+      "comment": "test critik Adam 21/12/22",
+      "note": "4",
+      "userId": 1,
+      "pseudo": "todo",
+      "id": 19
+    }
+  ],
+  "favoris": [
+    {
+      "filmId": 555604,
+      "title": "Pinocchio par Guillermo del Toro",
+      "userId": "1",
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYALH5NPM7xk2XQd2J8wrfmliIW.jpg",
+      "id": 25
+    },
+    {
+      "filmId": 436270,
+      "title": "Black Adam",
+      "userId": 1,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYALH5NPM7xk2XQd2J8wrfmliIW.jpg",
+      "id": 31
+    },
+    {
+      "filmId": 76600,
+      "title": "Avatar : La voie de l'eau",
+      "userId": 1,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYeB9GpFaT7ysabBoGG5rbo9mF4.jpg",
+      "id": 32
+    },
+    {
+      "filmId": 76600,
+      "title": "Avatar : La voie de l'eau",
+      "userId": 1,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYeB9GpFaT7ysabBoGG5rbo9mF4.jpg",
+      "id": 33
+    },
+    {
+      "filmId": 736526,
+      "title": "Troll",
+      "userId": 1,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//9z4jRr43JdtU66P0iy8h18OyLql.jpg",
+      "id": 34
+    },
+    {
+      "filmId": 736526,
+      "title": "Troll",
+      "userId": 1,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//9z4jRr43JdtU66P0iy8h18OyLql.jpg",
+      "id": 35
+    }
+  ]
+}
