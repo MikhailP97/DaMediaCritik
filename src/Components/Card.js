@@ -168,32 +168,59 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
 
                     <h2 className="title-font text-lg font-medium text-white">{title}</h2>
                     <h3 className="title-font mb-1 text-xs tracking-widest text-gray-300">{cat}</h3>
-                    <p className="text-white mt-1">Date de sortie : {dateFormat(year, 'dd/mm/yyyy')}</p>
-
-                    {/* <a href="#" onClick={toggleModal}>Détails</a> | */}
-                    {/* <a href="#" onClick={toggleModalCritik} title="Critiker ce film !"> ⭐Critiker !
-                    </a>&nbsp;<a href="#" onClick={handleClick} title="Mettre en favoris">🖤 ❤️Favoris</a><br/> */}
-                    
-                    {modalDetail && (
-                        <div className="modal">
-                            <div className="overlay"></div>
-                            <div className="modal-content text-black">                        
-                                <button 
-                                    onClick={toggleModalDetail}
-                                    className="btn-modal text-black float-right">
-                                    [X]
-                                </button>
-
-                                <br/>                            
-                                <h1 className='title-font text-lg'>{title}</h1>
-                                Sortie : {dateFormat(year, 'dd/mm/yyyy')}
-                                <br/>
-                                Genre : {cat} 
-                                <br/>
-                                Note : {note}
-                                <br/>
-                                <br/>
-                                <center>
+                    <p className="text-white mt-1">{year}</p>
+                    <a href="#" onClick={toggleModal}>Détails</a> |
+                    <a href="#" onClick={toggleModalCritik} title="Critiker ce film !"> ⭐Critiker !
+                    </a>&nbsp;<a href="#" onClick={handleClick} title="Mettre en favoris">🖤 ❤️Favoris</a><br/>
+         
+            {modalDetail && (
+                <div className="modal">
+                    <div className="overlay"></div>
+                        <div className="modal-content">                        
+                        <button 
+                            onClick={toggleModal}
+                            className="btn-modal text-black float-right font-black ">
+                            X
+                        </button>
+                            <br/>                            
+                            <h1 className=' bg-amber-500 py-5 px-5 title-font text-xl font-bold rounded-xl my-5 text-black '>{title}</h1>
+                            Sortie : {dateFormat(year, 'dd/mm/yyyy')}
+                            <br/>
+                            Genre : {cat} 
+                            <br/>
+                            Note : {note}
+                            <br/>
+                            <br/>
+                            <center>
+                            <img src={img} width="200" alt={alt}/>
+                            </center>
+                            <br/>
+                            <p>{resume}</p>
+                            <br/>
+                    </div>
+                </div>
+            )}
+                                    <h1 className='title bg-amber-500 py-5 px-5 title-font text-xl font-bold rounded-xl mt-5'>{title}</h1>
+                                            <br/>
+                                            <img src={img} width="200" alt={alt}/>
+                                        </center>
+                                        {/* <br/>
+                                        FilmId : {id} */}
+                                        <input type='hidden' size='6' defaultValue={id} />
+                                        <br/><br/>
+                                        Votre commentaire : <br/>
+                                        <textarea rows="4" className="w-full text-black  py-1 px-1 rounded-lg mt-2"></textarea>
+                                        <br/><br/>                                
+                                        Votre note :<Stars/>&nbsp;{rate}
+                                        <input type='hidden' defaultValue={rate}/>
+                                        <br/>
+                                        <center>
+                                        <button type="submit" className="flex sm:block m-auto sm:m-0 py-4 mb-5 px-12 sm:py-3 sm:px-10 md:py-4 md:px-12  shadow-md shadow-stone-300/50 bg-stone-900 rounded-md text-lg
+                                         text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Critiker !</button>
+                                        </center> 
+                                        <br/> 
+                                    </form>
+                                </div>
                                 <img src={img} width="200" alt={alt}/>
                                 </center>
                                 <br/>
@@ -237,7 +264,7 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                                     <br/> 
                                 </form>
 
-                            </div>  
+                            </div> 
                         </div>
                     )}
 
@@ -247,8 +274,8 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                                 <div className="modal-content text-black">                        
                                 <button 
                                     onClick={toggleModalFavoris}
-                                    className="btn-modal text-black float-right">
-                                    [X]
+                                    className="btn-modal font-black float-right">
+                                    X
                                 </button>
                                     <br/>                            
                                     Vous avez bien ajouté le film <br/><b>"{title}"</b><br/> à vos favoris

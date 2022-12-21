@@ -14,7 +14,8 @@ const Inscription = () => {
     const [verifPassword, setVerifPassword] = useState('');
     const [verifConfirmPassword, setVerifConfirmPassword] = useState('');
     const [confirmation, setConfirmation] = useState(false);
-    const [avatarPreview, setAvatarPreview] = useState('');
+    const [avatarList, setAvatarList] = useState(false);
+    const [avatarPreview, setAvatarPreview] = useState('Images/avatar_vide.jpg')
 
     const dispatch = useDispatch()
 
@@ -31,19 +32,46 @@ const Inscription = () => {
     //         })
     // }
 
+    const toggleAvatar = () => {
+        setAvatarList(!avatarList)
+    }
+
+   const imgTab = [
+    {
+        img : 'Images/yoda2.jpg',
+    },
+    {
+        img : 'Images/hulk.jpg'
+    },
+    {
+        img : 'Images/killbill2.jpg'
+    },
+    {
+        img : 'Images/darth-vader.jpg'
+    },
+    {
+        img : 'Images/titanic.jpg'
+    },
+    {
+        img : 'Images/terminator.jpg'
+    }
+   ]
+
+   
+
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target; //tableau inputs
         const pseudo = form[0].value;
         const birthdate = form[1].value;
         const email = form[2].value;
-        const avatar = form[3].value;
-        setAvatarPreview(avatar);
-        const password = form[4].value;
+        const password = form[3].value;
         setVerifPassword(password);
-        const passwordConfirm = form[5].value;
+        const passwordConfirm = form[4].value;
         setVerifConfirmPassword(passwordConfirm);
-        const user = { pseudo, birthdate, email, password, avatar };
+        const user = { pseudo, birthdate, email, password };
         console.log(user);
 
         //Requete HTTP en POST
@@ -51,10 +79,9 @@ const Inscription = () => {
             // createUser(user);
             dispatch(createNewUser(user))
             setConfirmation(true)
-        } 
+        }
     }
     console.log(passVisibility);
-    console.log(avatarPreview);
 
     return (
         <>
@@ -79,11 +106,42 @@ const Inscription = () => {
                     <input className="py-2 px-2 w-80 rounded-md bg-stone-100" type="email" placeholder='xyz@mail.com' required />
                 </div>
 
-                <div className=" flex flex-col m-auto ">
-                    <label htmlFor="avatar" className=" mt-10 mb-5 text-white text-lg opacity-98">Image de profil :</label>
-                    <input onChange={(e)=> setAvatarPreview(e.target.value)} className="py-2 px-2 w-80 rounded-md bg-stone-100" type="file" accept="image/png, image/jpeg" placeholder='xyz@mail.com' />
-                    {avatarPreview !== "" ? <img className="mt-10 m-auto lg:m-0" id="avatar" src={avatarPreview} alt="avatar" /> : <></>}
+                <div className=" flex flex-col ">
+                    <div className="flex">
+                        
+                    </div>
+                    <div className=" m-auto mt-12  text-white text-lg opacity-98">Choisissez votre avatar : 
+                    <img onClick={toggleAvatar} className="drop-shadow-lg ml-6 cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 " id="avatarPreview" src={avatarPreview} alt="avatar" />
+                    </div>
+                    {/* { !avatarList ?
+                    <svg onClick={toggleAvatar} xmlns="http://www.w3.org/2000/svg" className="cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 m-auto icon icon-tabler icon-tabler-arrow-narrow-down" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ff9300" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="16" y1="15" x2="12" y2="19" />
+                        <line x1="8" y1="15" x2="12" y2="19" />
+                    </svg>
+                    : <svg  onClick={toggleAvatar} xmlns="http://www.w3.org/2000/svg" className="cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 m-auto icon icon-tabler icon-tabler-arrow-narrow-up" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ff9300" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="16" y1="9" x2="12" y2="5" />
+                    <line x1="8" y1="9" x2="12" y2="5" />
+                  </svg>
+} */}
+                    { avatarList ? 
+                    <div className="mt-2 grid grid-cols-3 grid-row-2 m-auto gap-y-2 gap-x-4">
 
+                    {imgTab.map((i) => <img onClick={() => setAvatarPreview(i.img)} className="mt-2 drop-shadow-lg cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 " id="avatarPreview" src={i.img} alt="avatar" />)}
+
+                    {/* <img onClick={changeAvatar} className="" id="avatarPreview" src="Images\darth-vader.jpg" alt="avatar" />
+                    <img className="" id="avatarPreview" src="Images\yoda2.jpg" alt="avatar" />
+                    <img className="" id="avatarPreview" src="Images\hulk.jpg" alt="avatar" />
+                    <img className="" id="avatarPreview" src="Images\killbill2.jpg" alt="avatar" />
+                    <img className="" id="avatarPreview" src="Images\titanic.jpg" alt="avatar" />
+                    <img className="" id="avatarPreview" src="Images\Terminator.jpg" alt="avatar" /> */}
+
+                    </div>
+                    : <></>
+}
                 </div>
 
                 <div className=" flex flex-col m-auto ">
@@ -111,8 +169,8 @@ const Inscription = () => {
 
                     </div>
 
-                        {verifPassword !== verifConfirmPassword ? <div className="text-red-800 text-center mt-3"> Les mots de passe doivent être identiques. </div> : <></>}
-                        {confirmation ? <div className="text-green-600 text-center mt-3"> Inscription réussie ! </div> : <></>}
+                    {verifPassword !== verifConfirmPassword ? <div className="text-red-800 text-center mt-3"> Les mots de passe doivent être identiques. </div> : <></>}
+                    {confirmation ? <div className="text-green-600 text-center mt-3"> Inscription réussie ! </div> : <></>}
 
                 </div>
 
