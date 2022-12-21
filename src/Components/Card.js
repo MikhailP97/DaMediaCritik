@@ -216,13 +216,14 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                                         <input type='hidden' size='6' defaultValue={id} />
                                         <br/><br/>
                                         Votre commentaire : <br/>
-                                        <textarea rows='4' cols='50'></textarea>
+                                        <textarea rows="4" className="w-full text-black  py-1 px-1 rounded-lg mt-2"></textarea>
                                         <br/><br/>                                
                                         Votre note :<Stars/>&nbsp;{rate}
                                         <input type='hidden' defaultValue={rate}/>
                                         <br/>
                                         <center>
-                                            <button className='btn-modal' type="submit">Critiker !</button>
+                                        <button type="submit" className="flex sm:block m-auto sm:m-0 py-4 mb-5 px-12 sm:py-3 sm:px-10 md:py-4 md:px-12  shadow-md shadow-stone-300/50 bg-stone-900 rounded-md text-lg
+                                         text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Critiker !</button>
                                         </center> 
                                         <br/> 
                                     </form>
@@ -236,8 +237,8 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                                 <div className="modal-content text-black">                        
                                 <button 
                                     onClick={toggleModalFavoris}
-                                    className="btn-modal text-black float-right">
-                                    [X]
+                                    className="btn-modal font-black float-right">
+                                    X
                                 </button>
                                     <br/>                            
                                     Vous avez bien ajouté <br/><b>"{title}"</b><br/> à vos favoris
