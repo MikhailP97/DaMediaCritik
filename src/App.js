@@ -19,17 +19,35 @@ import NotFound from './Views/NotFound';
 import NewFooter from './Components/NewFooter';
 import GenresMobile from './Views/GenresMobile';
 import { UserContext } from './UserContext';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { currentUser, getUser, subscribedUser } from './features/users/userSlice';
 
 function App() {
 
   const user = {
-    name: 'john',
+    pseudo: 'john',
     email: 'john@john.john'
   }
 
+  const currentUserData = useSelector(currentUser);
+  const currentSubscribedUserData = useSelector(subscribedUser);
+  console.log(currentUserData)
+  const dispatch = useDispatch();
+  // console.log(currentUserData[0])
+
+  const [context, setContext] = useState(null);
+  console.log(context)
+
+useEffect(() => {
+  // getUser();
+  // dispatch(getUser(5))
+}, [])
+
   return (
     <div className="App">
-      <UserContext.Provider value={user}>
+      <UserContext.Provider value={[context, setContext]}>
         <BrowserRouter>
         
           <NavBar />

@@ -20,6 +20,46 @@
       "filmId": "1111",
       "titre": "titre film",
       "id": 3
+    },
+    {
+      "email": "micka@micka.com",
+      "password": "$2a$10$2rMn6PIlwEb8om47eNS4xeAPgZ2QItgnPYVoLAGoCbn6VBCOMdFYK",
+      "pseudo": "micka",
+      "birthdate": "1991-02-06",
+      "avatar": "",
+      "id": 4
+    },
+    {
+      "email": "john@john.com",
+      "password": "$2a$10$CyXQVEVDNVFiiHYu2XySbuDVbYcn1zk4fBuZVDjRhifVk0rtjAMci",
+      "pseudo": "john",
+      "birthdate": "1589-12-12",
+      "avatar": "",
+      "id": 5
+    },
+    {
+      "email": "johny@johny.com",
+      "password": "$2a$10$zBTDCYQNwV3tn/8PrBOssOCV91XOjHgl7ipMVIORV3r7eInqvFvVq",
+      "pseudo": "johny",
+      "birthdate": "1894-01-01",
+      "avatar": "",
+      "id": 6
+    },
+    {
+      "email": "james@james.com",
+      "password": "$2a$10$MoYfC3bboLzda0o0CecjAOb4xp2HY.O7PDG9XHQ21Ht5bNodRBBu.",
+      "pseudo": "James",
+      "birthdate": "1990-01-01",
+      "avatar": "",
+      "id": 7
+    },
+    {
+      "email": "bruno@bruno.com",
+      "password": "$2a$10$00NkVe1.HyCDy16Yk7lo.uavQhCcX9qQxwVW1PxMzkvOHjZBdSXxW",
+      "pseudo": "bruno",
+      "birthdate": "8888-02-03",
+      "avatar": "",
+      "id": 8
     }
   ],
   "films": [

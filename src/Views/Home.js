@@ -14,7 +14,7 @@ function Home() {
         <div className=" text-center text-3xl text-white pt-5">
           <span className="opacity-90 text-amber-50">Découvrez, trouvez ou<span className="text-amber-600"> Critik</span>ez un film !</span>
         </div>
-        <p className='text-amber-600'>{user.name}</p>
+        <p className='text-amber-600'>{user?.length ? user.pseudo : null}</p>
       </div>
       
       <Tendances/>

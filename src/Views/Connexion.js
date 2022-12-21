@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import {useNavigate } from 'react-router-dom';
 import ConnexionForm from '../Components/ConnexionForm';
 import ForgottenPassword from '../Components/ForgottenPassword';
+import { connectUser } from '../features/users/userSlice';
 
 
 export default function Connexion() {
@@ -11,7 +13,6 @@ export default function Connexion() {
     const changePage= () => {
         setForgottenPage(!forgottenPage)
     }  
-
 
     return (
         <>
