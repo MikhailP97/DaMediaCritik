@@ -1,22 +1,29 @@
 import React, { useContext } from 'react'
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
+import { currentUser } from '../features/users/userSlice';
 import { UserContext } from '../UserContext';
 
 export default function Profile() {
 
   const navigate = useNavigate();
 
-  const [user, setContext] = useContext(UserContext);
+  // const [user, setContext] = useContext(UserContext);
 
-  const userData = user !== null && user.user;
-  console.log(userData)
+  // const userData = user !== null && user.user;
+  // console.log(userData)
+
+  const userInfosSelector = useSelector(currentUser);
+  const userInfos = userInfosSelector.user
+  console.log(userInfos)
+
 
   return (
     <>
       <div>
         <div className=" flex flex-col lg:flex lg:flex-row lg:justify-center py-20 " >
           <img className="mt-10 m-auto lg:m-0" id="avatar" src="Images/sheep-7624863_1920.jpg" alt="mouton" />
-          <div id="pseudo" className="text-center lg:ml-40 lg:pb-0 text-4xl text-amber-100  pt-24 pb-10  border-amber-200  border-b-8">Bievenue <span className="text-amber-500 font-bold">{userData.pseudo}</span> </div>
+          <div id="pseudo" className="text-center lg:ml-40 lg:pb-0 text-4xl text-amber-100  pt-24 pb-10  border-amber-200  border-b-8">Bievenue <span className="text-amber-500 font-bold">{userInfos !== undefined ? userInfos.pseudo : null}</span> </div>
         </div>
         {/* En attendant de faire la vraie fonction pour se déconnecter (factice) */}
 
@@ -25,9 +32,9 @@ export default function Profile() {
           <p className="text-3xl underline">Infos</p>
           <br />
           <div className="flex flex-col space-y-1">
-          <p className="text-lg">Pseudo :  <span className="text-amber-500">{userData.pseudo}</span></p>
-            <p className="text-lg">Date de naissance : <span className="text-amber-500">JJ/MM/AAA</span> </p>
-            <p className="text-lg">Adresse mail : <span className="text-amber-500">{userData.email}</span></p>
+          <p className="text-lg">Pseudo :  <span className="text-amber-500">{userInfos !== undefined ? userInfos.pseudo : null}</span></p>
+            <p className="text-lg">Date de naissance : <span className="text-amber-500">{userInfos !== undefined ? userInfos.birthdate : null}</span> </p>
+            <p className="text-lg">Adresse mail : <span className="text-amber-500">{userInfos !== undefined ? userInfos.email : null}</span></p>
             
 
 

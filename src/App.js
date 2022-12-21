@@ -32,12 +32,10 @@ function App() {
   }
 
   const currentUserData = useSelector(currentUser);
-  const currentSubscribedUserData = useSelector(subscribedUser);
   console.log(currentUserData)
   const dispatch = useDispatch();
-  // console.log(currentUserData[0])
 
-  const [context, setContext] = useState(null);
+  const [context, setContext] = useState();
   console.log(context)
 
 useEffect(() => {
@@ -47,7 +45,8 @@ useEffect(() => {
 
   return (
     <div className="App">
-      <UserContext.Provider value={[context, setContext]}>
+      {/* <UserContext.Provider value={[context, setContext]}> */}
+      <UserContext.Provider value={currentUserData}>
         <BrowserRouter>
         
           <NavBar />
