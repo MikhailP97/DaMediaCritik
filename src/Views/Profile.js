@@ -49,7 +49,6 @@ export default function Profile() {
   useEffect(() => {
     getFavoris();
     getCritiks();
-    getUser();
   }, []);
 
 
