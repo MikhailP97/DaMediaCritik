@@ -160,7 +160,7 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                     <h2 className="title-font text-lg font-medium text-white">{title}</h2>
                     <h3 className="title-font mb-1 text-xs tracking-widest text-gray-300">{cat}</h3>
                     <p className="text-white mt-1">{year}</p>
-                    {/* <a href="#" onClick={toggleModal}>Détails</a> | */}
+                    <a href="#" onClick={toggleModal}>Détails</a> |
                     <a href="#" onClick={toggleModalCritik} title="Critiker ce film !"> ⭐Critiker !
                     </a>&nbsp;<a href="#" onClick={handleClick} title="Mettre en favoris">🖤 ❤️Favoris</a><br/>
          
@@ -174,7 +174,7 @@ const Card = ({id, img, alt, title, cat, resume, year, note, style, rate, click}
                             X
                         </button>
                             <br/>                            
-                            <h1 className=' title-font text-lg'>{title}</h1>
+                            <h1 className=' bg-amber-500 py-5 px-5 title-font text-xl font-bold rounded-xl my-5 text-black '>{title}</h1>
                             Sortie : {year}
                             <br/>
                             Genre : {cat} 
