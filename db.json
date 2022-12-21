@@ -17,75 +17,9 @@
     {
       "email": "tzen2@hotmail.fr",
       "password": "$2a$10$TYQvWHt9bNpDLKxMKZ0vZOockFDMmY1eCUgPYRyCa44q8sHyU2Y6e",
-      "filmId": "1111",
-      "titre": "titre film",
+      "pseudo": "tzen",
+      "birthdate": "13/12/2022",
       "id": 3
-    },
-    {
-      "email": "micka@micka.com",
-      "password": "$2a$10$2rMn6PIlwEb8om47eNS4xeAPgZ2QItgnPYVoLAGoCbn6VBCOMdFYK",
-      "pseudo": "micka",
-      "birthdate": "1991-02-06",
-      "avatar": "",
-      "id": 4
-    },
-    {
-      "email": "john@john.com",
-      "password": "$2a$10$CyXQVEVDNVFiiHYu2XySbuDVbYcn1zk4fBuZVDjRhifVk0rtjAMci",
-      "pseudo": "john",
-      "birthdate": "1589-12-12",
-      "avatar": "",
-      "id": 5
-    },
-    {
-      "email": "johny@johny.com",
-      "password": "$2a$10$zBTDCYQNwV3tn/8PrBOssOCV91XOjHgl7ipMVIORV3r7eInqvFvVq",
-      "pseudo": "johny",
-      "birthdate": "1894-01-01",
-      "avatar": "",
-      "id": 6
-    },
-    {
-      "email": "james@james.com",
-      "password": "$2a$10$MoYfC3bboLzda0o0CecjAOb4xp2HY.O7PDG9XHQ21Ht5bNodRBBu.",
-      "pseudo": "James",
-      "birthdate": "1990-01-01",
-      "avatar": "",
-      "id": 7
-    },
-    {
-      "email": "bruno@bruno.com",
-      "password": "$2a$10$00NkVe1.HyCDy16Yk7lo.uavQhCcX9qQxwVW1PxMzkvOHjZBdSXxW",
-      "pseudo": "bruno",
-      "birthdate": "8888-02-03",
-      "avatar": "",
-      "id": 8
-    }
-  ],
-  "films": [
-    {
-      "id": 1,
-      "title": "Avatar 2 : le fil de l'eau"
-    },
-    {
-      "id": 2,
-      "title": "Black Adam"
-    },
-    {
-      "id": 3,
-      "title": "Black Panther 2"
-    },
-    {
-      "id": 4,
-      "title": "Indy 5"
-    },
-    {
-      "id": 5,
-      "title": "Alien 5"
-    },
-    {
-      "id": 6,
-      "title": "Les guardiens de la galaxie"
     }
   ],
   "comments": [
@@ -94,13 +28,15 @@
       "comment": "Avatar!",
       "note": "5",
       "userId": 1,
+      "pseudo": "todo",
       "id": 13
     },
     {
-      "filmId": "436270",
+      "filmId": "76600",
       "comment": "zzz",
       "note": "0",
       "userId": 1,
+      "pseudo": "todo",
       "id": 14
     },
     {
@@ -108,7 +44,40 @@
       "comment": "Adam",
       "note": "3",
       "userId": 1,
+      "pseudo": "todo",
       "id": 15
+    },
+    {
+      "filmId": "76600",
+      "comment": "Avatar Avatar ! ! ",
+      "note": "5",
+      "userId": 1,
+      "pseudo": "todo",
+      "id": 16
+    },
+    {
+      "filmId": "76600",
+      "comment": "",
+      "note": "0",
+      "userId": 1,
+      "pseudo": "todo",
+      "id": 17
+    },
+    {
+      "filmId": "76600",
+      "comment": "test",
+      "note": "5",
+      "userId": 1,
+      "pseudo": "todo",
+      "id": 18
+    },
+    {
+      "filmId": "436270",
+      "comment": "test critik Adam 21/12/22",
+      "note": "4",
+      "userId": 1,
+      "pseudo": "todo",
+      "id": 19
     }
   ],
   "favoris": [
@@ -139,6 +108,27 @@
       "userId": 1,
       "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYeB9GpFaT7ysabBoGG5rbo9mF4.jpg",
       "id": 33
+    },
+    {
+      "filmId": 736526,
+      "title": "Troll",
+      "userId": 1,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//9z4jRr43JdtU66P0iy8h18OyLql.jpg",
+      "id": 34
+    },
+    {
+      "filmId": 736526,
+      "title": "Troll",
+      "userId": 1,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//9z4jRr43JdtU66P0iy8h18OyLql.jpg",
+      "id": 35
+    },
+    {
+      "filmId": 436270,
+      "title": "Black Adam",
+      "userId": 1,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYALH5NPM7xk2XQd2J8wrfmliIW.jpg",
+      "id": 36
     }
   ]
 }
