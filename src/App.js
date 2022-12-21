@@ -8,6 +8,8 @@ import PageFilm from "./Views/PageFilmView.js";
 import Profile from "../src/Views/Profile.js";
 import Inscription from './Views/Inscription';
 import ForgottenPassword from './Components/ForgottenPassword';
+
+import Footer from './Components/Footer.js'
 import Connexion from './Views/Connexion';
 import Conditions from './Views/Conditions';
 import Mentions from './Views/Mentions';
@@ -17,12 +19,24 @@ import NotFound from './Views/NotFound';
 import NewFooter from './Components/NewFooter';
 import GenresMobile from './Views/GenresMobile';
 import { UserContext } from './UserContext';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { currentUser, getUser, subscribedUser } from './features/users/userSlice';
 
 function App() {
 
+  const user = {
+    pseudo: 'john',
+    email: 'john@john.john'
+  }
 
-  const [context, setContext] = useState(null);
+  const currentUserData = useSelector(currentUser);
+  console.log(currentUserData)
+  const dispatch = useDispatch();
+
+  const [context, setContext] = useState();
+  console.log(context)
 
 useEffect(() => {
   // getUser();
@@ -31,7 +45,8 @@ useEffect(() => {
 
   return (
     <div className="App">
-      <UserContext.Provider value={[context, setContext]}>
+      {/* <UserContext.Provider value={[context, setContext]}> */}
+      <UserContext.Provider value={currentUserData}>
         <BrowserRouter>
         
           <NavBar />

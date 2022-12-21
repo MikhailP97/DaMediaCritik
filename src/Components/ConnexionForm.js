@@ -10,16 +10,17 @@ export default function ConnexionForm() {
     const navigate = useNavigate();
 
     const [passVisibility, setPassVisibility] = useState(false);
-    const [context, setContext] = useContext(UserContext);
+    // const [context, setContext] = useContext(UserContext);
+    // console.log(context)
 
     const showHidePass = () => {
         setPassVisibility(!passVisibility)
     }
-    console.log(passVisibility);
-    const[user, setUser] = useState({});
+    // console.log(passVisibility);
 
     const dispatch = useDispatch();
     const userData = useSelector(currentUser)
+    console.log(userData)
 
 
     const handleSubmit = (e) => {
@@ -34,7 +35,6 @@ export default function ConnexionForm() {
         
         setTimeout(() => {
             navigate('/profile')
-            setContext(userData)
         }, 2000);
     }
 
