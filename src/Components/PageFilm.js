@@ -126,7 +126,7 @@ function PageFilm({rate}) {
 
 
 
-        <div className=" mt-20 md:mt-0 md:flex md:flex-col relative bg-black bg-opacity-80 md:bg-opacity-90 md:mx-10 lg:mx-10 px-0  sm:px-5 md:px-10 lg:px-20  md:rounded-xl  text-white">
+        <div className=" mt-20 md:mt-0 md:flex md:flex-col relative bg-black bg-opacity-80 md:bg-opacity-90 md:mx-10 lg:mx-10 xl:mx-36 2xl:mx-60 px-0  sm:px-5 md:px-10 lg:px-20  md:rounded-xl  text-white">
           <div className="  mb-14  border-b-2 border-amber-200 my-5 md:border-none  relative flex items-center">
             <div className="flex-grow border-t ml-20 border-amber-200"></div>
             <span className="flex-shrink my-10 mx-4 text-amber-500 text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">{movieData.title}</span>
