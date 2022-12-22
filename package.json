@@ -1,17 +1,33 @@
 {
   "name": "damoviecritik",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.0",
+    "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.2.1",
+    "cors": "^2.8.5",
+    "dateformat": "^5.0.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "json-server": "^0.17.1",
+    "json-server-auth": "^2.1.0",
+    "moment": "^2.29.4",
+    "mongoose": "^6.8.0",
+    "nodemon": "^2.0.20",
     "react": "^18.2.0",
+    "react-cool-onclickoutside": "^1.7.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.1",
+    "react-onclickoutside": "^6.12.2",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-simple-star-rating": "^5.1.7",
+    "react-youtube": "^10.1.0",
+    "redux-toolkit": "^1.1.2",
     "tw-elements": "^1.0.0-alpha12",
     "web-vitals": "^2.1.4"
   },
@@ -41,6 +57,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+    "babel-loader": "^9.1.0",
     "postcss": "^8.4.18",
     "tailwindcss": "^3.2.2"
   }
