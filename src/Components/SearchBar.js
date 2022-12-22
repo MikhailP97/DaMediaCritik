@@ -26,16 +26,17 @@ function SearchBar(props) {
         } else {
           setSearchResultsState()
         }
-        const handleClickOutside = (event) => {
-            if (ref.current && !ref.current.contains(event.target)) {
-              onClickOutside && onClickOutside();
-            }
-          };
-          document.addEventListener('click', handleClickOutside, true);
-          return () => {
-            document.removeEventListener('click', handleClickOutside, true);
-          };
-    }, [search, onClickOutside])
+        // const handleClickOutside = (event) => {
+        //     if (ref.current && !ref.current.contains(event.target)) {
+        //       setSearch('')
+        //       console.log(ref.current)
+        //     }
+        //   };
+        //   document.addEventListener('click', handleClickOutside, true);
+        //   return () => {
+        //     document.removeEventListener('click', handleClickOutside, true);
+          // };
+    }, [search])
 
     return (
         <div className="max-w-md invisible lg:mx-20 lg:visible w-full">
@@ -83,6 +84,7 @@ function SearchBar(props) {
                                                                                                       navigate(`/page-film/${res.id}`)
                                                                                                       setInvisible('invisible')
                                                                                                       setSearch('')
+                                                                                                      console.log('click')
                                                                                                     }}>
                       <img className="ml-2" src={serverPosters + res.backdrop_path} alt={res.title} width='50' />
                       <div className="flex flex-col space-y-2">
