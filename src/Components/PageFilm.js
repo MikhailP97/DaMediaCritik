@@ -7,6 +7,7 @@ import { getAsyncMovieCredits, getAsyncMovieDetails, getAsyncMovieVideos, movieC
 import YouTube from 'react-youtube';
 import axios from 'axios';
 import dateFormat from "dateformat"
+import { currentUser } from '../features/users/userSlice';
 
 
 function PageFilm({rate}) {
@@ -23,6 +24,10 @@ function PageFilm({rate}) {
   const casting = movieCreditsData.cast
   const crew = movieCreditsData.crew;
   const genres = movieData.genres
+
+  const userInfosSelector = useSelector(currentUser);
+  const userInfos = userInfosSelector.user; // data de l'utilisateur
+  console.log(userInfos)
   
   const opts = {
       height: '390',
@@ -66,7 +71,8 @@ function PageFilm({rate}) {
     const filmId = form[0].value;
     const comment = form[1].value;
     const note = form[2].value;
-    const critik = {filmId, comment, note, userId:1, pseudo:"todo"};
+    const title = form[3].value;
+    const critik = {filmId, title, comment, note, userId:userInfos.id, pseudo:userInfos.pseudo};
 
     //Requete HTTP en POST
     createCritik(critik); 
@@ -232,14 +238,14 @@ function PageFilm({rate}) {
             
           <form className="my-10 md:my-20 h-72 text-black " onSubmit={handleSubmit}>
           {/* <br/> FilmId : {id} */}
-          <input type='hidden' size='6' defaultValue={id} />
+            <input type='hidden' size='6' defaultValue={id} />
               <label htmlFor="comment" className='text-3xl text-amber-500 font-extrabold'>Critik <span className='text-white'>:</span> </label>
               <textarea className="text-lg w-full h-2/3 mt-10 p-7 rounded-xl " type="text" size="5" />
-
-             <p className="text-white text-lg text-center sm:text-left my-4"><Stars/> {rate}</p>
-<div>
-             <button type="submit" className="flex sm:block m-auto sm:m-0 py-4 mb-5 px-12 sm:py-3 sm:px-10 md:py-4 md:px-12  shadow-md shadow-stone-300/50 bg-stone-900 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Critiker !</button>
-             </div>       
+              <p className="text-white text-lg text-center sm:text-left my-4"><Stars/> {rate}</p>
+              <input type='hidden' defaultValue={movieData.title} />
+                <div>
+                  <button type="submit" className="flex sm:block m-auto sm:m-0 py-4 mb-5 px-12 sm:py-3 sm:px-10 md:py-4 md:px-12  shadow-md shadow-stone-300/50 bg-stone-900 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Critiker !</button>
+                </div>       
           </form>
 <div className='bg-black bg-opacity-60 text-center md:flex md:justify-center pt-3 mt-48 md:mt-32 md:py-10 md:pb-0 sm:rounded-t-lg'>
 <p onClick={() => navigate("/inscription")} className="mb-3 md:mr-10 cursor-pointer text-amber-50 hover:underline text-sm" >Vous n'êtes pas encore inscrit ?</p>

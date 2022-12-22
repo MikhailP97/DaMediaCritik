@@ -26,27 +26,28 @@ import { currentUser, getUser, subscribedUser } from './features/users/userSlice
 
 function App() {
 
-  const user = {
-    pseudo: 'john',
-    email: 'john@john.john'
-  }
-
   const currentUserData = useSelector(currentUser);
-  console.log(currentUserData)
+  console.log(Object.keys(currentUserData).length)
   const dispatch = useDispatch();
 
-  const [context, setContext] = useState();
-  console.log(context)
+  const [userData, setUserData] = useState()
+  console.log(userData)
+
+  // window.localStorage.setItem('userData', Object.keys(currentUserData).length ? JSON.stringify(currentUserData.user) : null);
+  // const user = JSON.parse(localStorage.getItem('userData'));
+  // console.log(user)
 
 useEffect(() => {
   // getUser();
   // dispatch(getUser(5))
+  window.localStorage.setItem('userData', Object.keys(currentUserData).length ? JSON.stringify(currentUserData.user) : null);
+  setUserData(JSON.parse(localStorage.getItem('userData')));
 }, [])
 
   return (
     <div className="App">
       {/* <UserContext.Provider value={[context, setContext]}> */}
-      <UserContext.Provider value={currentUserData}>
+      <UserContext.Provider value={Object.keys(currentUserData).length ? currentUserData : null}>
         <BrowserRouter>
         
           <NavBar />

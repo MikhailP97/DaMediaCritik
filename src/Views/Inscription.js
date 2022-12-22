@@ -71,7 +71,7 @@ const Inscription = () => {
         setVerifPassword(password);
         const passwordConfirm = form[4].value;
         setVerifConfirmPassword(passwordConfirm);
-        const user = { pseudo, birthdate, email, password };
+        const user = { pseudo, birthdate, email, avatarPreview, password };
         console.log(user);
 
         //Requete HTTP en POST

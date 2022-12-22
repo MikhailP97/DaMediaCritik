@@ -57,7 +57,7 @@ export const searchMovie = createAsyncThunk(
     'movies/searchMovie',
         async (name) => {
             const response = await axios.get(
-                `${apiMovieDatabase}search/movie?${apiKey}&language=en-US&query=${name}`
+                `${apiMovieDatabase}search/movie?${apiKey}&language=fr&query=${name}`
                 );
         return response.data.results;
 })
@@ -66,7 +66,7 @@ export const getAsyncMovieCategories = createAsyncThunk(
     'movies/getAsyncMoviePage',
         async (payload) => {
             const response = await axios.get(
-                    `${apiMovieDatabase}discover/movie?&primary_release_date.lte=${payload.currentDate}&with_genres=${payload.id}&api_key=7b6c4ae4c36a426a868e59064d239972`
+                    `${apiMovieDatabase}discover/movie?&language=fr&primary_release_date.lte=${payload.currentDate}&with_genres=${payload.id}&api_key=7b6c4ae4c36a426a868e59064d239972`
                 );
         return response.data.results.slice(0,10);
 })

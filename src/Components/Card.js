@@ -7,10 +7,16 @@ import axios from 'axios';
 import Stars from './Stars';
 import dateFormat from "dateformat"
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { currentUser } from '../features/users/userSlice';
 
 
 const Card = ({ id, img, alt, title, cat, resume, year, note, style, rate, click }) => {
     const navigate = useNavigate();
+
+    const userInfosSelector = useSelector(currentUser);
+    const userInfos = userInfosSelector.user; // data de l'utilisateur
+    console.log(userInfos)
 
     const [modalDetail, setModalDetail] = useState(false);
     const toggleModalDetail = () => { setModalDetail(!modalDetail) }
@@ -68,7 +74,8 @@ const Card = ({ id, img, alt, title, cat, resume, year, note, style, rate, click
         const filmId = form[0].value;
         const comment = form[1].value;
         const note = form[2].value;
-        const critik = { filmId, comment, note, userId: 1, pseudo: "todo" }; //Todo: Récupérer l'UserId et le pseudo de l'user conencté
+        const title = form[3].value;
+        const critik = { filmId, title, comment, note, userId:userInfos.id, pseudo:userInfos.pseudo }; //Todo: Récupérer l'UserId et le pseudo de l'user conencté
 
         //Requete HTTP en POST
         createCritik(critik);
@@ -82,7 +89,7 @@ const Card = ({ id, img, alt, title, cat, resume, year, note, style, rate, click
     */
     const handleClick = (e) => {
         e.preventDefault();
-        const favori = { filmId: id, title: title, userId: 1, img: img }; //Todo: Récupérer l'UserId de l'user conencté
+        const favori = { filmId: id, title: title, userId: userInfos.id, img: img }; //Todo: Récupérer l'UserId de l'user conencté
         createFavoris(favori);
         toggleModalFavoris(); //Affiche la modale de confirmation de l'ajout des favoris
     }
@@ -92,7 +99,7 @@ const Card = ({ id, img, alt, title, cat, resume, year, note, style, rate, click
     * Ajoute 1 film en favori
     */
     const createFavoris = async (favori) => {
-        let userId = 1;  //Todo: Récupérer l'UserId de l'user conencté
+        let userId = userInfos.id;  //Todo: Récupérer l'UserId de l'user conencté
         let filmId = id; //est récupéré dynamiquement en fonction du film mis en favori
         const api_url = "http://localhost:3001/favoris";
 
@@ -108,14 +115,14 @@ const Card = ({ id, img, alt, title, cat, resume, year, note, style, rate, click
     * Obtiens la liste des films d'1 user mis en favori
     */
     const getFavoris = async (favori) => {
-        let userId = 1; //Todo: Récupérer l'UserId de l'user conencté
+        let userId = userInfos.id; //Todo: Récupérer l'UserId de l'user conencté
         const api_url = `http://localhost:3001/users/${userId}/favoris`;
         await axios.get(api_url)
             .then(({ data }) => {
                 setFavoris(data)
             })
             .catch(err => {
-                console.error(err);
+                // console.error(err);
             });
     }
 
@@ -131,7 +138,7 @@ const Card = ({ id, img, alt, title, cat, resume, year, note, style, rate, click
                 setCritiks(data)
             })
             .catch(err => {
-                console.error(err);
+                // console.error(err);
             });
     }
 
@@ -169,7 +176,7 @@ const Card = ({ id, img, alt, title, cat, resume, year, note, style, rate, click
 
                     <h2 className="title-font text-lg font-medium text-white">{title}</h2>
                     <h3 className="title-font mb-1 text-xs tracking-widest text-gray-300">{cat}</h3>
-                    <p className="text-white mt-1">{year}</p>
+                    <p className="text-white mt-1">{dateFormat(year, 'dd/mm/yyyy')}</p>
                     
                     
          
@@ -228,7 +235,7 @@ const Card = ({ id, img, alt, title, cat, resume, year, note, style, rate, click
                     <textarea rows="4" className="w-full text-black  py-1 px-1 rounded-lg mt-2"></textarea>
                     <br /><br />
                     Votre note :<Stars />{/* &nbsp;{rate} */}
-                    {/* <input type='hidden' defaultValue={rate}/> */}
+                    <input type='hidden' defaultValue={title}/>
                     <br />
                     <center>
                     <button type="submit" className="flex sm:block m-auto sm:m-0 py-4 mb-5 px-12 sm:py-3 sm:px-10 md:py-4 md:px-12  shadow-md shadow-stone-300/50 bg-stone-900 rounded-md text-lg

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { currentUser } from '../features/users/userSlice';
 import { UserContext } from '../UserContext';
 import axios from 'axios';
+import dateFormat from 'dateformat';
 
 export default function Profile() {
 
@@ -15,15 +16,14 @@ export default function Profile() {
   // console.log(userData)
 
   const userInfosSelector = useSelector(currentUser);
-  const userInfos = userInfosSelector.user
-  // console.log(userInfos)
-  
-  
+  const userInfos = userInfosSelector.user; // data de l'utilisateur
+  console.log(userInfos)
+    
   const [favoris, setFavs] = useState([]);
     const [critiks, setCritiks] = useState([]);
     
     const getFavoris = async (favori) => {
-      let userId = 1;
+      let userId = userInfos.id;
       const api_url = "http://localhost:3001/users/"+userId+"/favoris";
       await axios.get(api_url)
       .then(({data}) => {
@@ -35,7 +35,7 @@ export default function Profile() {
   }
 
   const getCritiks = async (critik) => {
-    let userId = 1;
+    let userId = userInfos.id;
     const api_url = "http://localhost:3001/users/"+userId+"/comments";
     await axios.get(api_url)
     .then(({data}) => {
@@ -49,7 +49,6 @@ export default function Profile() {
   useEffect(() => {
     getFavoris();
     getCritiks();
-    getUser();
   }, []);
 
 
@@ -57,7 +56,7 @@ export default function Profile() {
     <>
       <div>
         <div className=" flex flex-col lg:flex lg:flex-row lg:justify-center py-20 " >
-          <img className="mt-10 m-auto lg:m-0" id="avatar" src="Images/sheep-7624863_1920.jpg" alt="mouton" />
+          <img className="mt-10 m-auto lg:m-0" id="avatar" src={userInfos !== undefined ? userInfos.avatarPreview : null} alt="mouton" />
           <div id="pseudo" className="text-center lg:ml-40 lg:pb-0 text-4xl text-amber-100  pt-24 pb-10  border-amber-200  border-b-8">Bievenue <span className="text-amber-500 font-bold">{userInfos !== undefined ? userInfos.pseudo : null}</span> </div>
         </div>
         {/* En attendant de faire la vraie fonction pour se déconnecter (factice) */}
@@ -67,7 +66,7 @@ export default function Profile() {
           <br />
           <div className="flex flex-col space-y-1">
           <p className="text-lg">Pseudo :  <span className="text-amber-500">{userInfos !== undefined ? userInfos.pseudo : null}</span></p>
-            <p className="text-lg">Date de naissance : <span className="text-amber-500">{userInfos !== undefined ? userInfos.birthdate : null}</span> </p>
+            <p className="text-lg">Date de naissance : <span className="text-amber-500">{userInfos !== undefined ? dateFormat(userInfos.birthdate, 'dd/mm/yyyy') : null}</span> </p>
             <p className="text-lg">Adresse mail : <span className="text-amber-500">{userInfos !== undefined ? userInfos.email : null}</span></p>
   
         </div>
@@ -115,6 +114,7 @@ export default function Profile() {
                             return(                                                            
                                   <>        
                                     <div className="text-left">   
+                                    <p className="text-lg text-orange">{crt.title}</p>                                                    
                                     <p className="text-lg text-orange">Ma note : {crt.note} / 5</p>                                                    
                                       <p className="text-lg text-white">{crt.comment}</p>
                                     </div>

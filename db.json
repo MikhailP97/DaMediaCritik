@@ -20,6 +20,14 @@
       "pseudo": "tzen",
       "birthdate": "13/12/2022",
       "id": 3
+    },
+    {
+      "email": "john@john.com",
+      "password": "$2a$10$H8kDszKIMuG2EXG3lEfHmuICG.XC67Md.ezeyWlDgEOUp3JRHf.6e",
+      "pseudo": "john",
+      "birthdate": "1222-01-01",
+      "avatarPreview": "Images/yoda2.jpg",
+      "id": 4
     }
   ],
   "comments": [
@@ -78,6 +86,33 @@
       "userId": 1,
       "pseudo": "todo",
       "id": 19
+    },
+    {
+      "filmId": "76600",
+      "title": "Avatar : La voie de l'eau",
+      "comment": "good",
+      "note": "4",
+      "userId": 4,
+      "pseudo": "todo",
+      "id": 20
+    },
+    {
+      "filmId": "76600",
+      "title": "Avatar : La voie de l'eau",
+      "comment": "pas mal",
+      "note": "5",
+      "userId": 4,
+      "pseudo": "john",
+      "id": 21
+    },
+    {
+      "filmId": "436270",
+      "title": "Black Adam",
+      "comment": "nul",
+      "note": "1",
+      "userId": 4,
+      "pseudo": "john",
+      "id": 22
     }
   ],
   "favoris": [
@@ -129,6 +164,27 @@
       "userId": 1,
       "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYALH5NPM7xk2XQd2J8wrfmliIW.jpg",
       "id": 36
+    },
+    {
+      "filmId": 436270,
+      "title": "Black Adam",
+      "userId": 4,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYALH5NPM7xk2XQd2J8wrfmliIW.jpg",
+      "id": 37
+    },
+    {
+      "filmId": 76600,
+      "title": "Avatar : La voie de l'eau",
+      "userId": 4,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//hYeB9GpFaT7ysabBoGG5rbo9mF4.jpg",
+      "id": 38
+    },
+    {
+      "filmId": 555604,
+      "title": "Pinocchio par Guillermo del Toro",
+      "userId": 4,
+      "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2//ftnEmnoHI5Znlzg0TwGcSMoXJt1.jpg",
+      "id": 39
     }
   ]
 }
