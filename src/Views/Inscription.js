@@ -145,9 +145,9 @@ const Inscription = () => {
                 </div>
 
                 <div className=" flex flex-col m-auto ">
-                    <label htmlFor="password" className=" sm:ml-9 mt-10 mb-5 text-white text-lg opacity-98">Mot de passe <span className="text-amber-300">*</span> :</label>
+                    <label htmlFor="password" className=" sm:ml-10 mt-10 mb-5 text-white text-lg opacity-98">Mot de passe <span className="text-amber-300">*</span> :</label>
                     <div className="flex flex-col sm:flex-row items-center">
-                        <input className="py-2 px-2 w-80 sm:ml-9  rounded-md bg-stone-100" type={passVisibility ? "text" : "password"} placeholder="Votre mot de passe..." required />
+                        <input className="py-2 px-2 w-80 sm:ml-10  rounded-md bg-stone-100" type={passVisibility ? "text" : "password"} placeholder="Votre mot de passe..." required />
                         {!passVisibility
                             ?
                             <svg onClick={showHidePass} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="cursor-pointer hover:text-blue-600 invert mt-2 w-9 h-9 sm:w-7 sm:h-7 sm:mt-0  sm:ml-3 ">

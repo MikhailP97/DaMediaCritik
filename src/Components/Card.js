@@ -160,7 +160,7 @@ const Card = ({ id, img, alt, title, cat, resume, year, note, style, rate, click
         <>
         
             <div className="card text-white">
-            <center><img className="opacity1" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} onClick={click}/>       
+            <center><img className="opacity1 cursor-pointer" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} onClick={click}/>       
                 
                 <div className="mt-4">
                     <a href="#" onClick={toggleModalDetail} title="Détail du film" alt="Détail du film" className="hover:text-amber-200">🔍Détails</a>&nbsp;

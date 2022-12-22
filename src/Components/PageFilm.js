@@ -126,7 +126,7 @@ function PageFilm({rate}) {
 
 
 
-        <div className=" mt-20 md:mt-0 md:flex md:flex-col relative bg-black bg-opacity-80 md:bg-opacity-90 md:mx-10 lg:mx-10 px-0  sm:px-5 md:px-10 lg:px-20  md:rounded-xl  text-white">
+        <div className=" mt-20 md:mt-0 md:flex md:flex-col relative bg-black bg-opacity-80 md:bg-opacity-90 md:mx-10 lg:mx-10 xl:mx-36 2xl:mx-60 px-0  sm:px-5 md:px-10 lg:px-20  md:rounded-xl  text-white">
           <div className="  mb-14  border-b-2 border-amber-200 my-5 md:border-none  relative flex items-center">
             <div className="flex-grow border-t ml-20 border-amber-200"></div>
             <span className="flex-shrink my-10 mx-4 text-amber-500 text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">{movieData.title}</span>
@@ -241,7 +241,7 @@ function PageFilm({rate}) {
              <button type="submit" className="flex sm:block m-auto sm:m-0 py-4 mb-5 px-12 sm:py-3 sm:px-10 md:py-4 md:px-12  shadow-md shadow-stone-300/50 bg-stone-900 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Critiker !</button>
              </div>       
           </form>
-<div className='bg-black bg-opacity-70 text-center md:flex md:justify-center pt-3 mt-48 md:mt-32 md:py-10  md:pb-0'>
+<div className='bg-black bg-opacity-60 text-center md:flex md:justify-center pt-3 mt-48 md:mt-32 md:py-10 md:pb-0 sm:rounded-t-lg'>
 <p onClick={() => navigate("/inscription")} className="mb-3 md:mr-10 cursor-pointer text-amber-50 hover:underline text-sm" >Vous n'êtes pas encore inscrit ?</p>
           <p onClick={() => navigate("/login")} className="pb-3 md:ml-10 text-center cursor-pointer text-sm  text-amber-50 hover:underline" >Vous n'êtes pas connecté ?</p>
           </div>
