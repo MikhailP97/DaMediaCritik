@@ -24,13 +24,12 @@ const Footer = () => {
                   <td><a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank" rel="noreferrer" className="hover:text-orange-900">Api de TMDB</a></td>
                 </tr>
                 <tr>
-                  <td><span>&nbsp;&nbsp;© Copyright DaMovieCritik 2022-2023</span></td> 
+                  <td><span>&nbsp;&nbsp;© Copyright DaMovieCritik 2023</span></td> 
                   <td></td>
                   <td></td>
                 </tr>
               </tbody>
             </table>
-              
           </div>
         </div>       
       </>

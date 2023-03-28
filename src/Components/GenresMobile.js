@@ -45,8 +45,8 @@ function GenresMobile() {
     return (
         <>
 
-            <div className="text-white w-1/3 pt-5 m-auto text-center">
-                <select id="genres" className='text-white bg-black mt-20 md:mt-0 ' title="Choisir un genre..." onChange = {onChange}>
+            <div className="flex flex-col items-center text-white w-1/3 pt-10 m-auto text-center">
+                <select id="genres" className='text-white bg-zinc-900/50 mt-20 rounded py-2 px-2 border-amber-50' title="Choisir un genre..." onChange={onChange}>
                     <option key={-1}>Choississez un genre</option>
                     <option key={0} disabled>---------------------------</option> 
                     {

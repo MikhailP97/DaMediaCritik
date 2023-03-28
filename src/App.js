@@ -7,7 +7,7 @@ import FilmsParGenres from "../src/Views/FilmsParGenres.js";
 import PageFilm from "./Views/PageFilmView.js";
 import Profile from "../src/Views/Profile.js";
 import Inscription from './Views/Inscription';
-import ForgottenPassword from './Components/ForgottenPassword';
+import ForgottenPassword from './Views/ForgottenPassword';
 
 import Footer from './Components/Footer.js'
 import Connexion from './Views/Connexion';
@@ -24,14 +24,22 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentUser, getUser, subscribedUser } from './features/users/userSlice';
 
+import {AuthProvider} from './authContext'
+import {auth} from './firebase/index'
+import {onAuthStateChanged} from 'firebase/auth'
+
+
 function App() {
 
-  const currentUserData = useSelector(currentUser);
-  console.log(Object.keys(currentUserData).length)
-  const dispatch = useDispatch();
+  // const currentUserData = useSelector(currentUser);
+  // console.log(Object.keys(currentUserData).length)
+  // const dispatch = useDispatch();
 
-  const [userData, setUserData] = useState()
-  console.log(userData)
+  // const [userData, setUserData] = useState()
+  // console.log(userData)
+
+  const [currentUser, setCurrentUser] = useState(null)
+  // console.log(typeof(currentUser?.uid))
 
   // window.localStorage.setItem('userData', Object.keys(currentUserData).length ? JSON.stringify(currentUserData.user) : null);
   // const user = JSON.parse(localStorage.getItem('userData'));
@@ -40,14 +48,19 @@ function App() {
 useEffect(() => {
   // getUser();
   // dispatch(getUser(5))
-  window.localStorage.setItem('userData', Object.keys(currentUserData).length ? JSON.stringify(currentUserData.user) : null);
-  setUserData(JSON.parse(localStorage.getItem('userData')));
-}, [])
+  // window.localStorage.setItem('userData', Object.keys(currentUserData).length ? JSON.stringify(currentUserData.user) : null);
+  // setUserData(JSON.parse(localStorage.getItem('userData')));
+
+  onAuthStateChanged(auth, (user) => {
+    setCurrentUser(user)
+  })
+}, [currentUser])
 
   return (
     <div className="App">
       {/* <UserContext.Provider value={[context, setContext]}> */}
-      <UserContext.Provider value={Object.keys(currentUserData).length ? currentUserData : null}>
+      {/* <UserContext.Provider value={Object.keys(currentUserData).length ? currentUserData : null}> */}
+      <AuthProvider value={{currentUser}}>
         <BrowserRouter>
         
           <NavBar />
@@ -75,7 +88,8 @@ useEffect(() => {
           <NewFooter />
 
         </BrowserRouter>
-      </UserContext.Provider>
+        </AuthProvider>
+      {/* </UserContext.Provider> */}
 
     </div>
   );

@@ -45,7 +45,7 @@ function Genres() {
 
 return (
     <>
-        <div className="text-white md:invisible">
+        {/* <div className="text-white md:invisible">
             <select id="genres" className='text-white bg-black mt-20 md:mt-0' title="Choisir un genre...">
                 <option key="0">Choississez un genre</option>
                 <option key="1" disabled>---------------------------</option> 
@@ -56,7 +56,7 @@ return (
                     </>))
                 }
             </select>                   
-        </div> 
+        </div>  */}
 
 
         <div className=" relative flex py-5 items-center invisible md:visible">

@@ -11,6 +11,7 @@ function Stars({rate}) {
         setRating(rate);
         // other logic
     }
+    // console.log(rating)
 
     return (
         <div>
@@ -22,10 +23,8 @@ function Stars({rate}) {
                 size={30}
                 onClick={handleRating}
                 ratingValue={rating} /* Available Props */
-             />
-             &nbsp;{rating} / 5 <input type="hidden" name="rating" id="rating" value={rating} />
+            />
+                &nbsp;{rating} / 5 <input type="hidden" name="rating" id="rating" value={rating}/>
         </div>
-  )
-  
-}
+)}
 export default Stars

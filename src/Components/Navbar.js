@@ -8,6 +8,7 @@ import axios from "axios";
 import SearchBar from "./SearchBar";
 import { UserContext } from "../UserContext";
 import { currentUser } from "../features/users/userSlice";
+import { useAuthValue } from "../authContext";
 
 function NavBar(props) {
 
@@ -55,13 +56,15 @@ function NavBar(props) {
     };
   }, [search])
 
-  const currentUserVerif = useSelector(currentUser)
-  console.log(Object.keys(currentUserVerif).length !== 0)
+  // const currentUserVerif = useSelector(currentUser)
+  // console.log(Object.keys(currentUserVerif).length !== 0)
+
+  const {currentUser} = useAuthValue()
 
   const profileOrConnectRoute = () => {
-    if(Object.keys(currentUserVerif).length !== 0) {
+    if(currentUser !== null) {
       navigate('/profile')
-    } else if(Object.keys(currentUserVerif).length === 0) {
+    } else {
       navigate('/login')
     }
   }
@@ -169,7 +172,11 @@ function NavBar(props) {
                           <li className="text-gray-100 cursor-pointer"
                               onClick={() => {
                                 setIsMenuOpen(false);
-                                navigate("/login");
+                                if(currentUser !== null) {
+                                  navigate('/profile')
+                                } else {
+                                  navigate('/login')
+                                }
                               }}
                             >
                               Profile

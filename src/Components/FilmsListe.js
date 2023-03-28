@@ -45,9 +45,11 @@ const FilmsListe = () => {
       }, []);
 
       const movies = useSelector(releaseMovies);
+      console.log(movies)
       const tab_genres = useSelector(tabGenres);
       const dispatch = useDispatch();
       const date = (new Date()).toISOString().split('T')[0];
+      console.log(date)
 
       useEffect(() => {
           dispatch(getAsyncMoviesRelease(date))
@@ -56,8 +58,8 @@ const FilmsListe = () => {
       const navigate = useNavigate();
 
       return(
-        <>
-         <div className=" mt-20 md:mt-0 relative flex py-5 items-center">
+        <div className='h-screen'>
+          <div className=" mt-20 md:mt-0 relative flex py-5 items-center">
                 <div className="flex-grow border-t ml-20 border-amber-50"></div>
                 <span className="flex-shrink my-10 mx-4 text-amber-50 text-2xl font-bold">Films du jour</span>
                 <div className="flex-grow border-t mr-20 border-amber-50"></div>
@@ -83,7 +85,7 @@ const FilmsListe = () => {
 
           <br/>
           <br/>
-        </>
+        </div>
       )
 }
 export default FilmsListe;

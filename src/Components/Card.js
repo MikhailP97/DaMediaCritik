@@ -101,7 +101,7 @@ const Card = ({ id, img, alt, title, cat, resume, year, note, style, rate, click
     const createFavoris = async (favori) => {
         let userId = userInfos.id;  //Todo: Récupérer l'UserId de l'user conencté
         let filmId = id; //est récupéré dynamiquement en fonction du film mis en favori
-        const api_url = "http://localhost:3001/favoris";
+        // const api_url = "http://localhost:3001/favoris";
 
         await axios.post(api_url, favori)
             .then(console.log(`Nouveau favori enregistré pour le film ${filmId} et l utilisateur n°${userId}`))
@@ -170,13 +170,13 @@ const Card = ({ id, img, alt, title, cat, resume, year, note, style, rate, click
             <center><img className="opacity1 cursor-pointer" key={id} src={img} alt={alt} title={resume} cat={cat} note={note} style={style} onClick={click}/>       
                 
                 <div className="mt-4">
-                    <a href="#" onClick={toggleModalDetail} title="Détail du film" alt="Détail du film" className="hover:text-amber-200">🔍Détails</a>&nbsp;
+                    {/* <a href="#" onClick={toggleModalDetail} title="Détail du film" alt="Détail du film" className="hover:text-amber-200">🔍Détails</a>&nbsp;
                     <a href="#" onClick={toggleModalCritik} title="Critiker ce film !" alt="Critiker ce film !" className="hover:text-amber-200">⭐Critiker&nbsp;
-                    </a>&nbsp;<a href="#" onClick={handleClick} title="Mettre en favoris" alt="Mettre en favoris" className="hover:text-amber-200">❤️ Favoris</a><br/><br/>
+                    </a>&nbsp;<a href="#" onClick={handleClick} title="Mettre en favoris" alt="Mettre en favoris" className="hover:text-amber-200">❤️ Favoris</a><br/><br/> */}
 
-                    <h2 className="title-font text-lg font-medium text-white">{title}</h2>
-                    <h3 className="title-font mb-1 text-xs tracking-widest text-gray-300">{cat}</h3>
-                    <p className="text-white mt-1">{dateFormat(year, 'dd/mm/yyyy')}</p>
+                    <h2 className="title-font text-lg font-medium text-amber-300">{title}</h2>
+                    {/* <h3 className="title-font mb-1 text-xs tracking-widest text-gray-300">{cat}</h3> */}
+                    {/* <p className="text-white mt-1">{dateFormat(year, 'dd/mm/yyyy')}</p> */}
                     
                     
          

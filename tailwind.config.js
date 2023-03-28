@@ -5,7 +5,11 @@ module.exports = {
     './node_modules/tw-elements/dist/js/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      backdropBlur: {
+        xs: '1px',
+      }
+    },
     screens: {
       'xm': '320px',
       // => @media (min-width: 320px) { ... }

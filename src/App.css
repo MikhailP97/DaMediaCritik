@@ -15,7 +15,7 @@ body {
 }
 
 .App-footer {
-   position: relative;
+  position: relative;
   bottom: 0;
   
   width: 100%;
@@ -28,18 +28,33 @@ body {
 #avatar {
   width:250px;
   height: 250px;
+  border-radius: 100%;
+  border: solid rgb(255, 206, 133) 5px;
+}
+
+#avatarPreview {
+  width:100px;
+  height:100px;
+  border-radius: 100%;
+  border: solid rgb(255, 206, 133) 2px;
+}
+
+@media only screen and (max-width: 640px) {
+  #avatar {
+    width: 100px;
+    height: 100px;
     border-radius: 100%;
     border: solid rgb(255, 206, 133) 5px;
-  
-    }
+  }
+  #avatarPreview {
+    width:60px;
+    height:60px;
+    border-radius: 100%;
+    border: solid rgb(255, 206, 133) 2px;
+  }
+}
 
-    #avatarPreview {
-      width:100px;
-      height:100px;
-        border-radius: 100%;
-        border: solid rgb(255, 206, 133) 2px;
-      
-        }
+
 
 .card  {
   display: inline;
@@ -71,3 +86,4 @@ iframe {
   margin-bottom: 80px;
   border-radius: 10px;
 }
+
