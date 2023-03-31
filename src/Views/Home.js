@@ -1,20 +1,18 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Tendances from '../Components/Tendances.js'
 import SliderComponent from '../Components/SliderComponent.js'
-import Stars from '../Components/Stars.js'
-import { UserContext } from '../UserContext.js'
 import { useSelector, useDispatch } from 'react-redux'
-import { getAsyncTrendingsMovies, getAsyncUpcomingMovies, trendingMovies, upcomingMovies } from '../features/movies/movieSlice.js'
+import { getAsyncTrendingsMovies, getAsyncMovies, getAsyncUpcomingMovies, trendings, upcomingMovies } from '../features/movies/movieSlice.js'
 
 function Home() {
   
   const dispatch = useDispatch();
-  const trendingMovie = useSelector(trendingMovies)
+  const trendingMovie = useSelector(trendings)
   const upcomingMovie = useSelector(upcomingMovies)
   const [windowSize, setWindowSize] = useState(getWindowSize());
 
   useEffect(() => {
-    dispatch(getAsyncTrendingsMovies())
+    dispatch(getAsyncMovies())
     dispatch(getAsyncUpcomingMovies())
   
     function handleWindowResize() {

@@ -1,13 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getGenres, searchMovie, searchResults, tabDesGenres, tabGenres } from "../features/movies/movieSlice";
+import { searchMovie, searchResults } from "../features/movies/movieSlice";
 import { genres_url, serverPosters } from '../apiMovieDatabase';
 import axios from "axios";
-import SearchBar from "./SearchBar";
-import { UserContext } from "../UserContext";
-import { currentUser } from "../features/users/userSlice";
 import { useAuthValue } from "../authContext";
 
 function NavBar(props) {
@@ -56,9 +53,6 @@ function NavBar(props) {
     };
   }, [search])
 
-  // const currentUserVerif = useSelector(currentUser)
-  // console.log(Object.keys(currentUserVerif).length !== 0)
-
   const {currentUser} = useAuthValue()
 
   const profileOrConnectRoute = () => {
@@ -83,11 +77,10 @@ function NavBar(props) {
                   DaMovieCritik
                 </span>
               </div>
-              
               <div className="ml-auto md:hidden">
                 <div className="flex mr-2 md:mr-0">
                   <button onClick={() => setSearchBar(!searchBar)}>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 sm:w-9 mr-1 ml-1 sm:mr-2 icon icon-tabler icon-tabler-search" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 sm:w-9 mr-1 ml-1 sm:mr-2 icon icon-tabler icon-tabler-search" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <circle cx="10" cy="10" r="7" />
                       <line x1="21" y1="21" x2="15" y2="15" />
@@ -113,7 +106,6 @@ function NavBar(props) {
                         d="M23,20H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,20,23,20z"
                       />
                     </svg>
-
                   </button>
                 </div>
                 {isMenuOpen && (
@@ -139,20 +131,20 @@ function NavBar(props) {
                       <nav>
                         <ul className="space-y-4">
                           <li className="text-gray-100 cursor-pointer"
-                              onClick={() => {
-                                setIsMenuOpen(false);
-                                navigate("/");
-                              }}
-                            >
-                              Accueil
+                            onClick={() => {
+                              setIsMenuOpen(false);
+                              navigate("/");
+                            }}
+                          >
+                            Accueil
                           </li>
                           <li className="text-gray-100 cursor-pointer"
-                              onClick={() => {
-                                setIsMenuOpen(false);
-                                navigate("/films");
-                              }}
-                            >
-                              Films
+                            onClick={() => {
+                              setIsMenuOpen(false);
+                              navigate("/films");
+                            }}
+                          >
+                            Films
                           </li>
                           <li className="text-gray-100 cursor-pointer" onClick={() => {
                             setIsMenuOpen(false);
@@ -170,38 +162,31 @@ function NavBar(props) {
                             Contact
                           </li>
                           <li className="text-gray-100 cursor-pointer"
-                              onClick={() => {
-                                setIsMenuOpen(false);
-                                if(currentUser !== null) {
-                                  navigate('/profile')
-                                } else {
-                                  navigate('/login')
-                                }
-                              }}
-                            >
-                              Profile
+                            onClick={() => {
+                              setIsMenuOpen(false);
+                              if (currentUser !== null) {
+                                navigate('/profile')
+                              } else {
+                                navigate('/login')
+                              }
+                            }}
+                          >
+                            Profile
                           </li>
                         </ul>
                       </nav>
                     </div>
                   </div>
                 )}
-
               </div>
             </div>
           </div>
-
-
-          {/* Search Bar */}
-
-          {/* <SearchBar /> */}
-
           <div
             className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0  block`}
           >
             <ul className="items-center justify-end hidden space-y-8 md:flex md:space-x-6 md:space-y-0">
               <button className="" onClick={() => setSearchBar(!searchBar)}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125 w-8 sm:w-9 icon icon-tabler icon-tabler-search" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" className="transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125 w-8 sm:w-9 icon icon-tabler icon-tabler-search" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <circle cx="10" cy="10" r="7" />
                   <line x1="21" y1="21" x2="15" y2="15" />
@@ -214,7 +199,7 @@ function NavBar(props) {
                 <div className="cursor-pointer" onClick={() => navigate("/films")}>Films</div>
               </li>
               <li className="cursor-pointer z-10 transition ease-in-out origin-center delay-75 text-gray-100 hover:text-amber-600 hover:scale-125">Genres{/*<ion-icon name="caret-down"></ion-icon>*/}
-                <ul>
+                <ul className='rounded border border-amber-300 bg-stone-900'>
                   {genres?.length && genres.map((genre) =>
                     <li key={genre.id} onClick={() => (navigate(`/genres/${genre.id}`))}><a href="#">{genre.name}</a></li>
                   )}
@@ -245,48 +230,35 @@ function NavBar(props) {
             </ul>
           </div>
         </div>
-        
-          {searchBar ?
-
-            <input className="flex w-9/12 xl:w-7/12 m-auto mb-2 py-1 px-5 rounded-3xl border-2 border-amber-50 bg-stone-700 text-white"
-              placeholder="Recherchez votre film..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}>
-
-            </input>
-            :
-            <></>}
-
-          {resultsOfSearch?.length ?
-            <div ref={ref} id='results' className={` absolute mt-2 w-full md:ml-28  md:w-96 xl:ml-96 z-10 ${invisible} overflow-hidden rounded-md bg-amber-50 divide-y`}>
-              {resultsOfSearch?.length && search !== '' ? resultsOfSearch.slice(0, 5).map((res) =>
-                <div className="flex items-center space-x-4 py-1 hover:bg-amber-200 cursor-pointer" key={res.id} onClick={() => {
-                  navigate(`/page-film/${res.id}`)
-                  setInvisible('invisible')
-                  setSearch('')
-                }}>
-                  <img className="ml-2" src={serverPosters + res.backdrop_path} alt={res.title} width='50' />
-                  <div className="flex flex-col space-y-2">
-                    <span className="font-semibold ">{res.title}</span>
-                    <span>{res?.release_date ? res.release_date.slice(0, 4) : ''}</span>
-                  </div>
+        {searchBar ?
+          <input className="flex w-9/12 xl:w-7/12 m-auto mb-2 py-1 px-5 rounded-3xl border-2 border-amber-50 bg-stone-700 text-white"
+            placeholder="Recherchez votre film..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}>
+          </input>
+          :
+          <></>}
+        {resultsOfSearch?.length ?
+          <div ref={ref} id='results' className={` absolute mt-2 w-full md:ml-28  md:w-96 xl:ml-96 z-10 ${invisible} overflow-hidden rounded-md bg-amber-50 divide-y`}>
+            {resultsOfSearch?.length && search !== '' ? resultsOfSearch.slice(0, 5).map((res) =>
+              <div className="flex items-center space-x-4 py-1 hover:bg-amber-200 cursor-pointer" key={res.id} onClick={() => {
+                navigate(`/page-film/${res.id}`)
+                setInvisible('invisible')
+                setSearch('')
+              }}>
+                <img className="ml-2" src={serverPosters + res.backdrop_path} alt={res.title} width='50' />
+                <div className="flex flex-col space-y-2">
+                  <span className="font-semibold ">{res.title}</span>
+                  <span>{res?.release_date ? res.release_date.slice(0, 4) : ''}</span>
                 </div>
-              )
-                : <></>
-
-                // <div class="flex justify-center items-center py-5">
-                //     <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-                //         <span class="visually-hidden">Loading...</span>
-                //     </div>
-                // </div>
-              }
-            </div>
-            : <></>
-          }
-        
-       
+              </div>
+            )
+              : <></>
+            }
+          </div>
+          : <></>
+        }
       </nav>
-
     </div>
   );
 }

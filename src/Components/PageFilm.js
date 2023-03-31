@@ -1,34 +1,27 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import ReactStars from 'react-stars'
 import { 
   getAsyncMovieCredits, 
   getAsyncMovieDetails, 
-  getAsyncMovieVideos, 
-  getAsyncSimilarMovies, 
+  getAsyncMovieVideos,  
   getAsyncAllMovieVideos, 
   getAsyncAllMovieProviders,
   movieCredits, 
   moviePage, 
   moviesVideos, 
-  recommandationForMovie,
   movieAllProviders, 
   allMoviesVideos } from '../features/movies/movieSlice';
 import YouTube from 'react-youtube';
-import axios from 'axios';
 import dateFormat from "dateformat"
-
 import { useAuthValue } from "../authContext"
 import { db } from '../firebase/index'
-// import { getDatabase, ref, set, update, push, onValue } from "firebase/database";
-import { collection, doc, addDoc, setDoc, getDocs, deleteDoc, updateDoc } from "firebase/firestore"; 
-import { X, Trash2, Edit, Clock, Calendar } from 'react-feather';
+import { collection, doc, addDoc, getDocs, deleteDoc, updateDoc } from "firebase/firestore"; 
+import { X, Trash2, Edit } from 'react-feather';
 import { MagnifyingGlass } from 'react-loader-spinner'
-
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
-
 
 function PageFilm() {
 
@@ -43,7 +36,6 @@ function PageFilm() {
   const movieCreditsData = useSelector(movieCredits);
   const movieVideosData = useSelector(moviesVideos);
   const allMovieVideosData = useSelector(allMoviesVideos);
-  const similarMovies = useSelector(recommandationForMovie);
   const movieProviders = useSelector(movieAllProviders);
   const dispatch = useDispatch();
   const bgImgMovie = `https://image.tmdb.org/t/p/original/${movieData.poster_path}`
@@ -69,7 +61,7 @@ function PageFilm() {
     dispatch(getAsyncMovieDetails(id))
     dispatch(getAsyncMovieCredits(id))
     dispatch(getAsyncMovieVideos(id))
-    dispatch(getAsyncSimilarMovies(id))
+    // dispatch(getAsyncSimilarMovies(id))
     dispatch(getAsyncAllMovieVideos(id))
     dispatch(getAsyncAllMovieProviders(id))
     // getCritiks();
@@ -90,7 +82,7 @@ function PageFilm() {
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
-  }, [currentUser?.uid, favorite, refresh])
+  }, [currentUser?.uid, favorite, refresh, id])
 
 
   //Youtube player style
@@ -126,7 +118,6 @@ function PageFilm() {
 
   const director = crew?.find((a) => a.job === 'Director'  )
   const writers = crew?.filter((a) => a.department === 'Writing'  )
-  console.log(writers)
   const exactFavorite = favorites?.filter((a) => a.movieTtile === movieData?.title)
 
   //fonction pour le composant Rating
@@ -148,6 +139,12 @@ function PageFilm() {
       toggleModalConfirmationCritik(); //Affiche la confiramtion d'ajout de Critik
       setRatingError('')
     }
+  }
+
+  //Modale de confirmation d'ajout de critik
+  let [modalFavoris, setModalFavoris] = useState(false);
+  const toggleModalFavoris = () => { 
+    setModalFavoris(!modalFavoris);
   }
 
   //Modale de confirmation d'ajout de critik
@@ -202,7 +199,7 @@ function PageFilm() {
 //Fonction qui écrit une critique pour le film
 const writeMovieCritik = async (critik) => {
   try {
-    const docRef = await addDoc(collection(db, `${id}`), {
+    await addDoc(collection(db, `${id}`), {
       movieTtile: movieData.title,
       movieId: id,
       date: date.toLocaleDateString("fr", {day:'numeric', month:'short', year:'numeric'}),
@@ -210,12 +207,11 @@ const writeMovieCritik = async (critik) => {
       critik: critik.comment,
       note: critik.rating,
     });
-    console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
   try {
-    const docRef = await addDoc(collection(db, `${currentUser?.uid}`), {
+    await addDoc(collection(db, `${currentUser?.uid}`), {
       movieTtile: movieData.title,
       movieId: id,
       date: date.toLocaleDateString("fr", {day:'numeric', month:'short', year:'numeric'}),
@@ -223,7 +219,6 @@ const writeMovieCritik = async (critik) => {
       critik: critik.comment,
       note: critik.rating,
     });
-    console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -365,14 +360,12 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
             <span className="flex-shrink text-amber-100 text-center text-sm sm:text-lg md:text-lg lg:text-xl xl:text-xl italic">"{movieData.tagline}"</span>
           </div>
           : <></>}
-        
           <div className="flex flex-col items-center pb-8">
-
           {/* Bouton Favoris */}
           <div className='flex flex-row justify-between'>
             <div>
               {favorite === false && exactFavorite[0]?.movieId !== movieData.id
-                ? <HeartOutlined style={{ fontSize: '250%' }} onClick={addToFavorite} />
+                ? <HeartOutlined style={{ fontSize: '250%' }} onClick={currentUser === null ? toggleModalFavoris : addToFavorite } />
                 : <HeartFilled style={{ fontSize: '250%', color: 'red' }} onClick={deleteFavorite} />
               }
             </div>
@@ -382,7 +375,7 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
                               ${movieData?.vote_average?.toFixed(1) <= 0 && 'text-white'} 
                               ${movieData?.vote_average?.toFixed(1) > 0 && 'text-red-600'} 
                               ${movieData?.vote_average?.toFixed(1) >= 3 && 'text-amber-600'} 
-                              ${movieData?.vote_average?.toFixed(1) >= 5 && 'text-yellow-900'} 
+                              ${movieData?.vote_average?.toFixed(1) >= 5 && 'text-yellow-600'} 
                               ${movieData?.vote_average?.toFixed(1) >= 6 && 'text-lime-600'} 
                               ${movieData?.vote_average?.toFixed(1) >= 8 && 'text-green-600'}`}>
                                 {movieData?.vote_average > 0 ? movieData?.vote_average?.toFixed(1) : "~"} 
@@ -393,9 +386,7 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
             </div>
           </div>
           </div>
-          
             <div className="  sm:flex justify-between">
-            
               <div className="flex flex-col justify-between sm:w-1/2 bg-black bg-opacity-70 sm:rounded-xl p-5 md:bg-inherit">
                 <div className='flex flex-row justify-evenly sm:justify-start'>
                   <p className="text-center sm:text-start sm:text-base md:text-xl lg:text-xl xl:text-xl 2xl:text-2xl text-amber-500"><span>&nbsp;{dateFormat(movieData.release_date, 'yyyy')}</span></p>
@@ -434,8 +425,6 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
                         <button className='underline text-xs' onClick={toggleMoreCast}>Moins</button></ul>
                     )}
                 </ul>
-                
-                
                 {/* Budget ecran mobile */}
                 <p className="text-center sm:text-start md:m-0 mt-5 sm:hidden">Budget : <br/>{movieData?.budget > 0 ? <span className='text-amber-500'>{formatter.format(movieData.budget)} $</span> : <span className='text-amber-500'>Inconnu</span>}</p>
                 {movieData.revenue > 0 ?
@@ -448,7 +437,6 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
               </div>
               <img className="border-amber-100 border-2 hidden sm:flex sm:w-1/2 md:w-1/2 lg:w-3/6 xl:w-5/12 2xl:w-4/12 object-cover" src={`https://image.tmdb.org/t/p/original/${movieData.poster_path}`} alt={movieData.title} />
         </div>
-
         {/*Budget Ecran > sm */}
         <div className='hidden sm:flex justify-around mt-12 bg-black bg-opacity-70 sm:rounded-xl p-5 md:bg-opacity-50 sm:mt-6'>
           <p className="text-center sm:text-start md:m-0 my-4 sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">Budget : {movieData?.budget > 0 ? <span className='text-amber-500'>{formatter.format(movieData.budget)} $</span> : <span className='text-amber-500'>Inconnu</span>}</p>
@@ -460,7 +448,6 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
           : <></>
           }
         </div>
-
         {/* Synopsis */}
           <div className=" sm:text-xl md:text-2xl 2xl:text-3xl text-center pt-10 bg-black bg-opacity-70 sm:rounded-xl p-5 my-10 md:bg-transparent font-bold">Description :
             <p className="text-md sm:text-lg md:text-xl 2xl:text-2xl font-normal  py-10">
@@ -509,7 +496,6 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
               :
               <></>
           }
-
         {/* Production */}
         <div className="bg-black bg-opacity-70 sm:rounded-xl p-5 md:bg-opacity-50 mt-6">
           <p className='flex flex-col items-center text-center text-base pb-4 md:text-xl'>Production: </p>
@@ -521,7 +507,7 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
                 ( <div className='flex flex-col items-center'>
                   {movieData.production_companies.map((mv) => {
                     return (
-                      <p className='my-2 mx-2 text-amber-100'>{mv.name}</p>
+                      <p className='my-2 mx-2 text-amber-100' key={mv.id}>{mv.name}</p>
                     )
                   })}
                   </div>
@@ -535,7 +521,7 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
                 ( <div className='flex flex-col items-center'>
                   {movieData.production_countries.map((mv) => {
                     return (
-                      <p className='my-2 mx-2 text-amber-100'>{mv.name}</p>
+                      <p className='my-2 mx-2 text-amber-100' key={mv.name}>{mv.name}</p>
                     )
                   })}
                   </div>
@@ -567,7 +553,7 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
                 ( <div className='flex flex-col items-center md:flex-row flex-wrap justify-center md:mr-2'>
                   {movieProviders.FR.flatrate.map((pr) => {
                     return (
-                      <img src={`https://image.tmdb.org/t/p/original/${pr.logo_path}`} alt={pr.provider_name} className='w-12 rounded-xl my-2 mx-2'/>
+                      <img src={`https://image.tmdb.org/t/p/original/${pr.logo_path}`} alt={pr.provider_name} className='w-12 rounded-xl my-2 mx-2' key={pr.provider_id}/>
                     )
                   })}
                   </div>
@@ -593,7 +579,7 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
                 ( <div className='flex flex-col items-center md:flex-row flex-wrap justify-center'>
                   {movieProviders.FR.buy.map((pr) => {
                     return (
-                      <img src={`https://image.tmdb.org/t/p/original/${pr.logo_path}`} alt={pr.provider_name} className='w-12 rounded-xl my-2 mx-2'/>
+                      <img src={`https://image.tmdb.org/t/p/original/${pr.logo_path}`} alt={pr.provider_name} className='w-12 rounded-xl my-2 mx-2' key={pr.provider_id}/>
                     )
                   })}
                   </div>
@@ -602,15 +588,13 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
             </div>
           </div>
         </div>
-
           {/* Commentaires */}
           <div className="w-full mx-0 mt-6 md:grid md:grid-cols-2 gap-10 bg-black md:bg-opacity-60 bg-opacity-60 sm:rounded-xl py-5 px-5 lg:px-10 ">
             <p className="col-span-2 sm:text-xl md:text-2xl text-center 2xl:text-3xl my-5 font-bold">Commentaires :</p>  
             {   
-                    critiks?.length ? critiks.map(crt => {   
-                            return(                                                            
-                                  <>        
-                                    <div className="">   
+                    critiks?.length ? critiks.map((crt) => {   
+                            return(          
+                                    <div key={crt.id}>   
                                       <p className="text-amber-500 font-extrabold">{crt.username}</p>
                                       <p className="text-amber-300 font-semibold py-2">{crt.note} / 5</p>
                                       <p className="text-lg text-white">{crt.critik}</p>
@@ -630,11 +614,9 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
                                         : <></>
                                       }
                                     </div>
-                                  </>
                             )
                     }) : <></>               
             } 
-            
           </div>
           <form className="my-10 md:my-20 h-72 text-black pb-12" onSubmit={handleSubmit}>
               <label htmlFor="comment" className='text-3xl text-amber-500 font-extrabold'>Votre Critik <span className='text-white'>:</span> </label>
@@ -650,7 +632,7 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
               </div>
                 <div className="flex flex-col items-center">
                 {ratingError === '' ? <></> : <p className="fade-in text-red-800 font-bold text-center mb-4">{ratingError}</p>}
-                  <button type="submit" className="flex sm:block m-auto sm:m-0 py-4 mb-5 px-12 sm:py-3 sm:px-10 md:py-4 md:px-12  shadow-md shadow-stone-300/50 bg-stone-900 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Critiker !</button>
+                  <button type="submit" className="flex sm:block m-auto sm:m-0 py-4 mb-5 px-12 sm:py-3 sm:px-10 md:py-4 md:px-12  shadow-md shadow-stone-300/50 bg-stone-900 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50">Critiker !</button>
                 </div>       
           </form>
           <div className='bg-black bg-opacity-60 text-center md:flex md:justify-center pt-3 mt-48 md:mt-32 md:py-2 md:pb-0 sm:rounded-t-lg'>
@@ -660,6 +642,20 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
         </div>
         </div>
       </div>
+      {modalFavoris&& (
+                        <div className="modal overlay flex flex-col items-center">
+                        <div className="modal-content flex flex-col text-black xl:w-2/3">
+                          <button
+                            onClick={toggleModalFavoris}
+                            className="btn-modal text-black flex justify-end">
+                            <X color="white" size={32} />
+                          </button>
+                            <div className="flex flex-col text-center mt-5 text-amber-100 pb-10">
+                              <p>Vous devez être inscrit pour ajouter des favoris !</p>
+                            </div>
+                        </div>
+                      </div>)
+      }
       {/* Modal + Casting => screen > 640*/}
       {moreWriters2 && (
                   <div className="modal overlay flex flex-col items-center">
@@ -690,33 +686,37 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
                   </div>)
       }
       {modalConfirmationCritik&& (
-                        <div className="modal">
-                            <div className="overlay"></div>
-                                <div className="modal-content text-black">                        
-                                <button 
-                                    onClick={toggleModalConfirmationCritik}
-                                    className="btn-modal text-black float-right">
-                                    <X color="white" size={32}/>
-                                </button>
-                                    <br/><br/>                              
-                                    Vous&nbsp;avez&nbsp;bien&nbsp;ajouté&nbsp;une&nbsp;Critik&nbsp;et/ou&nbsp;note&nbsp;pour&nbsp;le&nbsp;film
-                                    <br/><br/>
-                                    <center><b>"{movieData.title}"</b></center> 
-                                    <br/><br/>
+                        <div className="modal overlay flex flex-col items-center">
+                        <div className="modal-content text-black">
+                          <button
+                            onClick={toggleModalConfirmationCritik}
+                            className="btn-modal text-black float-right">
+                            <X color="white" size={32} />
+                          </button>
+                          {currentUser === null ?
+                            <div className="flex flex-col text-center mt-10 text-amber-100 pb-10">
+                              <p>Vous devez être inscrit pour ajouter des favoris !</p>
                             </div>
-                        </div>)
+                          : 
+                            <div className="flex flex-col items-center mt-6 text-amber-100 ml-8 pb-10">
+                              <p className="flex items-center justify-center mt-8">Critik bien ajouté pour</p>
+                              <p className="flex items-center justify-center text-amber-300">{movieData.title}</p>
+                            </div>
+                          }
+                        </div>
+                      </div>)
       }
       {modalSuppressionCritik && (
               <div className="modal overlay flex flex-col items-center">
-                <div className="modal-content text-black">
+                <div className="modal-content flex flex-col text-black xl:w-2/3">
                   <button
                     onClick={toggleModalSuppressionCritik}
-                    className="btn-modal text-black float-right">
+                    className="btn-modal text-black flex justify-end">
                     <X color="white" size={32} />
                   </button>
                   <div className="flex flex-col items-center mt-6 text-amber-100">
-                    <p className="flex items-center justify-center mt-8">Supprimer votre commentaire pour</p>
-                    <p className="flex items-center justify-center text-amber-300">{selectedItem.movieTtile}&nbsp;?</p>
+                    <p className="flex text-center mt-8">Supprimer votre commentaire pour</p>
+                    <p className="flex text-center text-amber-300">{selectedItem.movieTtile}&nbsp;?</p>
                     <button className='my-8 shadow-md shadow-orange-800/50 lg:py-1 px-5 rounded-md text-lg text-red-700 font-semibold border-2 border-red-800 hover:text-red-500 hover:border-red-500 hover:shadow-red-500/50' onClick={() => deleteCritik(selectedItem.id, selectedItem.movieId)}>
                       Supprimer
                     </button>
@@ -726,7 +726,7 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
       )}
       {modalUpdateCritik && (
               <div className="modal overlay flex flex-col items-center">
-                <div className="modal-content text-black">
+                <div className="modal-content text-black xl:w-2/3">
                   <button
                     onClick={toggleModalUpdateCritik}
                     className="btn-modal text-black float-right">

@@ -3,9 +3,9 @@ import Genres from '../Components/Genres'
 
 function FilmsParGenres() {
   return (
-    <div>
+    <>
       <Genres />
-    </div>
+    </>
   )
 }
 

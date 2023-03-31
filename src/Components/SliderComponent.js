@@ -1,40 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import Slider from "react-touch-drag-slider";
-import SimpleImageSlider from "react-simple-image-slider";
-import Card from './Card';
 import 'react-awesome-slider/dist/styles.css';
-
-
 import AwesomeSlider from 'react-awesome-slider';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
-import 'react-awesome-slider/dist/styles.css';
 
 function SliderComponent({movies, titleOfSection, mb}) {
 
     const server = "https://image.tmdb.org/t/p/w300_and_h450_bestv2/";
 
     const navigate = useNavigate();
-
-    const images = movies?.length && movies.map((a) => "https://image.tmdb.org/t/p/w300_and_h450_bestv2/"+a.poster_path)
-    // console.log(images)
-
-    // const convertArrayToObject = (array, key) => {
-    //     const initialValue = {};
-    //     return array.reduce((obj, item) => {
-    //       return {
-    //         ...obj,
-    //         [item[key]]: item,
-    //       };
-    //     }, initialValue);
-    //   };
-
-    //   console.log(
-    //     convertArrayToObject(
-    //       images,
-    //       'id',
-    //     ),
-    //   );
 
     const AutoplaySlider = withAutoplay(AwesomeSlider);
 
@@ -59,8 +33,8 @@ function SliderComponent({movies, titleOfSection, mb}) {
                         mobileTouch={true}
                         bullets={true}
                     >
-                        {movies?.length && movies.slice(0,6).map((mv, index) => (
-                                                                        <div className="imgContainer" style={{ backgroundColor: '#1c1917' }} onClick={() => navigate(`/page-film/${mv.id}`)}>
+                        {movies?.length && movies.slice(0,6).map((mv) => (
+                                                                        <div className="imgContainer" style={{ backgroundColor: '#1c1917' }} onClick={() => navigate(`/page-film/${mv.id}`)} key={movies.id}>
                                                                             <img src={server + mv.poster_path} alt={'elmrkf'} style={{ height: "400px", backgroundColor: '#1c1917' }} />
                                                                         </div>
                         ))}

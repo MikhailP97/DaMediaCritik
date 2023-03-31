@@ -5,14 +5,13 @@ import { getDatabase } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDQi6GQxiUHIYcltLdcgUHjAP20QJaJgzw",
+  apiKey: process.env.REACT_APP_Firebase_API_KEY,
   authDomain: "damoviecritik.firebaseapp.com",
   projectId: "damoviecritik",
   storageBucket: "damoviecritik.appspot.com",
-  messagingSenderId: "1096713505584",
-  appId: "1:1096713505584:web:97bd947b6144b53f18d6f5",
-  measurementId: "G-YFP9TNXGQK",
-  databaseURL: "https://damoviecritik-default-rtdb.europe-west1.firebasedatabase.app",
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASURMENT_ID,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
 };
 
 // Initialize Firebase
