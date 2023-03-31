@@ -375,7 +375,7 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
                               ${movieData?.vote_average?.toFixed(1) <= 0 && 'text-white'} 
                               ${movieData?.vote_average?.toFixed(1) > 0 && 'text-red-600'} 
                               ${movieData?.vote_average?.toFixed(1) >= 3 && 'text-amber-600'} 
-                              ${movieData?.vote_average?.toFixed(1) >= 5 && 'text-yellow-600'} 
+                              ${movieData?.vote_average?.toFixed(1) >= 5 && 'text-yellow-900'} 
                               ${movieData?.vote_average?.toFixed(1) >= 6 && 'text-lime-600'} 
                               ${movieData?.vote_average?.toFixed(1) >= 8 && 'text-green-600'}`}>
                                 {movieData?.vote_average > 0 ? movieData?.vote_average?.toFixed(1) : "~"} 
