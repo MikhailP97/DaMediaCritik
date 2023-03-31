@@ -3,7 +3,9 @@ import ForgottenPassword from '../Components/ForgottenPassword'
 
 function ForgottenPasswordView() {
     return (
-        <ForgottenPassword />
+        <>
+            <ForgottenPassword />
+        </>
     )
 }
 

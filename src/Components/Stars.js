@@ -1,18 +1,13 @@
-//import '.styles.css';
-
 import {useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
 
 function Stars({rate}) {
 
-    const [rating, setRating] = useState(0); //initial rating value
+    const [rating, setRating] = useState(0);
 
     const handleRating = (rate) => {
         setRating(rate);
-        // other logic
     }
-    // console.log(rating)
-
     return (
         <div>
             <Rating 

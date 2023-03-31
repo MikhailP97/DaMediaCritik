@@ -5,8 +5,6 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from 'react-router-dom';
 
-
-
 function ForgottenPassword() {
 
     const [error, setError] = useState(false);
@@ -70,10 +68,10 @@ function ForgottenPassword() {
                     {errors.email ? (<> <p className='mt-2 text-center text-red-800'>{errors.email?.message}</p> </>) : null}
                 </div>
                 {error ? <p className="fade-in text-red-800 text-center mt-5">{msg}</p> : <></>}
-                {confirmation ? <p className="fade-in text-lime-700 text-center mt-5">Le lien de réinitialisation a été envoyé à votre adresse mail</p> : <></>}
                 <div className="flex justify-center">
                     <button type="submit" className="py-2 px-8 sm:px-8 shadow-md shadow-stone-300/50 bg-stone-900 mt-10 rounded-md text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50">Envoyer</button>
                 </div>
+                {confirmation ? <p className="fade-in text-lime-700 text-center mt-5">Le lien de réinitialisation a été envoyé à votre adresse mail</p> : <></>}
             </form>
 
             <div className="flex flex-row justify-center space-x-5 pb-60">

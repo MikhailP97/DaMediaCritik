@@ -13,7 +13,6 @@ function SearchBar(props) {
     const [searchResultsState, setSearchResultsState] = useState([]);
 
     const ref = useRef(null);
-    const { onClickOutside } = props;
 
     const resultsOfSearch = useSelector(searchResults);
     const dispatch = useDispatch();
@@ -26,16 +25,6 @@ function SearchBar(props) {
         } else {
           setSearchResultsState()
         }
-        // const handleClickOutside = (event) => {
-        //     if (ref.current && !ref.current.contains(event.target)) {
-        //       setSearch('')
-        //       console.log(ref.current)
-        //     }
-        //   };
-        //   document.addEventListener('click', handleClickOutside, true);
-        //   return () => {
-        //     document.removeEventListener('click', handleClickOutside, true);
-          // };
     }, [search])
 
     return (
@@ -59,24 +48,7 @@ function SearchBar(props) {
                   </svg>
                 </div>
               : <></>}
-              {/* <div className="grid place-items-center h-full w-12 bg-stone-700">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-gray-100"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div> */}
             </div>
-
               {resultsOfSearch?.length ? 
                 <div ref={ref} id='results' className={`absolute mt-2 w-96 z-10 ${invisible} overflow-hidden rounded-md bg-amber-50 divide-y`}>
                   {resultsOfSearch?.length && search !== '' ? resultsOfSearch.slice(0,5).map((res) => 
@@ -94,12 +66,6 @@ function SearchBar(props) {
                     </div>
                     )
                     : <></>
-                    
-                      // <div class="flex justify-center items-center py-5">
-                      //     <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-                      //         <span class="visually-hidden">Loading...</span>
-                      //     </div>
-                      // </div>
                   }
                 </div>
               : <></>

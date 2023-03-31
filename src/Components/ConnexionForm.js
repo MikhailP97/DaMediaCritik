@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../UserContext';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useForm } from 'react-hook-form';
 import * as Yup from "yup";
@@ -14,7 +13,6 @@ export default function ConnexionForm() {
     const [confirmation, setConfirmation] = useState(false);
     const [error, setError] = useState(false);
     const [errorCode, setErrorCode] = useState('');
-    // const [errorMessage, setErrorMessage] = useState('');
 
     const showHidePass = () => {
         setPassVisibility(!passVisibility)
@@ -37,14 +35,12 @@ export default function ConnexionForm() {
         resolver: yupResolver(formSchema)
     });
 
+    //connexion
     const auth = getAuth();
 
     const onSubmit = (data) => {
         signInWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
-                        // Signed in 
-                        const user = userCredential.user;
-                        // ...
                         setConfirmation(true)
                         setError(false)
                         setTimeout(() => {
@@ -55,12 +51,24 @@ export default function ConnexionForm() {
                         console.log(`error: ${error.code}, ${error.message}`)
                         setError(true)
                         setErrorCode(error.code)
-                        
                     });
             
     }
 
-    console.log(errorCode)
+    const provider = new GoogleAuthProvider();
+
+    const googleSignIn = async () => {
+        await signInWithPopup(auth, provider)
+        .then(() => {
+            setTimeout(() => {
+                navigate('/')
+            }, 2000);
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode + ': ' + errorMessage)
+        });
+    }
 
     let msg;
     if (errorCode === "auth/wrong-password") {
@@ -69,94 +77,37 @@ export default function ConnexionForm() {
         msg = "Utilisateur introuvable :("
     }
 
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     const form = e.target; //tableau inputs
-    //     const email = form[0].value;
-    //     const password = form[1].value;
-    //     const user = { email, password };
-    //     console.log(user);
-
-    //     signInWithEmailAndPassword(auth, email, password)
-    //         .then((userCredential) => {
-    //             // Signed in 
-    //             const user = userCredential.user;
-    //             // ...
-    //         })
-    //         .catch((error) => {
-    //             console.log(`error: ${error.code}, ${error.message}`)
-    //         });
-
-    //     setTimeout(() => {
-    //         navigate('/')
-    //     }, 2000);
-    // }
-
-    const provider = new GoogleAuthProvider();
-
-    const googleSignIn = async () => {
-        await signInWithPopup(auth, provider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
-            setTimeout(() => {
-                navigate('/')
-            }, 2000);
-        }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.customData.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
-            console.log(errorCode)
-        });
-    }
-
     return (
         <>
             <div className=" mt-20 md:mt-0 relative flex pt-5 pb-2 sm:py-5 items-center">
                 <div className="flex-grow border-t ml-20 border-amber-50"></div>
-                <span className="flex-shrink my-10 mx-4 text-amber-50 text-xl sm:text-2xl font-bold">Connexion</span>
+                    <span className="flex-shrink my-10 mx-4 text-amber-50 text-xl sm:text-2xl font-bold">Connexion</span>
                 <div className="flex-grow border-t mr-20 border-amber-50"></div>
             </div>
-
             <div className="flex justify-center">
-            <button type='button' class='flex w-48 sm:w-96 mx-1 break-inside bg-white hover:bg-stone-400 text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white' onClick={googleSignIn}>
-                <div class='m-auto'>
-                    <div class='flex items-center justify-start flex-1 space-x-4'>
-                    <svg width='25' height='25' viewBox='0 0 24 24'>
-                        <path fill='currentColor'
-                        d='M21.35,11.1H12.18V13.83H18.69C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12C5,7.9 8.2,4.73 12.2,4.73C15.29,4.73 17.1,6.7 17.1,6.7L19,4.72C19,4.72 16.56,2 12.1,2C6.42,2 2.03,6.8 2.03,12C2.03,17.05 6.16,22 12.25,22C17.6,22 21.5,18.33 21.5,12.91C21.5,11.76 21.35,11.1 21.35,11.1V11.1Z' />
-                    </svg>
-                    <span class='font-medium mb-[-2px] text-xs sm:text-lg'>Avec votre compte Google</span>
+                <button type='button' className='flex w-48 sm:w-96 mx-1 break-inside bg-white hover:bg-stone-400 text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white' onClick={googleSignIn}>
+                    <div className='m-auto'>
+                        <div className='flex items-center justify-start flex-1 space-x-4'>
+                            <svg width='25' height='25' viewBox='0 0 24 24'>
+                                <path fill='currentColor'
+                                    d='M21.35,11.1H12.18V13.83H18.69C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12C5,7.9 8.2,4.73 12.2,4.73C15.29,4.73 17.1,6.7 17.1,6.7L19,4.72C19,4.72 16.56,2 12.1,2C6.42,2 2.03,6.8 2.03,12C2.03,17.05 6.16,22 12.25,22C17.6,22 21.5,18.33 21.5,12.91C21.5,11.76 21.35,11.1 21.35,11.1V11.1Z' />
+                            </svg>
+                            <span className='font-medium mb-[-2px] text-xs sm:text-lg'>Avec votre compte Google</span>
+                        </div>
                     </div>
-                </div>
-            </button>
+                </button>
             </div>
-
             <p className="flex justify-center py-2 sm:py-5 text-lg sm:text-xl text-amber-50">Ou</p>
-
             <form className="bg-stone-800 shadow-md w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3 flex flex-col sm:py-16 py-8 m-auto rounded-xl" onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex flex-col m-auto">
                     <label className="mb-3 text-white text-base sm:text-lg opacity-98">Identifiant (email) : </label>
-                    <input className="py-2 px-2 w-auto sm:w-80 rounded-md bg-stone-100" type="email" placeholder='Votre adresse mail...' {...register("email")} />
-                    {errors.email ? (<> <p className='mt-2 text-center text-red-800'>{errors.email?.message}</p> </>) : null}
+                    <input className="py-2 px-2 w-auto sm:w-80 rounded-md bg-stone-100" placeholder='Votre adresse mail...' {...register("email")} />
                 </div>
+                {errors.email ? (<> <p className='fade-in mt-2 text-center text-red-800'>{errors.email?.message}</p> </>) : null}
                 <div className="flex flex-col m-auto">
                     <label htmlFor="password" className="sm:ml-10 mt-8 sm:mt-10 mb-3 text-white text-base sm:text-lg opacity-98">Mot de passe : </label>
-
                     <div className="flex flex-row items-center">
                         <input className="w-auto py-2 px-2 sm:w-80 sm:ml-10 rounded-md bg-stone-100" type={passVisibility ? "text" : "password"} placeholder="Votre mot de passe..." {...register("password")} />
-
                         {!passVisibility
                             ?
                             <svg onClick={showHidePass} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="cursor-pointer hidden sm:block invert mt-2 w-9 h-9 sm:mt-0 w-6 sm:w-7 h-6 sm:h-7 ml-1 sm:ml-3">
@@ -168,14 +119,14 @@ export default function ConnexionForm() {
                             </svg>
                         }
                     </div>
-                    {errors.password ? (<> <p className='fade-in mt-2 text-center text-red-800'>{errors.password?.message}</p> </>) : null}
                 </div>
-                {confirmation ? <p className="fade-in text-lime-700 text-center mt-5">Connexion réussie !</p> : <></>}
-                {error ? <p className="fade-in text-red-800 text-center mt-5">{msg}</p> : <></>}
+                    {errors.password ? (<> <p className='fade-in mt-2 text-center text-red-800'>{errors.password?.message}</p> </>) : null}
+                    {error ? <p className="fade-in text-red-800 text-center mt-5">{msg}</p> : <></>}
                 <div className="flex justify-center">
                     {/* En attendant le submit du formulaire */}
-                    <button type="submit" className="py-2 px-8 sm:px-8 shadow-md shadow-stone-300/50 bg-stone-900 mt-10 sm:mt-20 rounded-md text-base sm:text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50  ">Se connecter</button>
+                    <button type="submit" className="py-2 px-8 sm:px-8 shadow-md shadow-stone-300/50 bg-stone-900 mt-10 sm:mt-20 rounded-md text-base sm:text-lg text-white font-semibold border-2 border-white hover:text-amber-300 hover:border-amber-300 hover:shadow-amber-300/50">Se connecter</button>
                 </div>
+                {confirmation ? <p className="fade-in text-lime-700 text-center mt-5">Connexion réussie !</p> : <></>}
             </form>
         </>
     )

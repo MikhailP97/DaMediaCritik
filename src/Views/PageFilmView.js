@@ -3,7 +3,9 @@ import PageFilm from '../Components/PageFilm'
 
 function PageFilmView() {
   return (
-    <PageFilm />
+    <>
+      <PageFilm />
+    </>
   )
 }
 
