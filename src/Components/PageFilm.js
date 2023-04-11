@@ -333,8 +333,6 @@ const deleteFavorite = () => {
   })
 }
 
-console.log(writers.length)
-
 const favoritesButton = () => {
   if (exactFavorite.length === 0) {
     return <HeartOutlined style={{ fontSize: '250%' }} onClick={currentUser === null ? toggleModalFavoris : addToFavorite } />
