@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Tendances from '../Components/Tendances.js'
 import SliderComponent from '../Components/SliderComponent.js'
 import { useSelector, useDispatch } from 'react-redux'
-import { getAsyncTrendingsMovies, getAsyncMovies, getAsyncUpcomingMovies, trendings, upcomingMovies } from '../features/movies/movieSlice.js'
+import { getAsyncMovies, getAsyncUpcomingMovies, trendings, upcomingMovies } from '../features/movies/movieSlice.js'
 
 function Home() {
   
