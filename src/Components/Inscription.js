@@ -173,7 +173,7 @@ const Inscription = () => {
                 {errors.pseudo ? (<> <p className='mt-2 text-center text-red-800'>{errors.pseudo?.message}</p> </>) : null}
                 <div className=" flex flex-col m-auto ">
                     <label className=" mt-10 mb-5 text-white text-base sm:text-lg opacity-98">E-mail <span className="text-amber-300">*</span> :</label>
-                    <input className="py-2 px-2 w-auto sm:w-80 rounded-md bg-stone-100" type="email" placeholder='xyz@mail.com' {...register("email")} />
+                    <input className="py-2 px-2 w-auto sm:w-80 rounded-md bg-stone-100" placeholder='xyz@mail.com' {...register("email")} />
                 </div>
                 {errors.email ? (<> <p className='mt-2 text-center text-red-800'>{errors.email?.message}</p> </>) : null}
                 <div className=" flex flex-col m-auto">

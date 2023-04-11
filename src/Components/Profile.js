@@ -78,7 +78,10 @@ export default function Profile() {
     }
 
     const deleteFavorite = async (favoriteId) => {
-        await deleteDoc(doc(colRef, `${favoriteId}`)).then(() => setRefresh(!refresh))
+        await deleteDoc(doc(colRef, `${favoriteId}`)).then(() => {
+            setRefresh(!refresh)
+            toggleModalSuppressionFavori()
+        })
     }
 
     //supprimer des critiks

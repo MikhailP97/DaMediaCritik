@@ -15,7 +15,7 @@ export default function ContactForm() {
             .max(20, "Le pseudo doit contenir au maximum 20 caractères"),
         email: Yup.string()
             .required("Ce champ est obligatoire")
-            .matches(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, "L'adresse mail n'est pas valide"),
+            .matches(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, "L'adresse mail n'est pas valide"),
         message: Yup.string()
             .required("Ce champ est obligatoire")
             .min(6, "Le message doit contenir au moins 6 caractères")
@@ -34,10 +34,10 @@ export default function ContactForm() {
             .send("service_sbnonxb", "template_8oqehth", data, "user_kkiVCtLUFgzs0KA68U62O")
             .then(
                 (result) => {
-                console.log(result.text);
+                // console.log(result.text);
                 },
                 (error) => {
-                console.log(error.text);
+                // console.log(error.text);
                 }
             );
         setConfirmation(true)

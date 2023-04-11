@@ -61,18 +61,10 @@ function PageFilm() {
     dispatch(getAsyncMovieDetails(id))
     dispatch(getAsyncMovieCredits(id))
     dispatch(getAsyncMovieVideos(id))
-    // dispatch(getAsyncSimilarMovies(id))
     dispatch(getAsyncAllMovieVideos(id))
     dispatch(getAsyncAllMovieProviders(id))
-    // getCritiks();
     getAllCritiks(id)
-    // getGenres()
-    // getAllFav(currentUser.uid)
-    async function getData(){
-      await getAllFav(currentUser?.uid)
-    }
-    getData()
-
+    getAllFav(currentUser?.uid)
     function handleWindowResize() {
       setWindowSize(getWindowSize());
     }
@@ -83,7 +75,6 @@ function PageFilm() {
       window.removeEventListener('resize', handleWindowResize);
     };
   }, [currentUser?.uid, favorite, refresh, id])
-
 
   //Youtube player style
   const opts = {
@@ -118,7 +109,7 @@ function PageFilm() {
 
   const director = crew?.find((a) => a.job === 'Director'  )
   const writers = crew?.filter((a) => a.department === 'Writing'  )
-  const exactFavorite = favorites?.filter((a) => a.movieTtile === movieData?.title)
+  const exactFavorite = favorites?.filter((a) => a.movieId === movieData?.id)
 
   //fonction pour le composant Rating
   const handleRating = (rate) => {
@@ -335,8 +326,21 @@ const addToFavorite = async () => {
 }
 
 //supprimer des favoris
-const deleteFavorite = async () => {
-  await deleteDoc(doc(colRef, `${exactFavorite[0].id}`)).then(() => setFavorite(false))
+const deleteFavorite = () => {
+  deleteDoc(doc(colRef, `${exactFavorite[0].id}`))
+  .then(() => {
+    getAllFav(currentUser?.uid)
+  })
+}
+
+console.log(writers.length)
+
+const favoritesButton = () => {
+  if (exactFavorite.length === 0) {
+    return <HeartOutlined style={{ fontSize: '250%' }} onClick={currentUser === null ? toggleModalFavoris : addToFavorite } />
+  } else {
+    return <HeartFilled style={{ fontSize: '250%', color: 'red' }} onClick={deleteFavorite} />
+  }
 }
 
 //formater les chiffres type budget et box office au format 1M ou 1K
@@ -364,10 +368,7 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
           {/* Bouton Favoris */}
           <div className='flex flex-row justify-between'>
             <div>
-              {favorite === false && exactFavorite[0]?.movieId !== movieData.id
-                ? <HeartOutlined style={{ fontSize: '250%' }} onClick={currentUser === null ? toggleModalFavoris : addToFavorite } />
-                : <HeartFilled style={{ fontSize: '250%', color: 'red' }} onClick={deleteFavorite} />
-              }
+              {favoritesButton()}
             </div>
             {/* Note du film */}
             <div className="flex flex-col items-center ml-12">
@@ -401,14 +402,15 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
                       <p className='text-amber-500 md:text-base' key={g.id}>{g.name}(<span className='text-amber-100'>{g.job}</span>)</p>)
                                                           .reduce((prev, curr) => [prev, (<span className='mb-1 hidden sm:block'>&nbsp;-&nbsp;</span>), curr])}
                   </div>
-                    {moreWritersButton ? <button className='underline text-xs xl:text-base' onClick={windowSize.innerWidth < 640 ? toggleMoreWriters : toggleMoreWriters2}>Plus</button> : <></>}
+                    {moreWritersButton && writers?.length > 3 ? <button className='underline text-xs xl:text-base' onClick={windowSize.innerWidth < 640 ? toggleMoreWriters : toggleMoreWriters2}>Plus</button> : <></>}
                     {moreWriters && (
                       <ul>
                         {
                           writers?.length && writers.slice(3, 20).map((g) =>
                             <p className='text-amber-500 md:text-base' key={g.id}>{g.name}(<span className='text-amber-100'>{g.job}</span>)</p>)
                         }
-                        <button className='underline text-xs' onClick={toggleMoreWriters}>Moins</button></ul>
+                        <button className='underline text-xs' onClick={toggleMoreWriters}>Moins</button>
+                      </ul>
                     )}
                 </div>
                 <ul className="text-center sm:text-start mt-5 sm:text-base md:text-xl lg:text-xl xl:text-xl 2xl:text-2xl">
@@ -422,7 +424,8 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
                             <li className='text-amber-500' key={cast.id}><span className='text-amber-100'>{cast.character}:</span> {cast.name}</li>
                           )
                         }
-                        <button className='underline text-xs' onClick={toggleMoreCast}>Moins</button></ul>
+                        <button className='underline text-xs' onClick={toggleMoreCast}>Moins</button>
+                      </ul>
                     )}
                 </ul>
                 {/* Budget ecran mobile */}
