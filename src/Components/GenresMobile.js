@@ -64,7 +64,7 @@ function GenresMobile() {
                 <div className="flex-grow border-t mr-20 border-amber-50"></div>
             </div>
             <center>
-                <div className="grid 2xl:grid-cols-6 xl:lg:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:lg:grid-cols-2 xm:lg_grid-cols-2 gap-10">
+                <div className="grid grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-2 sm:gap-10 mx-5">
                 {               
                     moviesByGenres?.length && moviesByGenres.map(mv => {    
                         return(

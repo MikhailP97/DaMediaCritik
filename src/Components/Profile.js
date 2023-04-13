@@ -178,33 +178,35 @@ export default function Profile() {
         <>
             <div>
                 <div className="flex flex-col mt-10 lg:flex lg:flex-row lg:justify-center py-10 sm:py-20" >
-                    <img className="mt-10 m-auto lg:m-0" id="avatar" src={currentUser !== null ? currentUser?.photoURL : null} alt="mouton" />
+                    <img className="mt-10 m-auto lg:m-0" id="avatar" src={currentUser !== null ? currentUser?.photoURL : null} alt="avatar" />
                     <div id="pseudo" className="text-center text-xl lg:ml-40 lg:pb-0 sm:text-4xl text-amber-100 pt-8 sm:pt-24 pb-10 border-amber-200 border-b-8">Bienvenue <span className="text-amber-500 font-bold">{currentUser?.displayName?.length ? currentUser?.displayName : null}</span> </div>
                 </div>
                 <div className="flex flex-col text-center lg:text-left text-amber-100 py-2 sm:py-5 lg:ml-40">
                     <p className="text-xl sm:text-3xl underline">Infos</p>
                     <br />
                     <div className="flex flex-col space-y-1">
-                        <p className="text-lg">Pseudo :  <span className="text-amber-500">{currentUser?.displayName?.length ? currentUser?.displayName : null}</span></p>
-                        <p className="text-lg">Adresse mail : <span className="text-amber-500">{currentUser?.email?.length ? currentUser?.email : null}</span></p>
+                        <p className="text-base md:text-lg">Pseudo :  <span className="text-amber-500">{currentUser?.displayName?.length ? currentUser?.displayName : null}</span></p>
+                        <p className="text-base md:text-lg">Adresse mail : <span className="text-amber-500">{currentUser?.email?.length ? currentUser?.email : null}</span></p>
                     </div>
                 </div>
                 <div className="m-auto w-2/4 sm:w-1/4 mt-10 sm:mt-20 mb-10 border-b-4 border-amber-200"></div>
                 <div className="flex flex-col text-amber-100 py-10 ">
                     <p className="text-xl sm:text-3xl underline m-auto lg:ml-40 pb-5">Mes favoris</p>
                     <br />
-                    <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 lg:mx-40 xl:grid-cols-4 mx-20 gap-20 ">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 mx-2 sm:mx-10 lg:mx-20 xl:mx-40 gap-5 sm:gap-10">
                         {/* Début de traitement liste de favoris d'1 user */}
                         {
                             favorites?.length ? favorites.map(fav => {
                                 return (
                                     <div className="flex flex-col items-center" key={fav.id}>
-                                        <div className="text-center cursor-pointer" onClick={() => navigate(`/page-film/${fav.movieId}`)}>
-                                            <img className="rounded-md w-48 transition duration-300 hover:scale-105" id="favoris" src={`https://image.tmdb.org/t/p/original/${fav.movieImg}`} alt="affiche de film" />
-                                            <p className="text-lg mt-2">{fav.movieTtile}</p>
-                                        </div>
-                                        <div className="text-center">
-                                            <button className="text-base text-red-700 mt-1" onClick={() => { toggleModalSuppressionFavori(); setSelectedItem(fav) }}>Supprimer</button>
+                                        <div className="text-center relative" >
+                                                <img className="rounded-md w-full transition duration-300 cursor-pointer" id="favoris" src={`https://image.tmdb.org/t/p/original/${fav.movieImg}`} alt="affiche de film" onClick={() => navigate(`/page-film/${fav.movieId}`)}/>
+                                                <p className="text-xs sm:text-base xl:text-lg mt-2 cursor-pointer">{fav.movieTtile}</p>
+                                                <button
+                                                    onClick={() => { toggleModalSuppressionFavori(); setSelectedItem(fav) }}
+                                                    className="absolute top-0 right-0 cursor-pointer">
+                                                    <X color="red" size={40}/>
+                                                </button>
                                         </div>
                                     </div>
                                 )
@@ -217,14 +219,14 @@ export default function Profile() {
                 <div className="flex flex-col text-amber-100 py-10 ">
                     <p className="text-xl sm:text-3xl underline m-auto lg:ml-40 pb-5">{/*<span className=" text-amber-500">*/}<span className="flex flex-col space-y">Mes critiks</span></p>
                     <br />
-                    <div className=" grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-2 lg:mx-40 xl:grid-cols-2 mx-20 gap-20 ">
+                    <div className=" grid grid-cols-1 sm:grid-cols-2 lg:mx-40 xl:grid-cols-3 mx-20 gap-20 ">
                         {
                             userCritiks?.length ? userCritiks.map((crt) => {
                                 return (
                                     <>
                                         <div className="text-left" key={crt.id}>
-                                            <p className="text-lg text-amber-500 underline cursor-pointer hover:text-amber-600" onClick={() => navigate(`/page-film/${crt.movieId}`)}>{crt.movieTtile}</p>
-                                            <p className="text-lg text-orange">{crt.note} / 5</p>
+                                            <p className="text-base md:text-lg text-amber-500 underline cursor-pointer hover:text-amber-600" onClick={() => navigate(`/page-film/${crt.movieId}`)}>{crt.movieTtile}</p>
+                                            <p className="text-base md:text-lg text-orange">{crt.note} / 5</p>
                                             <p className="text-base text-white my-2">{crt.critik}</p>
                                             <div className='flex justify-start mt-4'>
                                                 <button className="text-lg text-white" onClick={() => { openModalDeleteCritik(crt.movieId); setSelectedItem(crt) }}>

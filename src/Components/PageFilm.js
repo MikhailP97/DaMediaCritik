@@ -590,15 +590,16 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
           </div>
         </div>
           {/* Commentaires */}
-          <div className="w-full mx-0 mt-6 md:grid md:grid-cols-2 gap-10 bg-black md:bg-opacity-60 bg-opacity-60 sm:rounded-xl py-5 px-5 lg:px-10 ">
+          <div className="w-full mx-0 mt-6 bg-black md:bg-opacity-60 bg-opacity-60 sm:rounded-xl py-5 px-5 lg:px-10">
             <p className="col-span-2 sm:text-xl md:text-2xl text-center 2xl:text-3xl my-5 font-bold">Commentaires :</p>  
+            <div className="mt-6 md:grid md:grid-cols-2 gap-10 divide-y sm:divide-y-0">
             {   
                     critiks?.length ? critiks.map((crt) => {   
                             return(          
-                                    <div key={crt.id}>   
-                                      <p className="text-amber-500 font-extrabold">{crt.username}</p>
+                                    <div key={crt.id} className='mt-8 md:mt-0'>  
+                                      <p className="text-amber-500 font-extrabold mt-5 md:mt-0">{crt.username}</p>
                                       <p className="text-amber-300 font-semibold py-2">{crt.note} / 5</p>
-                                      <p className="text-lg text-white">{crt.critik}</p>
+                                      <p className="text-base sm:text-lg text-white">{crt.critik}</p>
                                       {crt.username === currentUser?.displayName 
                                         ? <div className='flex justify-start mt-4'>
                                             <button className="text-lg text-white" 
@@ -617,10 +618,11 @@ let formatter = Intl.NumberFormat('en', { notation: 'compact' });
                                     </div>
                             )
                     }) : <></>               
-            } 
+            }
+            </div>
           </div>
           <form className="my-10 md:my-20 h-72 text-black pb-12" onSubmit={handleSubmit}>
-              <label htmlFor="comment" className='text-3xl text-amber-500 font-extrabold'>Votre Critik <span className='text-white'>:</span> </label>
+              <label htmlFor="comment" className='text-3xl text-amber-500 font-extrabold ml-2'>Votre Critik <span className='text-white'>:</span> </label>
               <textarea className="text-lg w-full h-2/3 mt-10 p-7 rounded-xl" type="text" size="5" value={comment}
               onChange={(e) => setComment(e.target.value)} 
               />

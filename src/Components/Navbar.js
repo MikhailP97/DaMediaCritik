@@ -245,6 +245,7 @@ function NavBar(props) {
                 navigate(`/page-film/${res.id}`)
                 setInvisible('invisible')
                 setSearch('')
+                setSearchBar(!searchBar)
               }}>
                 <img className="ml-2" src={serverPosters + res.backdrop_path} alt={res.title} width='50' />
                 <div className="flex flex-col space-y-2">
