@@ -17,7 +17,7 @@ export const getAsyncUpcomingMovies = createAsyncThunk(
     'movies/getAsyncUpcomingMovies',
         async (name) => {
             const response = await axios.get(
-                `${apiMovieDatabase}/movie/upcoming?${apiKey}&language=fr-FR&page=1&region=FR`
+                `${apiMovieDatabase}movie/upcoming?${apiKey}&language=fr-FR&page=1&region=FR`
                 );
         return response.data.results.slice(0,6);
 })
@@ -53,7 +53,7 @@ export const getAsyncMovieDetails = createAsyncThunk(
     'movies/getAsyncMovieDetails',
         async (id) => {
             const response = await axios.get(
-                `${apiMovieDatabase}/movie/${id}?${apiKey}&language=fr`
+                `${apiMovieDatabase}movie/${id}?${apiKey}&language=fr`
                 );
         return response.data;
 })
@@ -62,7 +62,7 @@ export const getAsyncMovieCredits = createAsyncThunk(
     'movies/getAsyncMovieCredits',
         async (id) => {
             const response = await axios.get(
-                `${apiMovieDatabase}/movie/${id}/credits?${apiKey}&language=fr`
+                `${apiMovieDatabase}movie/${id}/credits?${apiKey}&language=fr`
                 );
         return response.data;
 })
@@ -71,7 +71,7 @@ export const getAsyncMovieVideos = createAsyncThunk(
     'movies/getAsyncMovieVideos',
         async (id) => {
             const response = await axios.get(
-                `${apiMovieDatabase}/movie/${id}/videos?${apiKey}&language=fr`
+                `${apiMovieDatabase}movie/${id}/videos?${apiKey}&language=fr`
                 );
         return response.data.results;
 })
@@ -80,7 +80,7 @@ export const getAsyncAllMovieVideos = createAsyncThunk(
     'movies/getAsyncAllMovieVideos',
         async (id) => {
             const response = await axios.get(
-                `${apiMovieDatabase}/movie/${id}/videos?${apiKey}&page=1`
+                `${apiMovieDatabase}movie/${id}/videos?${apiKey}&page=1`
                 );
         return response.data.results;
 })
@@ -89,7 +89,7 @@ export const getAsyncAllMovieProviders = createAsyncThunk(
     'movies/getAsyncAllMovieProviders',
         async (id) => {
             const response = await axios.get(
-                `${apiMovieDatabase}/movie/${id}/watch/providers?${apiKey}&language=fr`
+                `${apiMovieDatabase}movie/${id}/watch/providers?${apiKey}&language=fr`
                 );
         return response.data.results;
 })

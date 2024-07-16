@@ -118,14 +118,14 @@ export default function Profile() {
             })
     }
     //on filtre le tableau movieCritiks pour n'avoir que la critik de l'utilisateur connecté
-    const filteredMovieCritiks = (movieCritiks.filter((a) => a.username === `${currentUser?.displayName}`))
+    const filteredMovieCritiks = (movieCritiks?.filter((a) => a.username === `${currentUser?.displayName}`))
 
     //supprime les critiks
     const deleteCritik = async (commentId, movieId) => {
         //supprime la critik du dossier de l'utilisateur
         await deleteDoc(doc(db, `${currentUser.uid}`, `${commentId}`));
         //supprime la critik du dossier du film en question
-        await deleteDoc(doc(db, `${movieId}`, `${filteredMovieCritiks[0].id}`))
+        await deleteDoc(doc(db, `${movieId}`, `${filteredMovieCritiks[0]?.id}`))
         toggleModalSuppressionCritik(); //Cache la modal de confirmation de suppression du commentaire
         setRefresh(!refresh) //raffraichi la page
     }
@@ -160,7 +160,7 @@ export default function Profile() {
             note: rating,
         });
         //modifie le document du dossier film
-        await updateDoc(doc(db, `${movieId}`, `${filteredMovieCritiks[0].id}`), {
+        await updateDoc(doc(db, `${movieId}`, `${filteredMovieCritiks[0]?.id}`), {
             movieTtile: selectedItem.movieTtile,
             movieId: movieId,
             date: date.toLocaleDateString("fr", { day: 'numeric', month: 'short', year: 'numeric' }),
