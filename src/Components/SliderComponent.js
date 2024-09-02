@@ -34,7 +34,7 @@ function SliderComponent({movies, titleOfSection, mb}) {
                         bullets={true}
                     >
                         {movies?.length && movies.slice(0,6).map((mv) => (
-                                                                        <div className="imgContainer" style={{ backgroundColor: '#1c1917' }} onClick={() => navigate(`/page-film/${mv.id}`)} key={movies.id}>
+                                                                        <div className="imgContainer" style={{ backgroundColor: '#1c1917' }} onClick={() => navigate(`/page-film/${mv.id}`)} key={mv.id}>
                                                                             <img src={server + mv.poster_path} alt={'elmrkf'} style={{ height: "400px", backgroundColor: '#1c1917' }} />
                                                                         </div>
                         ))}
