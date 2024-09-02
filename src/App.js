@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react';
 import {AuthProvider} from './authContext'
 import {auth} from './firebase/index'
 import {onAuthStateChanged} from 'firebase/auth'
+import ScrollToTop from './Components/ScrollTop';
 
 
 function App() {
@@ -36,6 +37,7 @@ useEffect(() => {
     <div className="App">
       <AuthProvider value={{currentUser}}>
         <BrowserRouter>
+        <ScrollToTop />
         
           <NavBar />
 

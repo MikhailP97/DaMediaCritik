@@ -3,12 +3,6 @@ import axios from 'axios';
 import { apiKey } from '../../apiKey';
 import { apiMovieDatabase } from '../../apiMovieDatabase';
 
-// const initialState = {
-//     status: 'uninitialized',
-//     todos: [],
-//     error: null
-// }
-
 // TMDB API calls
 export const getAsyncMovies = createAsyncThunk(
     'movies/getAsyncMovies',
@@ -100,30 +94,6 @@ export const getAsyncAllMovieProviders = createAsyncThunk(
         return response.data.results;
 })
 
-// export const getAsyncSimilarMovies = createAsyncThunk(
-//     'movies/getAsyncSimilarMovies',
-//         async (id) => {
-//             const response = await axios.get(
-//                 `${apiMovieDatabase}/movie/${id}/similar?${apiKey}&language=fr&page=1`
-//                 );
-//         return response.data.results;
-// })
-
-
-
-
-
-// export const getAsyncTrendingsMovies = createAsyncThunk(
-//     'movies/getAsyncTrendingsMovies',
-//         async (name) => {
-//             const response = await axios.get(
-//                 `${apiMovieDatabase}trending/movie/week?language=fr&${apiKey}&page=1`
-//                 );
-//         return response.data.results;
-// })
-
-
-
 export const movieSlice = createSlice({
     name: 'movies',
     initialState
@@ -139,10 +109,6 @@ export const movieSlice = createSlice({
         moviesVideos: {},
         allMoviesVideos: {},
         movieProviders: {},
-
-        // recommandationForMovie: {},
-        // trendingsMovies: {},
-        
         tab_genres: { 28: "Action", 12: "Aventure", 16: "Animation", 35: "Comédie", 80: "Crime", 99: "Documentaire", 18: "Drame", 10751: "Familial", 14: "Fantastique", 36: "Histoire", 27: "Horreur", 10402: "Musique", 9648: "Mystère", 10749: "Romance", 878: "Science-Fiction", 10770: "Téléfilm", 53: "Thriller", 10752: "Guerre", 37: "Western" },
     },
     extraReducers: builder => {
@@ -219,95 +185,8 @@ export const movieSlice = createSlice({
         .addCase(getAsyncAllMovieProviders.rejected, () => {
             console.log("rejected getAsyncAllMovieProviders")
         })
-        
-        // //getAsyncMovies
-        // [getAsyncMovies.fulfilled]: (state, { payload }) => {
-        //     return { ...state, trendingMovies: payload };
-        // },
-        // [getAsyncMovies.rejected]: () => {
-        //     console.log("rejected getAsyncMovies");
-        // },
-        // // getAsyncMovieDetails
-        // [getAsyncMovieDetails.fulfilled]: (state, { payload }) => {
-        //     return { ...state, movieDetails: payload };
-        // },
-        // [getAsyncMovieDetails.rejected]: () => {
-        //     console.log("rejected getAsyncMovieDetails");
-        // },
-        // // getAsyncMovieCredits
-        // [getAsyncMovieCredits.fulfilled]: (state, { payload }) => {
-        //     return { ...state, movieCredits: payload };
-        // },
-        // [getAsyncMovieCredits.rejected]: () => {
-        //     console.log("rejected getAsyncMovieCredits");
-        // },
-        // // getAsyncMoviesRelease
-        // [getAsyncMoviesRelease.fulfilled]: (state, { payload }) => {
-        //     return { ...state, releaseMovies: payload };
-        // },
-        // [getAsyncMoviesRelease.rejected]: () => {
-        //     console.log("rejected getAsyncMoviesRelease");
-        // },
-        // // searchMovie
-        // [searchMovie.fulfilled]: (state, { payload }) => {
-        //     return { ...state, searchResults: payload };
-        // },
-        // [searchMovie.rejected]: () => {
-        //     console.log("rejected searchMovie");
-        // },
-        // // getAsyncMovieCategories
-        // [getAsyncMovieCategories.fulfilled]: (state, { payload }) => {
-        //     return { ...state, moviesByCategory: payload };
-        // },
-        // [getAsyncMovieCategories.rejected]: () => {
-        //     console.log("rejected getAsyncMovieCategories");
-        // },
-        // // getAsyncMovieVideos
-        // [getAsyncMovieVideos.fulfilled]: (state, { payload }) => {
-        //     return { ...state, moviesVideos: payload };
-        // },
-        // [getAsyncMovieVideos.rejected]: () => {
-        //     console.log("rejected getAsyncMovieVideos");
-        // },
-        // // getAsyncAllMovieVideos
-        // [getAsyncAllMovieVideos.fulfilled]: (state, { payload }) => {
-        //     return { ...state, allMoviesVideos: payload };
-        // },
-        // [getAsyncAllMovieVideos.rejected]: () => {
-        //     console.log("rejected getAsyncAllMovieVideos");
-        // },
-        // // getAsyncSimilarMovies
-        // [getAsyncSimilarMovies.fulfilled]: (state, { payload }) => {
-        //     return { ...state, recommandationForMovie: payload };
-        // },
-        // [getAsyncSimilarMovies.rejected]: () => {
-        //     console.log("rejected getAsyncSimilarMovies");
-        // },
-        // // getAsyncAllMovieProviders
-        // [getAsyncAllMovieProviders.fulfilled]: (state, { payload }) => {
-        //     return { ...state, movieProviders: payload };
-        // },
-        // [getAsyncSimilarMovies.rejected]: () => {
-        //     console.log("rejected getAsyncAllMovieProviders");
-        // },
-        // // getAsyncTrendingsMovies
-        // [getAsyncTrendingsMovies.fulfilled]: (state, { payload }) => {
-        //     return { ...state, trendingMovies: payload };
-        // },
-        // [getAsyncTrendingsMovies.rejected]: () => {
-        //     console.log("rejected getAsyncTrendingsMovies");
-        // },
-        // // getAsyncUpcomingMovies
-        // [getAsyncUpcomingMovies.fulfilled]: (state, { payload }) => {
-        //     return { ...state, upcomingMovies: payload };
-        // },
-        // [getAsyncUpcomingMovies.rejected]: () => {
-        //     console.log("rejected getAsyncUpcomingMovies");
-        // },
     }
 })
-
-// export const selectAllPosts = state => state.movies.todos
 
 export const trendings = state => state.movies.trendingMovies;
 export const moviePage = (state) => state.movies.movieDetails;
@@ -318,9 +197,7 @@ export const tabGenres = (state) => state.movies.tab_genres;
 export const moviesByCategory = (state) => state.movies.moviesByCategory;
 export const moviesVideos = (state) => state.movies.moviesVideos;
 export const allMoviesVideos = (state) => state.movies.allMoviesVideos;
-// export const recommandationForMovie = (state) => state.movies.recommandationForMovie;
 export const movieAllProviders = (state) => state.movies.movieProviders;
-// export const trendingMovies = (state) => state.movies.trendingMovies;
 export const upcomingMovies = (state) => state.movies.upcomingMovies;
 
 
